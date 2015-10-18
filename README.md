@@ -1,10 +1,7 @@
 # tbc-cms-front
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
-
 ## Build & development
-Run `npm install` and `bower install'
+Run `npm install` and `bower install`
 Then run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
