@@ -2,6 +2,7 @@
 
 ## Build & development
 Run `npm install` and `bower install`
+
 Then run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
