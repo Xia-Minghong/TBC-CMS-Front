@@ -1,0 +1,655 @@
+<section class="content">
+  <!--&lt;!&ndash; Small boxes (Stat box) &ndash;&gt;-->
+  <!--<div class="row">-->
+  <!--<div class="col-lg-3 col-xs-6">-->
+  <!--&lt;!&ndash; small box &ndash;&gt;-->
+  <!--<div class="small-box bg-aqua">-->
+  <!--<div class="inner">-->
+  <!--<h3>5</h3>-->
+  <!--<p>Pending Crises</p>-->
+  <!--</div>-->
+  <!--<div class="icon">-->
+  <!--<i class="ion ion-bag"></i>-->
+  <!--</div>-->
+  <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--</div>-->
+  <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+  <!--<div class="col-lg-3 col-xs-6">-->
+  <!--&lt;!&ndash; small box &ndash;&gt;-->
+  <!--<div class="small-box bg-green">-->
+  <!--<div class="inner">-->
+  <!--<h3>56<sup style="font-size: 20px">%</sup></h3>-->
+  <!--<p>Resolved Crises</p>-->
+  <!--</div>-->
+  <!--<div class="icon">-->
+  <!--<i class="ion ion-stats-bars"></i>-->
+  <!--</div>-->
+  <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--</div>-->
+  <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+  <!--<div class="col-lg-3 col-xs-6">-->
+  <!--&lt;!&ndash; small box &ndash;&gt;-->
+  <!--<div class="small-box bg-yellow">-->
+  <!--<div class="inner">-->
+  <!--<h3>44</h3>-->
+  <!--<p>User Registrations</p>-->
+  <!--</div>-->
+  <!--<div class="icon">-->
+  <!--<i class="ion ion-person-add"></i>-->
+  <!--</div>-->
+  <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--</div>-->
+  <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+  <!--<div class="col-lg-3 col-xs-6">-->
+  <!--&lt;!&ndash; small box &ndash;&gt;-->
+  <!--<div class="small-box bg-red">-->
+  <!--<div class="inner">-->
+  <!--<h3>65</h3>-->
+  <!--<p>Unique Visitors</p>-->
+  <!--</div>-->
+  <!--<div class="icon">-->
+  <!--<i class="ion ion-pie-graph"></i>-->
+  <!--</div>-->
+  <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+  <!--</div>-->
+  <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+  <!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+  <!-- Info boxes -->
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Current Crises</span>
+          <span class="info-box-number">6</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Pending Requests</span>
+          <span class="info-box-number">11</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+
+    <!-- fix for small devices only -->
+    <div class="clearfix visible-sm-block"></div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Number of Active Agencies</span>
+          <span class="info-box-number">15</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Resolved Crises</span>
+          <span class="info-box-number">2,122</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box box-success">
+          <div class="box-header with-border">
+            <i class="fa fa-map-o"></i>
+            <h3 class="box-title">Crisis Map</h3>
+            <div class="box-tools pull-right">
+              <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+              <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+            </div>
+          </div><!-- /.box-header -->
+          <div class="box-body no-padding">
+            <div class="row">
+              <div class="col-md-9 col-sm-8">
+                <div class="pad">
+                  <!-- Map will be created here -->
+                  <div id="world-map-markers" style="height: 325px;"></div>
+                </div>
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-4">
+                <div class="pad box-pane-right bg-green" style="min-height: 280px">
+                  <div class="description-block margin-bottom">
+                    <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
+                    <h5 class="description-header">8390</h5>
+                    <span class="description-text">Visits</span>
+                  </div><!-- /.description-block -->
+                  <div class="description-block margin-bottom">
+                    <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                    <h5 class="description-header">30%</h5>
+                    <span class="description-text">Referrals</span>
+                  </div><!-- /.description-block -->
+                  <div class="description-block">
+                    <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                    <h5 class="description-header">70%</h5>
+                    <span class="description-text">Organic</span>
+                  </div><!-- /.description-block -->
+                </div>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div><!-- /.box -->
+      <!-- The time line -->
+      <ul class="timeline">
+        <!-- timeline time label -->
+        <li class="time-label">
+                  <span class="bg-red">
+                    10 Feb. 2014
+                  </span>
+        </li>
+        <!-- /.timeline-label -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-envelope bg-blue"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+            <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+            <div class="timeline-body">
+              Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+              weebly ning heekya handango imeem plugg dopplr jibjab, movity
+              jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+              quora plaxo ideeli hulu weebly balihoo...
+            </div>
+            <div class="timeline-footer">
+              <a class="btn btn-primary btn-xs">Read more</a>
+              <a class="btn btn-danger btn-xs">Delete</a>
+            </div>
+          </div>
+        </li>
+        <!-- END timeline item -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-user bg-aqua"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+            <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+          </div>
+        </li>
+        <!-- END timeline item -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-comments bg-yellow"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+            <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+            <div class="timeline-body">
+              Take me to your leader!
+              Switzerland is small and neutral!
+              We are more like Germany, ambitious and misunderstood!
+            </div>
+            <div class="timeline-footer">
+              <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+            </div>
+          </div>
+        </li>
+        <!-- END timeline item -->
+        <!-- timeline time label -->
+        <li class="time-label">
+                  <span class="bg-green">
+                    3 Jan. 2014
+                  </span>
+        </li>
+        <!-- /.timeline-label -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-camera bg-purple"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+            <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+            <div class="timeline-body">
+              <img src="http://placehold.it/150x100" alt="..." class="margin">
+              <img src="http://placehold.it/150x100" alt="..." class="margin">
+              <img src="http://placehold.it/150x100" alt="..." class="margin">
+              <img src="http://placehold.it/150x100" alt="..." class="margin">
+            </div>
+          </div>
+        </li>
+        <!-- END timeline item -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-video-camera bg-maroon"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
+            <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+            <div class="timeline-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="timeline-footer">
+              <a href="#" class="btn btn-xs bg-maroon">See comments</a>
+            </div>
+          </div>
+        </li>
+        <!-- END timeline item -->
+        <li>
+          <i class="fa fa-clock-o bg-gray"></i>
+        </li>
+      </ul>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title"><i class="fa fa-code"></i> Timeline Markup</h3>
+        </div>
+        <div class="box-body">
+                  <pre style="font-weight: 600;">
+&lt;ul class="timeline">
+
+    &lt;!-- timeline time label -->
+    &lt;li class="time-label">
+        &lt;span class="bg-red">
+            10 Feb. 2014
+        &lt;/span>
+    &lt;/li>
+    &lt;!-- /.timeline-label -->
+
+    &lt;!-- timeline item -->
+    &lt;li>
+        &lt;!-- timeline icon -->
+        &lt;i class="fa fa-envelope bg-blue">&lt;/i>
+        &lt;div class="timeline-item">
+            &lt;span class="time">&lt;i class="fa fa-clock-o">&lt;/i> 12:05&lt;/span>
+
+            &lt;h3 class="timeline-header">&lt;a href="#">Support Team&lt;/a> ...&lt;/h3>
+
+            &lt;div class="timeline-body">
+                ...
+                Content goes here
+            &lt;/div>
+
+            &lt;div class="timeline-footer">
+                &lt;a class="btn btn-primary btn-xs">...&lt;/a>
+            &lt;/div>
+        &lt;/div>
+    &lt;/li>
+    &lt;!-- END timeline item -->
+
+    ...
+
+&lt;/ul>
+                  </pre>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <!-- Main row -->
+  <div class="row">
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable-disabled">
+      <!--&lt;!&ndash; Custom tabs (Charts with tabs)&ndash;&gt;-->
+      <!--<div class="nav-tabs-custom">-->
+      <!--&lt;!&ndash; Tabs within a box &ndash;&gt;-->
+      <!--<ul class="nav nav-tabs pull-right">-->
+      <!--<li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>-->
+      <!--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>-->
+      <!--<li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>-->
+      <!--</ul>-->
+      <!--<div class="tab-content no-padding">-->
+      <!--&lt;!&ndash; Morris chart - Sales &ndash;&gt;-->
+      <!--<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>-->
+      <!--<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.nav-tabs-custom &ndash;&gt;-->
+
+      <!-- MAP & BOX PANE -->
+
+
+      <!--&lt;!&ndash; Map box &ndash;&gt;-->
+      <!--<div class="box box-solid bg-light-blue-gradient">-->
+      <!--<div class="box-header">-->
+      <!--&lt;!&ndash; tools box &ndash;&gt;-->
+      <!--<div class="pull-right box-tools">-->
+      <!--<button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>-->
+      <!--<button class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>-->
+      <!--</div>&lt;!&ndash; /. tools &ndash;&gt;-->
+
+      <!--<i class="fa fa-map-marker"></i>-->
+      <!--<h3 class="box-title">-->
+      <!--Visitors-->
+      <!--</h3>-->
+      <!--</div>-->
+      <!--<div class="box-body">-->
+      <!--<div id="world-map" style="height: 250px; width: 100%;"></div>-->
+      <!--</div>&lt;!&ndash; /.box-body&ndash;&gt;-->
+      <!--<div class="box-footer no-border">-->
+      <!--<div class="row">-->
+      <!--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">-->
+      <!--<div id="sparkline-1"></div>-->
+      <!--<div class="knob-label">Visitors</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">-->
+      <!--<div id="sparkline-2"></div>-->
+      <!--<div class="knob-label">Online</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--<div class="col-xs-4 text-center">-->
+      <!--<div id="sparkline-3"></div>-->
+      <!--<div class="knob-label">Exists</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /.box &ndash;&gt;-->
+
+
+
+      <!--&lt;!&ndash; Chat box &ndash;&gt;-->
+      <!--<div class="box box-success">-->
+      <!--<div class="box-header">-->
+      <!--<i class="fa fa-file-text"></i>-->
+      <!--<h3 class="box-title">System Log</h3>-->
+      <!--<div class="box-tools pull-right" data-toggle="tooltip" title="Status">-->
+      <!--&lt;!&ndash;<div class="btn-group" data-toggle="btn-toggle" >&ndash;&gt;-->
+      <!--&lt;!&ndash;<button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>&ndash;&gt;-->
+      <!--&lt;!&ndash;<button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="box-body chat" id="chat-box">-->
+      <!--&lt;!&ndash; chat item &ndash;&gt;-->
+      <!--<div class="item">-->
+      <!--<img src="dist/img/user4-128x128.jpg" alt="user image" class="online">-->
+      <!--<p class="message">-->
+      <!--<a href="#" class="name">-->
+      <!--<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>-->
+      <!--Mike Doe-->
+      <!--</a>-->
+      <!--I would like to meet you to discuss the latest news about-->
+      <!--the arrival of the new theme. They say it is going to be one the-->
+      <!--best themes on the market-->
+      <!--</p>-->
+      <!--<div class="attachment">-->
+      <!--<h4>Attachments:</h4>-->
+      <!--<p class="filename">-->
+      <!--Theme-thumbnail-image.jpg-->
+      <!--</p>-->
+      <!--<div class="pull-right">-->
+      <!--<button class="btn btn-primary btn-sm btn-flat">Open</button>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.attachment &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.item &ndash;&gt;-->
+      <!--&lt;!&ndash; chat item &ndash;&gt;-->
+      <!--<div class="item">-->
+      <!--<img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">-->
+      <!--<p class="message">-->
+      <!--<a href="#" class="name">-->
+      <!--<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>-->
+      <!--Alexander Pierce-->
+      <!--</a>-->
+      <!--I would like to meet you to discuss the latest news about-->
+      <!--the arrival of the new theme. They say it is going to be one the-->
+      <!--best themes on the market-->
+      <!--</p>-->
+      <!--</div>&lt;!&ndash; /.item &ndash;&gt;-->
+      <!--&lt;!&ndash; chat item &ndash;&gt;-->
+      <!--<div class="item">-->
+      <!--<img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">-->
+      <!--<p class="message">-->
+      <!--<a href="#" class="name">-->
+      <!--<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>-->
+      <!--Susan Doe-->
+      <!--</a>-->
+      <!--I would like to meet you to discuss the latest news about-->
+      <!--the arrival of the new theme. They say it is going to be one the-->
+      <!--best themes on the market-->
+      <!--</p>-->
+      <!--</div>&lt;!&ndash; /.item &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.chat &ndash;&gt;-->
+      <!--<div class="box-footer">-->
+      <!--<div class="input-group">-->
+      <!--<input class="form-control" placeholder="Type message...">-->
+      <!--<div class="input-group-btn">-->
+      <!--<button class="btn btn-success"><i class="fa fa-plus"></i></button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.box (chat box) &ndash;&gt;-->
+
+
+
+      <!--&lt;!&ndash; quick email widget &ndash;&gt;-->
+      <!--<div class="box box-info">-->
+      <!--<div class="box-header">-->
+      <!--<i class="fa fa-envelope"></i>-->
+      <!--<h3 class="box-title">Quick Email</h3>-->
+      <!--&lt;!&ndash; tools box &ndash;&gt;-->
+      <!--<div class="pull-right box-tools">-->
+      <!--<button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>-->
+      <!--</div>&lt;!&ndash; /. tools &ndash;&gt;-->
+      <!--</div>-->
+      <!--<div class="box-body">-->
+      <!--<form action="#" method="post">-->
+      <!--<div class="form-group">-->
+      <!--<input type="email" class="form-control" name="emailto" placeholder="Email to:">-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+      <!--<input type="text" class="form-control" name="subject" placeholder="Subject">-->
+      <!--</div>-->
+      <!--<div>-->
+      <!--<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>-->
+      <!--</div>-->
+      <!--</form>-->
+      <!--</div>-->
+      <!--<div class="box-footer clearfix">-->
+      <!--<button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>-->
+      <!--</div>-->
+      <!--</div>-->
+
+    </section><!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable-disabled">
+
+      <!--&lt;!&ndash; TO DO List &ndash;&gt;-->
+      <!--<div class="box box-primary">-->
+      <!--<div class="box-header">-->
+      <!--<i class="ion ion-clipboard"></i>-->
+      <!--<h3 class="box-title">To Do List</h3>-->
+      <!--<div class="box-tools pull-right">-->
+      <!--<ul class="pagination pagination-sm inline">-->
+      <!--<li><a href="#">&laquo;</a></li>-->
+      <!--<li><a href="#">1</a></li>-->
+      <!--<li><a href="#">2</a></li>-->
+      <!--<li><a href="#">3</a></li>-->
+      <!--<li><a href="#">&raquo;</a></li>-->
+      <!--</ul>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.box-header &ndash;&gt;-->
+      <!--<div class="box-body">-->
+      <!--<ul class="todo-list">-->
+      <!--<li>-->
+      <!--&lt;!&ndash; drag handle &ndash;&gt;-->
+      <!--<span class="handle">-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--</span>-->
+      <!--&lt;!&ndash; checkbox &ndash;&gt;-->
+      <!--<input type="checkbox" value="" name="">-->
+      <!--&lt;!&ndash; todo text &ndash;&gt;-->
+      <!--<span class="text">New Crisis</span>-->
+      <!--&lt;!&ndash; Emphasis label &ndash;&gt;-->
+      <!--<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>-->
+      <!--&lt;!&ndash; General tools such as edit or delete&ndash;&gt;-->
+      <!--<div class="tools">-->
+      <!--<i class="fa fa-edit"></i>-->
+      <!--<i class="fa fa-trash-o"></i>-->
+      <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<span class="handle">-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--</span>-->
+      <!--<input type="checkbox" value="" name="">-->
+      <!--<span class="text">Approve Event Update</span>-->
+      <!--<small class="label label-info"><i class="fa fa-clock-o"></i> 3 mins</small>-->
+      <!--<div class="tools">-->
+      <!--<i class="fa fa-edit"></i>-->
+      <!--<i class="fa fa-trash-o"></i>-->
+      <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<span class="handle">-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--</span>-->
+      <!--<input type="checkbox" value="" name="">-->
+      <!--<span class="text">Approve Social Media Update</span>-->
+      <!--<small class="label label-warning"><i class="fa fa-clock-o"></i> 4 mins</small>-->
+      <!--<div class="tools">-->
+      <!--<i class="fa fa-edit"></i>-->
+      <!--<i class="fa fa-trash-o"></i>-->
+      <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<span class="handle">-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--</span>-->
+      <!--<input type="checkbox" value="" name="">-->
+      <!--<span class="text">New Crisis</span>-->
+      <!--<small class="label label-danger"><i class="fa fa-clock-o"></i> 4 mins</small>-->
+      <!--<div class="tools">-->
+      <!--<i class="fa fa-edit"></i>-->
+      <!--<i class="fa fa-trash-o"></i>-->
+      <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<span class="handle">-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--<i class="fa fa-ellipsis-v"></i>-->
+      <!--</span>-->
+      <!--<input type="checkbox" value="" name="">-->
+      <!--<span class="text">Dispatch Agencies</span>-->
+      <!--<small class="label label-primary"><i class="fa fa-clock-o"></i> 5 mins</small>-->
+      <!--<div class="tools">-->
+      <!--<i class="fa fa-edit"></i>-->
+      <!--<i class="fa fa-trash-o"></i>-->
+      <!--</div>-->
+      <!--</li>-->
+
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</div>&lt;!&ndash; /.box-body &ndash;&gt;-->
+      <!--<div class="box-footer clearfix no-border">-->
+      <!--<button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.box &ndash;&gt;-->
+
+      <!--&lt;!&ndash; solid sales graph &ndash;&gt;-->
+      <!--<div class="box box-solid bg-teal-gradient">-->
+      <!--<div class="box-header">-->
+      <!--<i class="fa fa-th"></i>-->
+      <!--<h3 class="box-title">Sales Graph</h3>-->
+      <!--<div class="box-tools pull-right">-->
+      <!--<button class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+      <!--<button class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="box-body border-radius-none">-->
+      <!--<div class="chart" id="line-chart" style="height: 250px;"></div>-->
+      <!--</div>&lt;!&ndash; /.box-body &ndash;&gt;-->
+      <!--<div class="box-footer no-border">-->
+      <!--<div class="row">-->
+      <!--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">-->
+      <!--<input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">-->
+      <!--<div class="knob-label">Mail-Orders</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">-->
+      <!--<input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">-->
+      <!--<div class="knob-label">Online</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--<div class="col-xs-4 text-center">-->
+      <!--<input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">-->
+      <!--<div class="knob-label">In-Store</div>-->
+      <!--</div>&lt;!&ndash; ./col &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.box-footer &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.box &ndash;&gt;-->
+
+      <!-- Calendar -->
+      <!--<div class="box box-solid bg-green-gradient">-->
+      <!--<div class="box-header">-->
+      <!--<i class="fa fa-calendar"></i>-->
+      <!--<h3 class="box-title">Calendar</h3>-->
+      <!--&lt;!&ndash; tools box &ndash;&gt;-->
+      <!--<div class="pull-right box-tools">-->
+      <!--&lt;!&ndash; button with a dropdown &ndash;&gt;-->
+      <!--<div class="btn-group">-->
+      <!--<button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>-->
+      <!--<ul class="dropdown-menu pull-right" role="menu">-->
+      <!--<li><a href="#">Add new event</a></li>-->
+      <!--<li><a href="#">Clear events</a></li>-->
+      <!--<li class="divider"></li>-->
+      <!--<li><a href="#">View calendar</a></li>-->
+      <!--</ul>-->
+      <!--</div>-->
+      <!--<button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+      <!--<button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
+      <!--</div>&lt;!&ndash; /. tools &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.box-header &ndash;&gt;-->
+      <!--<div class="box-body no-padding">-->
+      <!--&lt;!&ndash;The calendar &ndash;&gt;-->
+      <!--<div id="calendar" style="width: 100%"></div>-->
+      <!--</div>&lt;!&ndash; /.box-body &ndash;&gt;-->
+      <!--<div class="box-footer text-black">-->
+      <!--<div class="row">-->
+      <!--<div class="col-sm-6">-->
+      <!--&lt;!&ndash; Progress bars &ndash;&gt;-->
+      <!--<div class="clearfix">-->
+      <!--<span class="pull-left">Task #1</span>-->
+      <!--<small class="pull-right">90%</small>-->
+      <!--</div>-->
+      <!--<div class="progress xs">-->
+      <!--<div class="progress-bar progress-bar-green" style="width: 90%;"></div>-->
+      <!--</div>-->
+
+      <!--<div class="clearfix">-->
+      <!--<span class="pull-left">Task #2</span>-->
+      <!--<small class="pull-right">70%</small>-->
+      <!--</div>-->
+      <!--<div class="progress xs">-->
+      <!--<div class="progress-bar progress-bar-green" style="width: 70%;"></div>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.col &ndash;&gt;-->
+      <!--<div class="col-sm-6">-->
+      <!--<div class="clearfix">-->
+      <!--<span class="pull-left">Task #3</span>-->
+      <!--<small class="pull-right">60%</small>-->
+      <!--</div>-->
+      <!--<div class="progress xs">-->
+      <!--<div class="progress-bar progress-bar-green" style="width: 60%;"></div>-->
+      <!--</div>-->
+
+      <!--<div class="clearfix">-->
+      <!--<span class="pull-left">Task #4</span>-->
+      <!--<small class="pull-right">40%</small>-->
+      <!--</div>-->
+      <!--<div class="progress xs">-->
+      <!--<div class="progress-bar progress-bar-green" style="width: 40%;"></div>-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.col &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>&lt;!&ndash; /.box &ndash;&gt;-->
+
+    </section><!-- right col -->
+  </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->
