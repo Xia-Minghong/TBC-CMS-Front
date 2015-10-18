@@ -8,7 +8,12 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ->
+  .controller 'MainCtrl', ($scope, $location)->
+    $scope.isActive = (viewLocation) ->
+      return active = (viewLocation == $location.path());
+
+
+
     @awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'

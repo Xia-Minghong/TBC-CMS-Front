@@ -36,6 +36,27 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/raphael/raphael.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+  <script src="bower_components/AdminLTE/dist/js/app.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini" ng-app="tbcCmsFrontApp">
 <div class="wrapper">
@@ -314,7 +335,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" ng-controller="MainCtrl">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="#">
@@ -322,8 +343,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="index.html"><i class="fa fa-circle-o"></i> Manager Interface</a></li>
-            <li class="active"><a href="#/"><i class="fa fa-circle-o"></i> KDM Interface</a></li>
-            <li><a href="index-public.html"><i class="fa fa-circle-o"></i> Public Interface</a></li>
+            <li ng-class="{ active: isActive('/') }"><a href="#/"><i class="fa fa-circle-o"></i> KDM Interface</a></li>
+            <li ng-class="{ active: isActive('/public') }"><a href="#/public"><i class="fa fa-circle-o"></i> Public Interface</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> DashBoard v2</a></li>
           </ul>
         </li>
@@ -633,16 +654,12 @@
   <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
-<!-- jQuery 2.1.4 -->
-<script src="bower_components/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
-<!-- Bootstrap 3.3.5 -->
-<script src="bower_components/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Morris.js charts -->
 <script src="bower_components/raphael/raphael-min.js"></script>
 <script src="bower_components/AdminLTE/plugins/morris/morris.min.js"></script>
@@ -654,7 +671,6 @@
 <!-- jQuery Knob Chart -->
 <script src="bower_components/AdminLTE/plugins/knob/jquery.knob.js"></script>
 <!-- daterangepicker -->
-<script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="bower_components/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -672,29 +688,12 @@
 <script src="bower_components/AdminLTE/dist/js/demo.js"></script>
 
 
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/raphael/raphael.js"></script>
-<script src="bower_components/jquery-ui/jquery-ui.js"></script>
-<script src="bower_components/AdminLTE/dist/js/app.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/public.js"></script>
 <!-- endbuild -->
+
+
 </body>
 </html>
