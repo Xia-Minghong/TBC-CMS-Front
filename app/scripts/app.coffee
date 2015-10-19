@@ -16,7 +16,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angularMoment',
   ]
   .config ($routeProvider) ->
     $routeProvider
@@ -37,4 +38,8 @@ angular
 
       .otherwise
         redirectTo: '/'
+
+window.App = {}
+App.host_addr = "http://localhost:8000"
+
 

@@ -30,7 +30,8 @@ module.exports = (config) ->
       'bower_components/moment/moment.js'
       'bower_components/raphael/raphael.js'
       'bower_components/jquery-ui/jquery-ui.js'
-      'bower_components/adminlte/dist/js/app.js'
+      'bower_components/admin-lte/dist/js/app.js'
+      'bower_components/angular-moment/angular-moment.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower
       # bower:coffee

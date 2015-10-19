@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" ng-init="getIncidents()">
   <h1>
     Crisis Management System
     <small>Dashboard</small>
@@ -74,7 +74,7 @@
         <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Current Crises</span>
-          <span class="info-box-number">6</span>
+          <span class="info-box-number">{{incidents.length}}</span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->
@@ -331,7 +331,7 @@
         </div><!-- /.box-header -->
         <div class="box-body">
           <ul class="todo-list">
-            <li>
+            <li ng-repeat="incident in incidents">
               <!-- drag handle -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
@@ -340,9 +340,9 @@
               <!-- checkbox -->
               <input type="checkbox" value="" name="">
               <!-- todo text -->
-              <span class="text">New Crisis</span>
+              <span class="text">{{incident.name}}</span>
               <!-- Emphasis label -->
-              <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+              <small class="label label-danger"><i class="fa fa-clock-o"></i> <span am-time-ago="incident.time"></span></small>
               <!-- General tools such as edit or delete-->
               <div class="tools">
                 <i class="fa fa-edit"></i>
