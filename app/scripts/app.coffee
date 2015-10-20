@@ -18,6 +18,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularMoment',
+    'ngWebSocket',
   ]
   .config ($routeProvider) ->
     $routeProvider
