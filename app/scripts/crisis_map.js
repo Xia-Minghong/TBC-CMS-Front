@@ -19,12 +19,12 @@ function initMap() {
     var changi = new google.maps.Marker({
         position: {lat: 1.364688, lng: 103.991509},
         map: map,
-        title: "NTU"
+        title: "Changi International Airport"
     });
 
-    var nus = new google.maps.Marker({
+    var mbs = new google.maps.Marker({
         position: {lat: 1.283816, lng: 103.860715},
         map: map,
-        title: "NTU"
+        title: "Marina Bay Sands"
     });
 }
