@@ -8,22 +8,25 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ($scope, $location, Incident, djangoWebsocket)->
+  .controller 'MainCtrl', ($scope, $rootScope, $location, djangoWebsocket, Incident, Agency)->
 
     $scope.my_collection = {}
 
-    djangoWebsocket.connect($scope, 'my_collection', 'my_collection', ['subscribe-broadcast', 'publish-broadcast']);
-
-    $scope.incidents = []
+    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
 
     $scope.isActive = (viewLocation) ->
       return (viewLocation == $location.path());
 
-    $scope.getIncidents = ()->
+    $rootScope.init = ()->
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents "", (data)->
         # what to do after getting data
-        $scope.incidents = data;
+        $rootScope.incidents = data;
+        return
+
+      Agency.getAgencies "", (data)->
+        # what to do after getting data
+        $rootScope.agencies = data;
         return
 
     # Websocket

@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'KDMCtrl', ($scope)->
+.controller 'KDMCtrl', ($scope, Incident)->
   @awesomeThings = [
     'HTML5 Boilerplate'
     'AngularJS'

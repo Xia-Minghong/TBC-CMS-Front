@@ -1,49 +1,21 @@
+<section class="content-header">
+  <h1>
+    Crisis Management System
+    <small>Dashboard</small>
+  </h1>
+  <!--</ol>-->
+</section>
+
 <section class="content">
 
   <!-- Info boxes -->
-  <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Current Crises</span>
-          <span class="info-box-number">6</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Pending Requests</span>
-          <span class="info-box-number">11</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
+  <div class="row" ng-include="'views/header_status.html'" ng-controller="MainCtrl">
 
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Number of Active Agencies</span>
-          <span class="info-box-number">15</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Resolved Crises</span>
-          <span class="info-box-number">2,122</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
   </div><!-- /.row -->
-
+  {{$root.incidents}}
+<br>
+<br>
+  {{$root.agencies}}
   <div class="row">
     <div class="col-md-12">
       <div class="box">

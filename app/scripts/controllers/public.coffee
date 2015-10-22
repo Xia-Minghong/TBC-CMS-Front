@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'PublicCtrl', ($scope) ->
+  .controller 'PublicCtrl', ($scope, Incident) ->
     @awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'

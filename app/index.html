@@ -45,7 +45,6 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <!--<script src="bower_components/angular-websocket/angular-websocket.js"></script>-->
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-messages/angular-messages.js"></script>
@@ -58,6 +57,7 @@
   <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="bower_components/admin-lte/dist/js/app.js"></script>
   <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/angular-websocket/angular-websocket.min.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -114,7 +114,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" ng-view="">
+  <div class="content-wrapper" ng-view="" ng-init="$root.init()">
 
   </div><!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -172,6 +172,7 @@
 <script src="scripts/controllers/public.js"></script>
 <!--Services-->
 <script src="scripts/services/incidentService.js"></script>
+<script src="scripts/services/agencyService.js"></script>
 <!-- endbuild -->
 
 
