@@ -18,8 +18,14 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularMoment',
+    'ng.django.websocket',
   ]
-  .config ($routeProvider) ->
+  .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
+
+    djangoWebsocketProvider.setURI('ws://localhost:8000/ws/')
+    djangoWebsocketProvider.setLogLevel('debug')
+    djangoWebsocketProvider.setHeartbeat("--heartbeat--")
+
     $routeProvider
       .when '/',
         templateUrl: 'views/index.html'
@@ -43,6 +49,7 @@ angular
 
       .otherwise
         redirectTo: '/'
+  ]
 
 window.App = {}
 App.host_addr = "http://localhost:8000"
