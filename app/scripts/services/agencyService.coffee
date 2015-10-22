@@ -26,7 +26,29 @@ angular.module 'tbcCmsFrontApp'
       )
       return
 
+    getAgency = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/agencies/" + id + "/"
+        method: "GET"
+        headers:
+          "Authorization": token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("getAgency success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("Process failed")
+        callback(false)
+        return
+      );
+      return
+
     # returns
     {
     getAgencies:getAgencies
+    getAgency:getAgency
     }
