@@ -1,0 +1,25 @@
+span.logo-lg {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.skin-blue .sidebar-menu>li:hover>div, .skin-blue .sidebar-menu>li.active>div {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #3c8dbc;
+}
+.skin-blue .sidebar-menu>li>div {
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu>li>div>.fa, .sidebar-menu>li>div>.glyphicon, .sidebar-menu>li>div>.ion {
+    width: 20px;
+}
+
+.sidebar-menu li>div {
+    position: relative;
+}
+.sidebar-menu>li>div {
+    padding: 12px 5px 12px 15px;
+    display: block;
+}

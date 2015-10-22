@@ -8,10 +8,13 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'PublicCtrl', ->
+  .controller 'PublicCtrl', ($scope) ->
     @awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
       'Karma'
     ]
+    $scope.$on '$viewContentLoaded', ->
+      setTimeout(initMap, 600)
+      return
     return

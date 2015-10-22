@@ -26,6 +26,11 @@ angular
         controller: 'MainCtrl'
         controllerAs: 'index'
 
+      .when '/kdm',
+        templateUrl: 'views/kdm.html'
+        controller: 'KDMCtrl'
+        controllerAs: 'kdm'
+
       .when '/public',
         templateUrl: 'views/public.html'
         controller: 'PublicCtrl'
