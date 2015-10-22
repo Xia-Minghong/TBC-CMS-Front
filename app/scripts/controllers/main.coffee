@@ -50,5 +50,8 @@ angular.module 'tbcCmsFrontApp'
       # Return the formatted string
       return date.join('/') + ' ' + time.join(':') + ' ' + suffix
 
+    $scope.$on '$viewContentLoaded', ->
+      setTimeout(initMap, 600)
+      return
 
     return
