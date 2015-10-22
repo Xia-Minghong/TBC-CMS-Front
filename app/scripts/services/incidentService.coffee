@@ -26,6 +26,27 @@ angular.module 'tbcCmsFrontApp'
       )
       return
 
+    getIncidentUpdates = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/"+id+"/updates/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("getIncidentUpdates success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("Process failed")
+        callback(false)
+        return
+      )
+      return
+
     # returns
     {
       getIncidents:getIncidents
