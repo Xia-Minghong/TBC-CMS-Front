@@ -14,6 +14,27 @@ angular.module 'tbcCmsFrontApp'
       )
 
       .success ((data, status, headers, config) ->
+        console.log("getIncidents success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("Process failed")
+        callback(false)
+        return
+      )
+      return
+
+    getIncident = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + id + "/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
         console.log("getIncident success")
         callback(data)
         return
@@ -21,6 +42,70 @@ angular.module 'tbcCmsFrontApp'
 
       .error ((data, status, headers, config) ->
         console.log("Process failed")
+        callback(false)
+        return
+      )
+      return
+
+    approveIncident = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + id + "/approve/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("approveIncident success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("approveIncident failed")
+        callback(false)
+        return
+      )
+      return
+
+
+    rejectIncident = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + id + "/reject/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("rejectIncident success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("rejectIncident failed")
+        callback(false)
+        return
+      )
+      return
+
+    syncIncidents = (token, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/sync/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("syncIncidents success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("syncIncidents failed")
         callback(false)
         return
       )
@@ -113,6 +198,9 @@ angular.module 'tbcCmsFrontApp'
     # returns
     {
       getIncidents:getIncidents
+      getIncident:getIncident
+      approveIncident:approveIncident
+      rejectIncident:rejectIncident
       getIncidentUpdates:getIncidentUpdates
       getIncidentUpdate:getIncidentUpdate
       getIncidentDispatches:getIncidentDispatches
