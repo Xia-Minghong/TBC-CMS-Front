@@ -20,29 +20,8 @@
     <section class="col-lg-7 connectedSortable-disabled">
 
       <!-- MAP & BOX PANE -->
-      <div class="box box-success">
-        <div class="box-header with-border">
-          <i class="fa fa-map-o"></i>
-          <h3 class="box-title">Crisis Map</h3>
-          <div class="box-tools pull-right">
+      <div class="box box-success" ng-include="'views/map.html'">
 
-          </div>
-        </div><!-- /.box-header -->
-        <div class="box-body no-padding">
-          <div class="row">
-            <div class="col-md-9 col-sm-8">
-              <div class="pad">
-                <!-- Map will be created here -->
-                <div id="crisis-google-map" style="height: 325px;"></div>
-              </div>
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-4">
-              <div class="pad box-pane-right bg-green" style="min-height: 280px">
-
-              </div>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.box-body -->
       </div><!-- /.box -->
 
 

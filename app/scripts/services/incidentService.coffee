@@ -2,7 +2,7 @@
 
 
 angular.module 'tbcCmsFrontApp'
-  .service 'Incident', ($http, $websocket) ->
+  .service 'Incident', ($http) ->
 
 
     getIncidents = (token, callback) ->
