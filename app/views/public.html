@@ -1,7 +1,8 @@
-<section class="content-header">
+<!-- Content Header (Page header) -->
+<section class="content-header" ng-init="getIncidents()">
   <h1>
     Crisis Management System
-    <small>Dashboard</small>
+    <small>Dashboard (Public)</small>
   </h1>
   <!--</ol>-->
 </section>
@@ -9,18 +10,48 @@
 <section class="content">
 
   <!-- Info boxes -->
-  <div class="row" ng-include="'views/header_status.html'" ng-controller="MainCtrl">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Current Crises</span>
+          <span class="info-box-number">6</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Pending Requests</span>
+          <span class="info-box-number">11</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
 
+    <!-- fix for small devices only -->
+    <div class="clearfix visible-sm-block"></div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Number of Active Agencies</span>
+          <span class="info-box-number">15</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Resolved Crises</span>
+          <span class="info-box-number">2,122</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
   </div><!-- /.row -->
-  Incidents<br>
-  {{$root.incidents}}
-<br>
-<br>
-  Agencies<br>
-  {{$root.agencies}}
-
-  <br>
-  <br>
 
   <div class="row">
     <div class="col-md-12">
@@ -129,51 +160,6 @@
     </div><!-- /.col -->
   </div><!-- /.row -->
 
-  <div class="row" style="margin-top: 10px;">
-    <div class="col-md-12">
-      <div class="box box-primary">
-        <div class="box-header">
-          <h3 class="box-title"><i class="fa fa-code"></i> Timeline Markup</h3>
-        </div>
-        <div class="box-body">
-                  <pre style="font-weight: 600;">
-&lt;ul class="timeline">
-
-    &lt;!-- timeline time label -->
-    &lt;li class="time-label">
-        &lt;span class="bg-red">
-            10 Feb. 2014
-        &lt;/span>
-    &lt;/li>
-    &lt;!-- /.timeline-label -->
-
-    &lt;!-- timeline item -->
-    &lt;li>
-        &lt;!-- timeline icon -->
-        &lt;i class="fa fa-envelope bg-blue">&lt;/i>
-        &lt;div class="timeline-item">
-            &lt;span class="time">&lt;i class="fa fa-clock-o">&lt;/i> 12:05&lt;/span>
-
-            &lt;h3 class="timeline-header">&lt;a href="#">Support Team&lt;/a> ...&lt;/h3>
-
-            &lt;div class="timeline-body">
-                ...
-                Content goes here
-            &lt;/div>
-
-            &lt;div class="timeline-footer">
-                &lt;a class="btn btn-primary btn-xs">...&lt;/a>
-            &lt;/div>
-        &lt;/div>
-    &lt;/li>
-    &lt;!-- END timeline item -->
-
-    ...
-
-&lt;/ul>
-                  </pre>
-        </div><!-- /.box-body -->
-      </div><!-- /.box -->
 
     </div><!-- /.col -->
   </div><!-- /.row -->

@@ -8,14 +8,9 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'KDMCtrl', ($scope, Incident)->
-  @awesomeThings = [
-    'HTML5 Boilerplate'
-    'AngularJS'
-    'Karma'
-  ]
+.controller 'KDMCtrl', ($scope)->
   $scope.$on '$viewContentLoaded', ->
-    setTimeout(initMap, 600)
+    initMap()
     return
   return
 

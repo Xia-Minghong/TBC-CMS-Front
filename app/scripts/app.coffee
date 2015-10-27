@@ -19,7 +19,6 @@ angular
     'ngTouch',
     'angularMoment',
     'ng.django.websocket',
-    'ui.bootstrap',
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
@@ -43,6 +42,16 @@ angular
         controller: 'PublicCtrl'
         controllerAs: 'public'
 
+      .when '/create-crisis',
+        templateUrl: 'views/create-crisis.html'
+        controller: 'CreateCrisisCtrl'
+        controllerAs: 'create-crisis'
+
+      .when '/crisis-update',
+        templateUrl: 'views/crisis-update.html'
+        controller: 'CrisisUpdateCtrl'
+        controllerAs: 'crisis-update'
+
       .when '/about',
         templateUrl: 'views/about.html'
         controller: 'AboutCtrl'
@@ -52,22 +61,6 @@ angular
         redirectTo: '/'
   ]
 
-  .filter 'startFrom', ->
-    (input, start) ->
-      start = +start
-      if (!input || !input.length)
-        return
-      #parse to int
-      input.slice start
-
-  .filter 'range', ->
-    (input, total) ->
-      total = parseInt(total)
-      i = 0
-      while i < total
-        input.push i
-        i++
-      input
 window.App = {}
 App.host_addr = "http://localhost:8000"
 

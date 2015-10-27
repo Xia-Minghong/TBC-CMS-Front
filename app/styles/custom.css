@@ -23,3 +23,24 @@ span.logo-lg {
     padding: 12px 5px 12px 15px;
     display: block;
 }
+
+span.select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
+    padding: 3px 2px;
+}
+
+.bootstrap-timepicker-widget table td input {
+    padding: 0;
+}
+
+div#location-selector-google-map {
+    width: 100%;
+    height: 325px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__clear-custom {
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-right: 10px;
+}

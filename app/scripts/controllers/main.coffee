@@ -8,63 +8,50 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency)->
+  .controller 'MainCtrl', ($scope, $location, Incident)->
 
-    # connect websocket
-    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
+    $scope.incidents = []
 
-    # check if the tab is active
     $scope.isActive = (viewLocation) ->
       return (viewLocation == $location.path());
 
-    # global initialization
-    $rootScope.init = ()->
+    $scope.getIncidents = ()->
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents "", (data)->
         # what to do after getting data
-        $rootScope.incidents = data;
+        $scope.incidents = data;
         return
 
-      # load agencies
-      Agency.getAgencies "", (data)->
-        # what to do after getting data
-        $rootScope.agencies = data;
-        return
+    $scope.parseDate = (timestamp) ->
+      datetime = new Date timestamp
+      date = [
+        datetime.getDate()
+        datetime.getMonth() + 1
+        datetime.getFullYear()
+      ]
+      # Create an array with the current hour, minute and second
+      time = [
+        datetime.getHours()
+        datetime.getMinutes()
+    #      datetime.getSeconds()
+      ]
+      # Determine AM or PM suffix based on the hour
+      suffix = if time[0] < 12 then 'AM' else 'PM'
+      # Convert hour from military time
+      time[0] = if time[0] < 12 then time[0] else time[0] - 12
+      # If hour is 0, set it to 12
+      time[0] = time[0] or 12
+      # If seconds and minutes are less than 10, add a zero
+      i = 1
+      while i < 3
+        if time[i] < 10
+          time[i] = '0' + time[i]
+        i++
+      # Return the formatted string
+      return date.join('/') + ' ' + time.join(':') + ' ' + suffix
 
-    # pagination
-    $scope.currentPage = 0;
-    $scope.pageSize = 10;
-    $scope.goPage = (n)->
-      $scope.currentPage = n
-
-
-    # map
     $scope.$on '$viewContentLoaded', ->
-      setTimeout(initMap, 600)
-      return
-
-
-    # modal
-    $scope.open = (size) ->
-      modalInstance = $uibModal.open(
-        animation: true
-        templateUrl: 'views/incidentModal.html'
-        controller: 'incidentModalCtrl'
-        size: size
-        backdrop: "static"
-        resolve: items: ->
-          $scope.items
-      )
-      modalInstance.result.then ((selectedItem) ->
-        $scope.selected = selectedItem
-        return
-      ), ->
-        console.log 'Modal dismissed at: ' + new Date
-        return
-      return
-
-    $scope.toggleAnimation = ->
-      $scope.animationsEnabled = !$scope.animationsEnabled
+      initMap()
       return
 
     return

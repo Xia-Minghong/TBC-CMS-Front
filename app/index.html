@@ -30,6 +30,12 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="bower_components/admin-lte/plugins/iCheck/all.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css">
+  <!-- placecomplete -->
+  <link rel="stylesheet" href="plugins/placecomplete/jquery.placecomplete.css">
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="styles/custom.css">
 
@@ -58,19 +64,27 @@
   <script src="bower_components/admin-lte/dist/js/app.js"></script>
   <script src="bower_components/angular-moment/angular-moment.js"></script>
   <script src="bower_components/angular-websocket/angular-websocket.min.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
-  <!--<script src="scripts/ng-django-forms.js" type="text/javascript"></script>-->
-  <!--<script src="scripts/ng-django-websocket.js" type="text/javascript"></script>-->
-  <script src="scripts/django-angular.min.js" type="text/javascript"></script>
+  <script src="scripts/ng-django-forms.js" type="text/javascript"></script>
+  <script src="scripts/ng-django-websocket.js" type="text/javascript"></script>
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
+
+  <!-- iCheck 1.0.1 -->
+  <script src="bower_components/admin-lte/plugins/iCheck/icheck.min.js"></script>
+  <!-- bootstrap time picker -->
+  <script src="bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini" ng-app="tbcCmsFrontApp">
 <div class="wrapper">
 
   <header class="main-header">
+    <!-- Logo -->
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -98,15 +112,25 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" ng-controller="MainCtrl">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">NAVIGATION</li>
         <li class="active treeview">
           <div>
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </div>
           <ul class="treeview-menu">
-            <li ng-class="{ active: isActive('/') }"><a href="#/"><i class="fa fa-circle-o"></i> Manager Interface</a></li>
-            <li ng-class="{ active: isActive('/kdm') }"><a href="#/kdm"><i class="fa fa-circle-o"></i> KDM Interface</a></li>
-            <li ng-class="{ active: isActive('/public') }"><a href="#/public"><i class="fa fa-circle-o"></i> Public Interface</a></li>
+            <li ng-class="{ active: isActive('/') }"><a href="#/"><i class="fa fa-circle-o text-red"></i> Manager Interface</a></li>
+            <li ng-class="{ active: isActive('/kdm') }"><a href="#/kdm"><i class="fa fa-circle-o text-yellow"></i> KDM Interface</a></li>
+            <li ng-class="{ active: isActive('/public') }"><a href="#/public"><i class="fa fa-circle-o text-aqua"></i> Public Interface</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <div>
+            <i class="fa fa-dashboard"></i> <span>Form</span>
+          </div>
+          <ul class="treeview-menu">
+            <li ng-class="{ active: isActive('/create-crisis') }"><a href="#/create-crisis"><i class="fa fa-circle-o text-red"></i> Create Crisis</a></li>
+            <li ng-class="{ active: isActive('/crisis-update') }"><a href="#/crisis-update"><i class="fa fa-circle-o text-yellow"></i> Crisis Update</a></li>
+            <li ng-class="{ active: isActive('/announcement') }"><a href="#/announcement"><i class="fa fa-circle-o text-aqua"></i> Announcement</a></li>
           </ul>
         </li>
       </ul>
@@ -115,7 +139,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" ng-view="" ng-init="$root.init()">
+  <div class="content-wrapper" ng-view="index">
 
   </div><!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -164,17 +188,21 @@
 <script src="scripts/custom.js"></script>
 <script src="scripts/crisis_map.js"></script>
 <!-- Google map API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOXIlEiv6KZ8l91r31CQKsr0b_-M-c3gk&callback=initMap" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOXIlEiv6KZ8l91r31CQKsr0b_-M-c3gk" ></script>
+
+<!-- placecomplete -->
+<script src="plugins/placecomplete/jquery.placecomplete.js"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <!--Controllers-->
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/kdm.js"></script>
 <script src="scripts/controllers/public.js"></script>
-<script src="scripts/controllers/incidentModal.js"></script>
+<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/create-crisis.js"></script>
+<script src="scripts/controllers/crisis-update.js"></script>
 <!--Services-->
 <script src="scripts/services/incidentService.js"></script>
-<script src="scripts/services/agencyService.js"></script>
 <!-- endbuild -->
 
 
