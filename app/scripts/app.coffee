@@ -19,6 +19,7 @@ angular
     'ngTouch',
     'angularMoment',
     'ng.django.websocket',
+    'ui.bootstrap',
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
@@ -61,6 +62,22 @@ angular
         redirectTo: '/'
   ]
 
+  .filter 'startFrom', ->
+    (input, start) ->
+      start = +start
+      if (!input || !input.length)
+        return
+      #parse to int
+      input.slice start
+
+  .filter 'range', ->
+    (input, total) ->
+      total = parseInt(total)
+      i = 0
+      while i < total
+        input.push i
+        i++
+      input
 window.App = {}
 App.host_addr = "http://localhost:8000"
 
