@@ -114,18 +114,14 @@
         </div><!-- /.box-header -->
         <div class="box-body">
           <ul class="todo-list">
-
-            <input ng-model="my_collection.first_name" type="text"/>
-            <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="open()">
+            <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize">
               <!-- drag handle -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-              <!-- checkbox -->
-              <input type="checkbox" value="" name="">
               <!-- todo text -->
-              <span class="text">{{incident.name}}</span>
+              <span class="text" ng-click="open()" style="cursor: pointer">{{incident.name}}</span>
               <!-- Emphasis label -->
               <small class="label label-danger"><i class="fa fa-clock-o"></i> <span am-time-ago="incident.time"></span></small>
               <!-- General tools such as edit or delete-->
