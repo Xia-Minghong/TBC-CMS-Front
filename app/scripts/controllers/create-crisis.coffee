@@ -9,7 +9,7 @@
 ###
 angular.module 'tbcCmsFrontApp'
 .controller 'CreateCrisisCtrl', ($scope)->
-
+    window.testScope = $scope
     $scope.submitReport = ->
       console.log($scope.report)
       return
