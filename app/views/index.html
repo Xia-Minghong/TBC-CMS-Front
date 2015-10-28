@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="getIncidents()">
+<section class="content-header" >
   <h1>
     Crisis Management System
     <small>Dashboard (Emergency Manager)</small>
@@ -11,47 +11,8 @@
 <section class="content">
 
   <!-- Info boxes -->
-  <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Current Crises</span>
-          <span class="info-box-number">{{incidents.length}}</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Pending Requests</span>
-          <span class="info-box-number">11</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
+  <div class="row" ng-include="'views/header_status.html'">
 
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Number of Active Agencies</span>
-          <span class="info-box-number">15</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Resolved Crises</span>
-          <span class="info-box-number">2,122</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
   </div><!-- /.row -->
   <!-- Main row -->
   <div class="row">
@@ -145,19 +106,17 @@
           <h3 class="box-title">To Do List</h3>
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
-              <li><a href="#">&laquo;</a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">&raquo;</a></li>
+              <li><a ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">&laquo;</a></li>
+              <li ng-repeat="n in [] | range:$root.incidents.length/pageSize" ng-class="currentPage==n?'paginate_button active':''"><a ng-click="goPage(n)">{{n+1}}</a></li>
+              <li><a ng-hide="currentPage >= $root.incidents.length/pageSize - 1" ng-click="currentPage=currentPage+1">&raquo;</a></li>
             </ul>
           </div>
         </div><!-- /.box-header -->
         <div class="box-body">
           <ul class="todo-list">
 
-            <input class="form-control ng-pristine ng-valid" id="id_first_name" maxlength="20" name="first_name" ng-model="subscribe_data['first_name']" type="text">
-            <li ng-repeat="incident in incidents">
+            <input ng-model="my_collection.first_name" type="text"/>
+            <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="open()">
               <!-- drag handle -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>

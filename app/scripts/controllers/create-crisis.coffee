@@ -9,6 +9,11 @@
 ###
 angular.module 'tbcCmsFrontApp'
 .controller 'CreateCrisisCtrl', ($scope)->
+
+    $scope.submitReport = ->
+      console.log($scope.report)
+      return
+
     $('select.select2').select2()
 
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck

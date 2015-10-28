@@ -64,11 +64,13 @@
   <script src="bower_components/admin-lte/dist/js/app.js"></script>
   <script src="bower_components/angular-moment/angular-moment.js"></script>
   <script src="bower_components/angular-websocket/angular-websocket.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
-  <script src="scripts/ng-django-forms.js" type="text/javascript"></script>
-  <script src="scripts/ng-django-websocket.js" type="text/javascript"></script>
+  <!--<script src="scripts/ng-django-forms.js" type="text/javascript"></script>-->
+  <!--<script src="scripts/ng-django-websocket.js" type="text/javascript"></script>-->
+  <script src="scripts/django-angular.min.js" type="text/javascript"></script>
 
   <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
@@ -139,7 +141,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" ng-view="index">
+  <div class="content-wrapper" ng-view="" ng-init="$root.init()">
 
   </div><!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -198,11 +200,12 @@
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/kdm.js"></script>
 <script src="scripts/controllers/public.js"></script>
-<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/incidentModal.js"></script>
 <script src="scripts/controllers/create-crisis.js"></script>
 <script src="scripts/controllers/crisis-update.js"></script>
 <!--Services-->
 <script src="scripts/services/incidentService.js"></script>
+<script src="scripts/services/agencyService.js"></script>
 <!-- endbuild -->
 
 
