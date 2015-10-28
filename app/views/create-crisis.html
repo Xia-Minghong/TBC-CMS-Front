@@ -23,7 +23,7 @@
                                             <div class="form-group">
                                                 <label for="eventType">Event Type</label>
                                                 <select id="eventType" class="form-control select2" style="width: 100%;" ng-model="report.type">
-                                                    <option value="Fire" selected="selected">Fire</option>
+                                                    <option value="Fire">Fire</option>
                                                     <option value="Forest Fire">Forest Fire</option>
                                                     <option value="Earthquake">Earthquake</option>
                                                     <option value="Tsunami">Tsunami</option>
@@ -39,6 +39,7 @@
                                                 <label for="eventName">Event Name</label>
                                                 <input type="text" class="form-control" id="eventName" placeholder="Enter event name" ng-model="report.name">
                                             </div>
+
                                             <div class="form-group">
                                                 <label>Severity</label>
                                                 <div id="severity">
@@ -49,22 +50,30 @@
                                                     <input type="radio" name="sev5" class="flat-red">
                                                 </div>
                                             </div>
+
+                                            <input type="text" id="severityHidden" ng-model="report.severity" style="display: none">
+
                                             <!-- time Picker -->
-                                            <div class="bootstrap-timepicker">
-                                                <div class="form-group">
-                                                    <label>Time</label>
+                                            <div class="form-group">
+                                                <label for="timePicker">Time</label>
+                                                <div class="bootstrap-timepicker">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control timepicker" ng-model="report.time">
+                                                        <input type="text" id="timePicker" class="form-control timepicker">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-clock-o"></i>
                                                         </div>
                                                     </div><!-- /.input group -->
-                                                </div><!-- /.form group -->
+                                                </div>
+                                                <input type="text" id="timeHidden" ng-model="report.time" style="display: none">
                                             </div>
                                             <div class="form-group">
                                                 <label for="locationAddress">Location</label>
-                                                <select class="form-control" id="locationAddress" ng-model="report.location"></select>
+                                                <select class="form-control" id="locationAddress"></select>
                                             </div>
+
+                                            <input type="text" id="locationHidden" ng-model="report.address" style="display: none">
+                                            <input type="text" id="locationlngHidden" ng-model="report.location.longitude" style="display: none">
+                                            <input type="text" id="locationlatHidden" ng-model="report.location.latitude" style="display: none">
 
                                             <div class="form-group">
                                                 <div id="location-selector-google-map"></div>
@@ -72,8 +81,8 @@
 
 
                                             <div class="form-group">
-                                                <label for="contact">Contact Number</label>
-                                                <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" ng-model="report.contact">
+                                                <label for="contactNum">Contact Number</label>
+                                                <input type="tel" class="form-control" id="contactNum" placeholder="Enter contact number" ng-model="report.contact">
                                             </div>
 
                                             <div class="form-group">

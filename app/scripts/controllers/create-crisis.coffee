@@ -11,36 +11,19 @@ angular.module 'tbcCmsFrontApp'
 .controller 'CreateCrisisCtrl', ($scope)->
     window.testScope = $scope
     $scope.submitReport = ->
-      console.log($scope.report)
-      return
-
-    $('select.select2').select2()
-
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck
-        checkboxClass: 'icheckbox_flat-red'
-        radioClass: 'iradio_flat-red'
-
-    $('div#severity div.iradio_flat-red input, div#severity div.iradio_flat-red ins').css({display: 'none'})
-
-    $('div#severity div.iradio_flat-red').click (e) ->
-        e.preventDefault()
-        e.stopPropagation()
-
-        sev = parseInt($(e.target).find('input[type="radio"]').attr('name').replace('sev', ''))
-        $('div#severity div.iradio_flat-red').removeClass('checked')
-        i = 1
-        while i <= sev
-            $('div#severity input[type="radio"][name="sev' + i + '"]').parent().addClass('checked')
-            i++
+        r = $scope.report
+        if r and r.type and r.name and r.severity and r.time and r.address and r.location and r.location.longitude and r.location.latitude and r.contact and r.description
+            console.log $scope.report
+        else
+            console.log "Form incomplete!"
         return
-    $('.timepicker').timepicker showInputs: true
 
     $scope.$on '$viewContentLoaded', ->
         initMap()
 
 
     if !$scope.crisisReportInitialized
-        createCrisisInit()
+        createCrisisInit($scope)
         $scope.crisisReportInitialized = true
 
 
