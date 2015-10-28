@@ -13,7 +13,7 @@
     $scope.submitReport = function() {
       var r;
       r = $scope.report;
-      if (r && r.type && r.name && r.severity && r.time && r.address && r.location && r.location.longitude && r.location.latitude && r.contact && r.description) {
+      if (r && r.type && r.name && r.severity && r.time && r.address && r.location && r.location.longitude && r.location.latitude && r.contact) {
         console.log($scope.report);
       } else {
         console.log("Form incomplete!");

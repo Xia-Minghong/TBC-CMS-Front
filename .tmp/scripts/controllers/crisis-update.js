@@ -9,11 +9,13 @@
     * Controller of the tbcCmsFrontApp
    */
   angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope) {
-    $scope.submitUpdate = function() {};
+    $scope.submitUpdate = function() {
+      console.log($scope.update);
+    };
     if (!$scope.crisisUpdateInitialized) {
       crisisUpdateInit();
-      $scope.crisisUpdateInitialized = true;
     }
+    $scope.crisisUpdateInitialized = true;
   });
 
 }).call(this);

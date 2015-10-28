@@ -11,11 +11,12 @@ angular.module 'tbcCmsFrontApp'
 .controller 'CrisisUpdateCtrl', ($scope)->
 
   $scope.submitUpdate = ->
-    return
+      console.log $scope.update
+      return
 
   if !$scope.crisisUpdateInitialized
-    crisisUpdateInit()
-    $scope.crisisUpdateInitialized = true
+      crisisUpdateInit()
+  $scope.crisisUpdateInitialized = true
 
 
   return

@@ -68,12 +68,16 @@ function createCrisisInit($scope) {
     select.on("placecomplete:selected", function (event, placeResult) {
         var text = placeResult["display_text"];
 
-        $("input#locationHidden").val(text).trigger("change")
+        $("input#locationHidden").val(text).trigger("change");
         searchField.val(text);
         clearSearchField.on("click", function (event) {
             event.stopPropagation();
 
             searchField.val('');
+
+            $("input#locationHidden").val(null).trigger("change")
+            $('input#locationlngHidden').val(null).trigger("change");
+            $('input#locationlatHidden').val(null).trigger("change");
         });
 
         searchField.on("click", function (event) {
