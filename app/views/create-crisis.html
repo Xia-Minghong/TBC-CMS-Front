@@ -54,7 +54,7 @@
                                                 <div class="form-group">
                                                     <label>Time</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control timepicker" ng-model="time">
+                                                        <input type="text" class="form-control timepicker" ng-model="report.time">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-clock-o"></i>
                                                         </div>
@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="locationAddress">Location</label>
-                                                <select class="form-control" id="locationAddress" ng-model="location"></select>
+                                                <select class="form-control" id="locationAddress" ng-model="report.location"></select>
                                             </div>
 
                                             <div class="form-group">
@@ -73,12 +73,12 @@
 
                                             <div class="form-group">
                                                 <label for="contact">Contact Number</label>
-                                                <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" ng-model="contact">
+                                                <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" ng-model="report.contact">
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Description (optional)</label>
-                                                <textarea id="description" class="form-control" rows="3" placeholder="Enter details" ng-model="description"></textarea>
+                                                <textarea id="description" class="form-control" rows="3" placeholder="Enter details" ng-model="report.description"></textarea>
                                             </div>
                                         </div><!-- /.box-body -->
 
