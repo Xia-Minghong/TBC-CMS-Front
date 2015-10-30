@@ -17,4 +17,8 @@ angular.module 'tbcCmsFrontApp'
     $scope.$on '$viewContentLoaded', ->
       initMap()
       return
+    # NEA API
+    if !$scope.NEAAPIInitialized
+      initNEAAPI($scope)
+      $scope.NEAAPIInitialized = true
     return

@@ -46,5 +46,38 @@ div#location-selector-google-map {
 }
 
 .infobox.col-md-3 {
-    width: 33%;
+    width: 33.3%;
+}
+
+span.info-box-text {
+    font-weight: bold;
+}
+
+span.info-box-number {
+    font-weight: normal;
+}
+
+span.info-box-number.weather {
+    font-size: 14px;
+}
+
+span.info-box-number.crisis {
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+span.info-box-number.psi {
+    font-size: 14px;
+}
+
+span.info-box-number.psi span {
+    width: 50%;
+    float: left;
+    font-weight: lighter;
+}
+
+span.info-box-number.psi span div{
+    display: inline;
+    padding-left: 6px;
+    font-weight: normal;
 }

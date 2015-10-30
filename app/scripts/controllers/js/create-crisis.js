@@ -69,7 +69,7 @@ function createCrisisInit($scope) {
     searchField.parent().prepend(clearSearchField);
 
 
-    window.marker = null;
+    var marker = null;
 
     select.on("placecomplete:selected", function (event, placeResult) {
         var text = placeResult["display_text"];
