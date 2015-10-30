@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('tbcCmsFrontApp').service('Incident', function($http) {
-    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentUpdate, getIncidentUpdates, getIncidents, rejectIncident, syncIncidents;
+    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, rejectIncident, syncIncidents;
     getIncidents = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/",
@@ -29,6 +29,31 @@
         callback(data);
       })).error((function(data, status, headers, config) {
         console.log("Process failed");
+        callback(false);
+      }));
+    };
+    postIncident = function(token, report, callback) {
+      $http({
+        url: App.host_addr + "/incidents/",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+        data: {
+          "type": report.type,
+          "name": report.name,
+          "severity": report.severity,
+          "time": report.time,
+          "location": report.location,
+          "contect": report.contact,
+          "description": report.description
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("postIncident success");
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("postIncident failed:" + data.data);
         callback(false);
       }));
     };
@@ -140,6 +165,7 @@
     return {
       getIncidents: getIncidents,
       getIncident: getIncident,
+      postIncident: postIncident,
       approveIncident: approveIncident,
       rejectIncident: rejectIncident,
       getIncidentUpdates: getIncidentUpdates,
