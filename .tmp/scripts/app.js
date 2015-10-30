@@ -40,6 +40,10 @@
         templateUrl: 'views/crisis-update.html',
         controller: 'CrisisUpdateCtrl',
         controllerAs: 'crisis-update'
+      }).when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'UserLoginCtrl',
+        controllerAs: 'login'
       }).when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',

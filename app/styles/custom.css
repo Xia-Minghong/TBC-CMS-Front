@@ -81,3 +81,13 @@ span.info-box-number.psi span div{
     padding-left: 6px;
     font-weight: normal;
 }
+
+.login-box, .register-box {
+    margin: auto;
+    padding-top: 10%;
+    padding-bottom: 20%;
+}
+
+.login-logo p {
+    font-size: 24px;
+}
