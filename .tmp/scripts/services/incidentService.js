@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('tbcCmsFrontApp').service('Incident', function($http) {
-    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, rejectIncident, syncIncidents;
+    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident, syncIncidents;
     getIncidents = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/",
@@ -132,6 +132,29 @@
         callback(false);
       }));
     };
+    postIncidentUpdate = function(token, id, report, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + id + "/updates/",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+        data: {
+          "agency": report.agency,
+          "is_approved": report.is_approved,
+          "updated_severity": report.severity,
+          "time": report.time,
+          "description": report.description
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("postIncidentUpdate success");
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log(data);
+        callback(false);
+      }));
+    };
     getIncidentDispatches = function(token, inci_id, callback) {
       $http({
         url: App.host_addr + "/incidents/" + inci_id + "/dispatches/",
@@ -170,6 +193,7 @@
       rejectIncident: rejectIncident,
       getIncidentUpdates: getIncidentUpdates,
       getIncidentUpdate: getIncidentUpdate,
+      postIncidentUpdate: postIncidentUpdate,
       getIncidentDispatches: getIncidentDispatches,
       getIncidentDispatch: getIncidentDispatch
     };

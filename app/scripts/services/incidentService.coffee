@@ -183,6 +183,34 @@ angular.module 'tbcCmsFrontApp'
       );
       return
 
+    postIncidentUpdate = (token, id, report, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/"+id+"/updates/"
+        method: "PUT"
+        headers:
+          "Content-Type":"application/json"
+          "Authorization":token
+        data:
+          "agency":report.agency
+          "is_approved":report.is_approved
+          "updated_severity":report.severity
+          "time":report.time
+          "description":report.description
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("postIncidentUpdate success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log(data)
+        callback(false)
+        return
+      )
+      return
+
     getIncidentDispatches = (token, inci_id, callback) ->
       $http(
         url: App.host_addr + "/incidents/" + inci_id + "/dispatches/"
@@ -232,8 +260,10 @@ angular.module 'tbcCmsFrontApp'
       postIncident:postIncident
       approveIncident:approveIncident
       rejectIncident:rejectIncident
+
       getIncidentUpdates:getIncidentUpdates
       getIncidentUpdate:getIncidentUpdate
+      postIncidentUpdate:postIncidentUpdate
       getIncidentDispatches:getIncidentDispatches
       getIncidentDispatch:getIncidentDispatch
     }
