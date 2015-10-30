@@ -60,7 +60,7 @@ angular.module 'tbcCmsFrontApp'
           "severity":report.severity
           "time":report.time
           "location":report.location
-          "contect":report.contact
+          "contact":report.contact
           "description":report.description
       )
 
@@ -71,7 +71,7 @@ angular.module 'tbcCmsFrontApp'
       )
 
       .error ((data, status, headers, config) ->
-        console.log("postIncident failed:"+data.data)
+        console.log(data)
         callback(false)
         return
       )
