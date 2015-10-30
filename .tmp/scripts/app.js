@@ -9,9 +9,15 @@
     *
     * Main module of the application.
    */
+  window.App = {};
+
+  App.host_addr = "http://128.199.130.155:8000";
+
+  App.ws_addr = "ws://128.199.130.155:8000/ws/";
+
   angular.module('tbcCmsFrontApp', ['ngAnimate', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'angularMoment', 'ng.django.websocket', 'ui.bootstrap']).config([
     'djangoWebsocketProvider', '$routeProvider', function(djangoWebsocketProvider, $routeProvider) {
-      djangoWebsocketProvider.setURI('ws://localhost:8000/ws/');
+      djangoWebsocketProvider.setURI(App.ws_addr);
       djangoWebsocketProvider.setLogLevel('debug');
       djangoWebsocketProvider.setHeartbeat("--heartbeat--");
       return $routeProvider.when('/', {
@@ -62,10 +68,6 @@
       return input;
     };
   });
-
-  window.App = {};
-
-  App.host_addr = "http://localhost:8000";
 
 }).call(this);
 

@@ -8,6 +8,11 @@
  #
  # Main module of the application.
 ###
+
+window.App = {}
+App.host_addr = "http://128.199.130.155:8000"
+App.ws_addr = "ws://128.199.130.155:8000/ws/"
+
 angular
   .module 'tbcCmsFrontApp', [
     'ngAnimate',
@@ -23,7 +28,7 @@ angular
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
-    djangoWebsocketProvider.setURI('ws://localhost:8000/ws/')
+    djangoWebsocketProvider.setURI(App.ws_addr)
     djangoWebsocketProvider.setLogLevel('debug')
     djangoWebsocketProvider.setHeartbeat("--heartbeat--")
 
@@ -78,7 +83,7 @@ angular
         input.push i
         i++
       input
-window.App = {}
-App.host_addr = "http://localhost:8000"
+
+
 
 

@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="getIncidents()">
+<section class="content-header">
     <h1>
         Create Crisis Report
         <small></small>
@@ -20,7 +20,9 @@
                                     <!-- form start -->
                                     <form role="form">
                                         <div class="box-body">
-                                            <div class="form-group">
+                                          {{report}}
+
+                                          <div class="form-group">
                                                 <label for="eventType">Event Type</label>
                                                 <select id="eventType" class="form-control select2" style="width: 100%;" ng-model="report.type">
                                                     <option value="Fire">Fire</option>
@@ -95,7 +97,6 @@
                                             <button class="btn btn-primary" ng-click="submitReport()">Submit</button>
                                         </div>
                                     </form>
-
                                 </div>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
