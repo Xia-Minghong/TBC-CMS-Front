@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header" ng-init="getIncidents()">
+<section class="content-header" >
     <h1>
         Crisis Update
         <small>&lt;Agency Name&gt;</small>
@@ -16,7 +16,7 @@
                     <div class="box-body no-padding">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
-                                <div class="pad" ng-app="tbcCmsFrontApp" ng-controller="CrisisUpdateCtrl">
+                                <div class="pad" ng-app="tbcCmsFrontApp">
                                     <!-- form start -->
                                     <form role="form">
                                         <div class="box-body">
@@ -44,7 +44,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputFile">Photo (optional)</label>
-                                                <input type="file" id="exampleInputFile">
+                                                <input type="file" id="exampleInputFile" ng-model="update.file">
                                                 <!--<p class="help-block">Only one photo is allowed.</p>-->
                                             </div>
                                         </div><!-- /.box-body -->
@@ -53,6 +53,7 @@
                                             <button ng-click="submitUpdate()" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
+                                  hj {{update}}
 
                                 </div>
                             </div><!-- /.col -->
