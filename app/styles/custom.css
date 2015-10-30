@@ -44,3 +44,7 @@ div#location-selector-google-map {
     margin-top: 5px;
     margin-right: 10px;
 }
+
+.infobox.col-md-3 {
+    width: 33%;
+}

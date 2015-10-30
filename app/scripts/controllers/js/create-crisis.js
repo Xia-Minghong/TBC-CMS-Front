@@ -43,6 +43,12 @@ function createCrisisInit($scope) {
         $("input#timeHidden").val(t.toUTCString()).trigger("change");
     });
 
+    window.setTimeout(function() {
+        var date = new Date();
+        date.setSeconds(0);
+        $("input#timeHidden").val(date.toUTCString()).trigger("change");
+    },500);
+
     var select = $('select#locationAddress');
     select.placecomplete({
         placeholderText: "Enter address",
