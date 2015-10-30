@@ -127,12 +127,19 @@
         </li>
         <li class="active treeview">
           <div>
+            <i class="fa fa-dashboard"></i> <span>Login</span>
+          </div>
+          <ul class="treeview-menu">
+            <li ng-class="{ active: isActive('/login') }"><a href="#/login"><i class="fa fa-circle-o text-red"></i> User Login</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <div>
             <i class="fa fa-dashboard"></i> <span>Form</span>
           </div>
           <ul class="treeview-menu">
-            <li ng-class="{ active: isActive('/create-crisis') }"><a href="#/create-crisis"><i class="fa fa-circle-o text-red"></i> Create Crisis</a></li>
-            <li ng-class="{ active: isActive('/crisis-update') }"><a href="#/crisis-update"><i class="fa fa-circle-o text-yellow"></i> Crisis Update</a></li>
-            <li ng-class="{ active: isActive('/announcement') }"><a href="#/announcement"><i class="fa fa-circle-o text-aqua"></i> Announcement</a></li>
+            <li ng-class="{ active: isActive('/create-crisis') }"><a href="#/create-crisis"><i class="fa fa-circle-o text-yellow"></i> Create Crisis</a></li>
+            <li ng-class="{ active: isActive('/crisis-update') }"><a href="#/crisis-update"><i class="fa fa-circle-o text-aqua"></i> Crisis Update</a></li>
           </ul>
         </li>
       </ul>
@@ -189,6 +196,7 @@
 <!-- Custom scripts -->
 <script src="scripts/custom.js"></script>
 <script src="scripts/crisis_map.js"></script>
+<script src="scripts/nea-api.js"></script>
 <!-- Google map API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOXIlEiv6KZ8l91r31CQKsr0b_-M-c3gk" ></script>
 
@@ -203,6 +211,7 @@
 <script src="scripts/controllers/incidentModal.js"></script>
 <script src="scripts/controllers/create-crisis.js"></script>
 <script src="scripts/controllers/crisis-update.js"></script>
+<script src="scripts/controllers/login.js"></script>
 <!--Services-->
 <script src="scripts/services/incidentService.js"></script>
 <script src="scripts/services/agencyService.js"></script>

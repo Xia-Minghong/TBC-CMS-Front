@@ -1,18 +1,18 @@
-<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="infobox col-md-3 col-sm-6 col-xs-12">
   <div class="info-box">
     <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
     <div class="info-box-content">
       <span class="info-box-text">Current Crises</span>
-      <span class="info-box-number">{{$root.incidents.length}}</span>
+      <span class="info-box-number crisis">{{$root.incidents.length}}</span>
     </div><!-- /.info-box-content -->
   </div><!-- /.info-box -->
 </div><!-- /.col -->
-<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="infobox col-md-3 col-sm-6 col-xs-12">
   <div class="info-box">
     <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
     <div class="info-box-content">
-      <span class="info-box-text">Pending Requests</span>
-      <span class="info-box-number">11</span>
+      <span class="info-box-text">Weather Forecast</span>
+      <span id="api-weather" class="info-box-number weather"></span>
     </div><!-- /.info-box-content -->
   </div><!-- /.info-box -->
 </div><!-- /.col -->
@@ -20,21 +20,18 @@
 <!-- fix for small devices only -->
 <div class="clearfix visible-sm-block"></div>
 
-<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="infobox col-md-3 col-sm-6 col-xs-12">
   <div class="info-box">
     <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
     <div class="info-box-content">
-      <span class="info-box-text">Number of Active Agencies</span>
-      <span class="info-box-number">{{$root.agencies.length}}</span>
+      <span class="info-box-text">PSI</span>
+      <span id="api-psi" class="info-box-number psi">
+        <span class="national">National:<div></div></span>
+        <span class="central">Central:<div></div></span>
+        <span class="north">North:<div></div></span>
+        <span class="south">South:<div></div></span>
+        <span class="west">West:<div></div></span>
+        <span class="east">East:<div></div></span>
+      </span>
     </div><!-- /.info-box-content -->
   </div><!-- /.info-box -->
-</div><!-- /.col -->
-<div class="col-md-3 col-sm-6 col-xs-12">
-  <div class="info-box">
-    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">Resolved Crises</span>
-      <span class="info-box-number">2,122</span>
-    </div><!-- /.info-box-content -->
-  </div><!-- /.info-box -->
-</div><!-- /.col -->

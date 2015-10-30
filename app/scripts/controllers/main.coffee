@@ -43,6 +43,10 @@ angular.module 'tbcCmsFrontApp'
       initMap()
       return
 
+    # NEA API
+    if !$scope.NEAAPIInitialized
+      initNEAAPI($scope)
+      $scope.NEAAPIInitialized = true
 
     # modal
     $scope.open = (size) ->

@@ -44,3 +44,50 @@ div#location-selector-google-map {
     margin-top: 5px;
     margin-right: 10px;
 }
+
+.infobox.col-md-3 {
+    width: 33.3%;
+}
+
+span.info-box-text {
+    font-weight: bold;
+}
+
+span.info-box-number {
+    font-weight: normal;
+}
+
+span.info-box-number.weather {
+    font-size: 14px;
+}
+
+span.info-box-number.crisis {
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+span.info-box-number.psi {
+    font-size: 14px;
+}
+
+span.info-box-number.psi span {
+    width: 50%;
+    float: left;
+    font-weight: lighter;
+}
+
+span.info-box-number.psi span div{
+    display: inline;
+    padding-left: 6px;
+    font-weight: normal;
+}
+
+.login-box, .register-box {
+    margin: auto;
+    padding-top: 10%;
+    padding-bottom: 20%;
+}
+
+.login-logo p {
+    font-size: 24px;
+}

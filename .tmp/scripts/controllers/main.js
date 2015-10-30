@@ -29,6 +29,10 @@
     $scope.$on('$viewContentLoaded', function() {
       initMap();
     });
+    if (!$scope.NEAAPIInitialized) {
+      initNEAAPI($scope);
+      $scope.NEAAPIInitialized = true;
+    }
     $scope.open = function(size) {
       var modalInstance;
       modalInstance = $uibModal.open({

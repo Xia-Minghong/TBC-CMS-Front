@@ -13,6 +13,10 @@
     $scope.$on('$viewContentLoaded', function() {
       initMap();
     });
+    if (!$scope.NEAAPIInitialized) {
+      initNEAAPI($scope);
+      $scope.NEAAPIInitialized = true;
+    }
   });
 
 }).call(this);
