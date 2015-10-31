@@ -28,15 +28,29 @@
       });
     };
     $scope.compileTodoList = function() {
-      var allIncidentDispatches, todo;
+      var allIncidentDispatches, allIncidentUpdates, incident, todo, todoIncident, _i, _len, _ref;
       todo = [];
-      todo.concat($rootScope.incidents);
-      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map(function(k) {
-        return $rootScope.allIncidentDispatches[k];
+      _ref = $rootScope.incidents;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        incident = _ref[_i];
+        todoIncident = angular.copy(incident);
+        todoIncident.todoType = "incident";
+        todo.push(todoIncident);
+      }
+      allIncidentUpdates = Object.keys($rootScope.allIncidentUpdates).map(function(k) {
+        var update;
+        update = angular.copy($rootScope.allIncidentUpdates[k]);
+        update.todoType = "update";
+        return update;
       });
-      console.log("convert");
-      console.log($rootScope.allIncidentUpdates);
-      console.log(todo);
+      todo = todo.concat(allIncidentUpdates);
+      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map(function(k) {
+        var dispatch;
+        dispatch = angular.copy($rootScope.allIncidentDispatches[k]);
+        dispatch.todoType = "dispatch";
+        return dispatch;
+      });
+      todo = todo.concat(allIncidentDispatches);
       return todo;
     };
     $scope.currentPage = 0;

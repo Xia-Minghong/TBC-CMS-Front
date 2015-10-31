@@ -59,16 +59,28 @@ angular.module 'tbcCmsFrontApp'
       todo = []
 
       # add incidents
-      todo.concat($rootScope.incidents)
+      for incident in $rootScope.incidents
+        todoIncident = angular.copy(incident)
+        todoIncident.todoType = "incident"
+        todo.push(todoIncident)
+
+      # convert and add updates
+      allIncidentUpdates = Object.keys($rootScope.allIncidentUpdates).map((k) ->
+        update = angular.copy($rootScope.allIncidentUpdates[k])
+        update.todoType = "update"
+        return update
+      )
+      todo = todo.concat(allIncidentUpdates)
 
       # convert and add dispatches
       allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map((k) ->
-        $rootScope.allIncidentDispatches[k]
+        dispatch = angular.copy($rootScope.allIncidentDispatches[k])
+        dispatch.todoType = "dispatch"
+        return dispatch
       )
-      console.log("convert")
-      console.log($rootScope.allIncidentUpdates)
+      todo = todo.concat(allIncidentDispatches)
 
-      console.log(todo)
+#      console.log(allIncidentDispatches)
 
 
       return todo
