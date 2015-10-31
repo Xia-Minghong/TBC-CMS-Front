@@ -253,6 +253,27 @@ angular.module 'tbcCmsFrontApp'
       );
       return
 
+    getIncidentTypes = (token, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/types/"
+        method: "GET"
+        headers:
+          "Authorization": token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("get inci types success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("inci types failed")
+        callback(false)
+        return
+      );
+      return
+
     # returns
     {
       getIncidents:getIncidents
@@ -266,4 +287,6 @@ angular.module 'tbcCmsFrontApp'
       postIncidentUpdate:postIncidentUpdate
       getIncidentDispatches:getIncidentDispatches
       getIncidentDispatch:getIncidentDispatch
+
+      getIncidentTypes:getIncidentTypes
     }

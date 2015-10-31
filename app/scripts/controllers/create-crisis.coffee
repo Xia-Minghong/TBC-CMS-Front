@@ -29,6 +29,10 @@ angular.module 'tbcCmsFrontApp'
 
 
     if !$scope.crisisReportInitialized
+        #init crisis types
+        Incident.getIncidentTypes "", (data)->
+          $scope.incidentTypes = data
+          return
         createCrisisInit($scope)
         $scope.crisisReportInitialized = true
 

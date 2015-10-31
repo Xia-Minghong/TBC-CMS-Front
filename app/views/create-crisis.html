@@ -25,17 +25,7 @@
                                           <div class="form-group">
                                                 <label for="eventType">Event Type</label>
                                                 <select id="eventType" class="form-control select2" style="width: 100%;" ng-model="report.type">
-                                                    <option value="fire">Fire</option>
-                                                    <option value="crash">Crash</option>
-                                                    <!--<option value="Forest Fire">Forest Fire</option>-->
-                                                    <!--<option value="Earthquake">Earthquake</option>-->
-                                                    <!--<option value="Tsunami">Tsunami</option>-->
-                                                    <option value="haze">Haze</option>
-                                                    <!--<option value="Severe Weather">Severe Weather</option>-->
-                                                    <option value="dengue">Dengue Outbreak</option>
-                                                    <!--<option value="Traffic Accident">Traffic Accident</option>-->
-                                                    <!--<option value="Riot">Riot</option>-->
-                                                    <!--<option value="Terrorist Activity">Terrorist Activity</option>-->
+                                                    <option ng-repeat="incidentType in incidentTypes | orderBy:'title'" value="{{incidentType.value}}">{{incidentType.title}}</option>
                                                 </select>
                                             </div><!-- /.form-group -->
                                             <div class="form-group">

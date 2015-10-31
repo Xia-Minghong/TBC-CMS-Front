@@ -30,6 +30,9 @@
       return initMap();
     });
     if (!$scope.crisisReportInitialized) {
+      Incident.getIncidentTypes("", function(data) {
+        $scope.incidentTypes = data;
+      });
       createCrisisInit($scope);
       $scope.crisisReportInitialized = true;
     }

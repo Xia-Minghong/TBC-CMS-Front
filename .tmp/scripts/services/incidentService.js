@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('tbcCmsFrontApp').service('Incident', function($http) {
-    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident, syncIncidents;
+    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentTypes, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident, syncIncidents;
     getIncidents = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/",
@@ -185,6 +185,21 @@
         callback(false);
       }));
     };
+    getIncidentTypes = function(token, callback) {
+      $http({
+        url: App.host_addr + "/incidents/types/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("get inci types success");
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("inci types failed");
+        callback(false);
+      }));
+    };
     return {
       getIncidents: getIncidents,
       getIncident: getIncident,
@@ -195,7 +210,8 @@
       getIncidentUpdate: getIncidentUpdate,
       postIncidentUpdate: postIncidentUpdate,
       getIncidentDispatches: getIncidentDispatches,
-      getIncidentDispatch: getIncidentDispatch
+      getIncidentDispatch: getIncidentDispatch,
+      getIncidentTypes: getIncidentTypes
     };
   });
 
