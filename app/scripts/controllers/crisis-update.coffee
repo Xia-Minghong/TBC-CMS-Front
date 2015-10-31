@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'CrisisUpdateCtrl', ($scope)->
+.controller 'CrisisUpdateCtrl', ($scope, Incident)->
 
   $scope.submitUpdate = ->
       console.log $scope.update

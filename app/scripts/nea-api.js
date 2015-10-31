@@ -21,6 +21,11 @@ function initNEAAPI($scope) {
                 url: "http://www.nea.gov.sg/api/WebAPI?dataset=12hrs_forecast&keyref=781CF461BB6606AD28A78E343E0E4176167EFFE3CFEF773A",
                 success: function (responseData, textStatus, jqXHR) {
                     weather.text($(responseData).find("forecast").text());
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    weather.text("Unfortunately, weather forecast is currently unavailable.");
                 }
             });
             $.ajax({
@@ -54,6 +59,17 @@ function initNEAAPI($scope) {
                                 break;
                         }
                     });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                    console.log(errorThrown);
+
+                    psi.find(".national div").text("Unavailable");
+                    psi.find(".central div").text("Unavailable");
+                    psi.find(".north div").text("Unavailable");
+                    psi.find(".south div").text("Unavailable");
+                    psi.find(".west div").text("Unavailable");
+                    psi.find(".east div").text("Unavailable");
                 }
             });
         }

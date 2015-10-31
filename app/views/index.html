@@ -116,7 +116,7 @@
           <ul class="todo-list">
             <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize">
               <!-- drag handle -->
-                      <span class="handle">
+                      <span class="handle-disabled">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
@@ -124,63 +124,38 @@
               <span class="text" ng-click="open()" style="cursor: pointer">{{incident.name}}</span>
               <!-- Emphasis label -->
               <small class="label label-danger"><i class="fa fa-clock-o"></i> <span am-time-ago="incident.time"></span></small>
-              <!-- General tools such as edit or delete-->
-              <div class="tools">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash-o"></i>
-              </div>
             </li>
             <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-              <input type="checkbox" value="" name="">
               <span class="text">Approve Event Update</span>
               <small class="label label-info"><i class="fa fa-clock-o"></i> 3 mins</small>
-              <div class="tools">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash-o"></i>
-              </div>
             </li>
             <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-              <input type="checkbox" value="" name="">
               <span class="text">Approve Social Media Update</span>
               <small class="label label-warning"><i class="fa fa-clock-o"></i> 4 mins</small>
-              <div class="tools">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash-o"></i>
-              </div>
             </li>
             <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-              <input type="checkbox" value="" name="">
               <span class="text">New Crisis</span>
               <small class="label label-danger"><i class="fa fa-clock-o"></i> 4 mins</small>
-              <div class="tools">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash-o"></i>
-              </div>
             </li>
             <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-              <input type="checkbox" value="" name="">
               <span class="text">Dispatch Agencies</span>
               <small class="label label-primary"><i class="fa fa-clock-o"></i> 5 mins</small>
-              <div class="tools">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash-o"></i>
-              </div>
             </li>
 
             </li>
