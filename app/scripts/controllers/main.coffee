@@ -12,6 +12,14 @@ angular.module 'tbcCmsFrontApp'
 
     # connect websocket
     djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast']);
+
+
+    $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
+      console.log("change")
+      $scope.todoList = $scope.compileTodoList()
+      return
 
     # check if the tab is active
     $scope.isActive = (viewLocation) ->
@@ -19,17 +27,52 @@ angular.module 'tbcCmsFrontApp'
 
     # global initialization
     $rootScope.init = ()->
+      # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents "", (data)->
         # what to do after getting data
         $rootScope.incidents = data;
         return
 
+#      Incident.getAllIncidentUpdates "", (data)->
+#        # what to do after getting data
+#        $rootScope.allIncidentUpdates = data;
+#        return
+#
+#      Incident.getAllIncidentDispatches "", (data)->
+#        # what to do after getting data
+#        $rootScope.allIncidentDispatches = data;
+#        return
+
       # load agencies
       Agency.getAgencies "", (data)->
         # what to do after getting data
         $rootScope.agencies = data;
         return
+
+      # Compile TODO lists
+
+      return
+
+    # Function for generating/updating todo list
+    $scope.compileTodoList = ()->
+      todo = []
+
+      # add incidents
+      todo.concat($rootScope.incidents)
+
+      # convert and add dispatches
+      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map((k) ->
+        $rootScope.allIncidentDispatches[k]
+      )
+      console.log("convert")
+      console.log($rootScope.allIncidentUpdates)
+
+      console.log(todo)
+
+
+      return todo
+
 
     # pagination
     $scope.currentPage = 0;

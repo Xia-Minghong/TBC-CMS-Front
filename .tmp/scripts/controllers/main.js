@@ -10,6 +10,12 @@
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
     djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast']);
+    $rootScope.$watchGroup(['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], function() {
+      console.log("change");
+      $scope.todoList = $scope.compileTodoList();
+    });
     $scope.isActive = function(viewLocation) {
       return viewLocation === $location.path();
     };
@@ -17,9 +23,21 @@
       Incident.getIncidents("", function(data) {
         $rootScope.incidents = data;
       });
-      return Agency.getAgencies("", function(data) {
+      Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });
+    };
+    $scope.compileTodoList = function() {
+      var allIncidentDispatches, todo;
+      todo = [];
+      todo.concat($rootScope.incidents);
+      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map(function(k) {
+        return $rootScope.allIncidentDispatches[k];
+      });
+      console.log("convert");
+      console.log($rootScope.allIncidentUpdates);
+      console.log(todo);
+      return todo;
     };
     $scope.currentPage = 0;
     $scope.pageSize = 10;

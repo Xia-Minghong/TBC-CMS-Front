@@ -104,6 +104,7 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
           <h3 class="box-title">To Do List</h3>
+          <br><br>{{$root.allIncidentDispatches}}<br><br>{{todoList}}
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
               <li><a ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">&laquo;</a></li>
@@ -114,7 +115,7 @@
         </div><!-- /.box-header -->
         <div class="box-body">
           <ul class="todo-list">
-            <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <li ng-repeat="incident in $root.incidents | startFrom:currentPage*pageSize | limitTo:pageSize | orderBy:'-time'">
               <!-- drag handle -->
                       <span class="handle-disabled">
                         <i class="fa fa-ellipsis-v"></i>
