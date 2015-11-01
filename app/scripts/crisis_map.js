@@ -2,8 +2,21 @@
  * Created by qikunxiang on 22/10/15.
  */
 var map;
+var incidents = {
+    fire: [],
+    haze: [],
+    crash: [],
+    dengue: []
+};
+var incidentMarkers = {
+    fire: [],
+    haze: [],
+    crash: [],
+    dengue: []
+}
 
-function initMap() {
+
+function initMap($rootScope) {
     setTimeout(function () {
         var container = document.getElementById('crisis-google-map');
 
@@ -31,25 +44,94 @@ function initMap() {
                     // not valid anymore => return to last valid position
                     map.panTo(lastValidCenter);
                 });
+
+                var incidentList = $rootScope.incidents;
+
+                for (var i = 0; i < incidentList.length; i++) {
+                    var incident = incidentList[i];
+                    var marker = new google.maps.Marker({
+                        position: {lat: parseFloat(incident.latitude), lng: parseFloat(incident.longitude)},
+                        title: incident.name,
+                        icon: 'images/' + incident.type + '-pin-' + Math.min(5, incident.severity) + '.png'
+                    });
+                    incident["marker"] = marker;
+                    marker.incident = incident;
+
+                    switch (incident.type) {
+                        case "fire":
+                            incidents.fire.push(incident);
+                            incidentMarkers.fire.push(marker);
+                            break;
+                        case "haze":
+                            incidents.haze.push(incident);
+                            incidentMarkers.haze.push(marker);
+                            break;
+                        case "crash":
+                            incidents.crash.push(incident);
+                            incidentMarkers.crash.push(marker);
+                            break;
+                        case "dengue":
+                            incidents.dengue.push(incident);
+                            incidentMarkers.dengue.push(marker);
+                            break;
+                    }
+
+                    marker.setMap(map);
+                }
+
+                var toggleMarkers = function(list, show) {
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].setMap(show ? map : null);
+                    }
+                };
+
+                $("div#map-label-all").click(function() {
+                    toggleMarkers(incidentMarkers.fire, true);
+                    toggleMarkers(incidentMarkers.haze, true);
+                    toggleMarkers(incidentMarkers.crash, true);
+                    toggleMarkers(incidentMarkers.dengue, true);
+                    $("div.map-label").removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $("div#map-label-fire").click(function() {
+                    toggleMarkers(incidentMarkers.fire, true);
+                    toggleMarkers(incidentMarkers.haze, false);
+                    toggleMarkers(incidentMarkers.crash, false);
+                    toggleMarkers(incidentMarkers.dengue, false);
+                    $("div.map-label").removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $("div#map-label-haze").click(function() {
+                    toggleMarkers(incidentMarkers.fire, false);
+                    toggleMarkers(incidentMarkers.haze, true);
+                    toggleMarkers(incidentMarkers.crash, false);
+                    toggleMarkers(incidentMarkers.dengue, false);
+                    $("div.map-label").removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $("div#map-label-crash").click(function() {
+                    toggleMarkers(incidentMarkers.fire, false);
+                    toggleMarkers(incidentMarkers.haze, false);
+                    toggleMarkers(incidentMarkers.crash, true);
+                    toggleMarkers(incidentMarkers.dengue, false);
+                    $("div.map-label").removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $("div#map-label-dengue").click(function() {
+                    toggleMarkers(incidentMarkers.fire, false);
+                    toggleMarkers(incidentMarkers.haze, false);
+                    toggleMarkers(incidentMarkers.crash, false);
+                    toggleMarkers(incidentMarkers.dengue, true);
+                    $("div.map-label").removeClass("active");
+                    $(this).addClass("active");
+                });
+
             }, 300);
 
-            var ntu = new google.maps.Marker({
-                position: {lat: 1.348304, lng: 103.683134},
-                map: map,
-                title: "NTU"
-            });
-
-            var changi = new google.maps.Marker({
-                position: {lat: 1.364688, lng: 103.991509},
-                map: map,
-                title: "Changi International Airport"
-            });
-
-            var mbs = new google.maps.Marker({
-                position: {lat: 1.283816, lng: 103.860715},
-                map: map,
-                title: "Marina Bay Sands"
-            });
         }
 
         container = document.getElementById('location-selector-google-map');

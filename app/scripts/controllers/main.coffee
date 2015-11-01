@@ -93,7 +93,7 @@ angular.module 'tbcCmsFrontApp'
 
     # map
     $scope.$on '$viewContentLoaded', ->
-      initMap()
+      initMap($rootScope)
       return
 
     # NEA API

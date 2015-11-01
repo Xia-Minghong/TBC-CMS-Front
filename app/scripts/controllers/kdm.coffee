@@ -15,7 +15,7 @@ angular.module 'tbcCmsFrontApp'
     'Karma'
   ]
   $scope.$on '$viewContentLoaded', ->
-    initMap()
+    initMap($scope)
     return
   # NEA API
   if !$scope.NEAAPIInitialized

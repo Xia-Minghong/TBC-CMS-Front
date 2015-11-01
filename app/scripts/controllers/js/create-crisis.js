@@ -117,7 +117,7 @@ function createCrisisInit($scope) {
             title: "Event",
             animation: google.maps.Animation.DROP,
             draggable: true,
-            icon: 'images/blue-pin.png'
+            icon: 'images/red-pin.png'
         });
 
         $('input#locationlngHidden').val(marker.position.lng()).trigger("change");
