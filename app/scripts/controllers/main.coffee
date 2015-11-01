@@ -30,10 +30,10 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.init = ()->
       # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
-#      Incident.getIncidents "", (data)->
-#        # what to do after getting data
-#        $rootScope.incidents = data;
-#        return
+      Incident.getIncidents "", (data)->
+        # what to do after getting data
+        $rootScope.incidents = data;
+        return
 #
 #      Incident.allIncidentUpdates "", (data)->
 #        # what to do after getting data
