@@ -26,73 +26,8 @@
 
 
       <!-- TABLE: LATEST ORDERS -->
-      <div class="box box-info">
-        <div class="box-header with-border">
-          <i class="fa fa-file-text"></i>
-          <h3 class="box-title">System Log</h3>
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin">
-              <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Item</th>
-                <th>Status</th>
-                <th>Popularity</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                <td>Call of Duty IV</td>
-                <td><span class="label label-success">Shipped</span></td>
-                <td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-warning">Pending</span></td>
-                <td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>iPhone 6 Plus</td>
-                <td><span class="label label-danger">Delivered</span></td>
-                <td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-info">Processing</span></td>
-                <td><div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-warning">Pending</span></td>
-                <td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>iPhone 6 Plus</td>
-                <td><span class="label label-danger">Delivered</span></td>
-                <td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                <td>Call of Duty IV</td>
-                <td><span class="label label-success">Shipped</span></td>
-                <td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>
-              </tr>
-              </tbody>
-            </table>
-          </div><!-- /.table-responsive -->
-        </div><!-- /.box-body -->
-        <div class="box-footer clearfix">
-          <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-          <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-        </div><!-- /.box-footer -->
+      <div class="box box-info" ng-include="'views/syslog.html'">
+
       </div><!-- /.box -->
 
     </section><!-- /.Left col -->
@@ -122,7 +57,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
               <!-- todo text -->
-              <span class="text" ng-click="open()" style="cursor: pointer">{{todo.todoType=='incident'?todo.name:('Dispatch: '+todo.resource)}}</span>
+              <span class="text" ng-click="open()" style="cursor: pointer">{{todo.todoType=='incident'?todo.name:(todo.todoType=='update'?("Update: "+todo.incident.name):('Dispatch: '+todo.agency))}}</span>
               <!-- Emphasis label -->
               <small class="label" ng-class="todo.todoType=='dispatch'?'label label-primary':(todo.todoType=='update'?'label label-info':(todo.todoType=='incident'?'label label-danger':'label label-warning'))"><i class="fa fa-clock-o"></i> <span am-time-ago="todo.time"></span></small>
             </li>

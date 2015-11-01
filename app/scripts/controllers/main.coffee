@@ -11,14 +11,15 @@ angular.module 'tbcCmsFrontApp'
   .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency)->
 
     # connect websocket
-    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
-    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast']);
-    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
+    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
+    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])
 
 
     $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
       console.log("change")
       $scope.todoList = $scope.compileTodoList()
+      console.log($rootScope.allIncidentDispatches)
       return
 
     # check if the tab is active
@@ -50,8 +51,6 @@ angular.module 'tbcCmsFrontApp'
         $rootScope.agencies = data;
         return
 
-      # Compile TODO lists
-
       return
 
     # Function for generating/updating todo list
@@ -80,7 +79,6 @@ angular.module 'tbcCmsFrontApp'
       )
       todo = todo.concat(allIncidentDispatches)
 
-#      console.log(allIncidentDispatches)
 
 
       return todo

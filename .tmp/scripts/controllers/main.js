@@ -10,11 +10,12 @@
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
     djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast']);
-    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast']);
     djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast']);
+    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast']);
     $rootScope.$watchGroup(['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], function() {
       console.log("change");
       $scope.todoList = $scope.compileTodoList();
+      console.log($rootScope.allIncidentDispatches);
     });
     $scope.isActive = function(viewLocation) {
       return viewLocation === $location.path();
