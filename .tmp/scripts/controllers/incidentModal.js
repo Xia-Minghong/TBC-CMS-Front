@@ -1,14 +1,14 @@
 (function() {
-  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $modalInstance, items) {
+  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $uibModalInstance, items) {
     $scope.items = items;
     $scope.selected = {
       item: "sth"
     };
     $scope.ok = function() {
-      $modalInstance.close($scope.selected.item);
+      $uibModalInstance.close($scope.selected.item);
     };
     $scope.cancel = function() {
-      $modalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('cancel');
     };
   });
 

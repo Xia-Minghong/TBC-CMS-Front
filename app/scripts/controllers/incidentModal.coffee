@@ -1,14 +1,14 @@
 angular.module 'tbcCmsFrontApp'
-.controller 'incidentModalCtrl', ($scope, $modalInstance, items) ->
+.controller 'incidentModalCtrl', ($scope, $uibModalInstance, items) ->
   $scope.items = items
   $scope.selected = item: "sth"
 
   $scope.ok = ->
-    $modalInstance.close $scope.selected.item
+    $uibModalInstance.close $scope.selected.item
     return
 
   $scope.cancel = ->
-    $modalInstance.dismiss 'cancel'
+    $uibModalInstance.dismiss 'cancel'
     return
 
   return

@@ -10,12 +10,11 @@
 angular.module 'tbcCmsFrontApp'
   .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency)->
 
-    # connect websocket
+    # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast'])
-
 
     $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
       console.log("change")
@@ -23,9 +22,11 @@ angular.module 'tbcCmsFrontApp'
       console.log($rootScope.allIncidentDispatches)
       return
 
+
     # check if the tab is active
     $scope.isActive = (viewLocation) ->
       return (viewLocation == $location.path());
+
 
     # global initialization
     $rootScope.init = ()->
@@ -51,8 +52,8 @@ angular.module 'tbcCmsFrontApp'
         # what to do after getting data
         $rootScope.agencies = data;
         return
-
       return
+
 
     # Function for generating/updating todo list
     $scope.compileTodoList = ()->
@@ -79,9 +80,6 @@ angular.module 'tbcCmsFrontApp'
         return dispatch
       )
       todo = todo.concat(allIncidentDispatches)
-
-
-
       return todo
 
 
@@ -102,14 +100,24 @@ angular.module 'tbcCmsFrontApp'
       initNEAAPI($scope)
       $scope.NEAAPIInitialized = true
 
-    # modal
+
+    # System Logs
+    $rootScope.systemLogs = []
+    $rootScope.$watchCollection 'pushes', ->
+      console.log("syslog change")
+      if($rootScope.pushes.syslog && $rootScope.systemLogs.length<1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length>=1 && $rootScope.pushes.syslog.id!=$rootScope.systemLogs[$rootScope.systemLogs.length-1].id)
+        $rootScope.systemLogs.push($rootScope.pushes.syslog)
+      return
+
+
+    # modals
     $rootScope.openMapModal = (id) ->
       incident = Incident.getIncident("", id, (incident)->
         modalInstance = $uibModal.open(
           animation: true
           templateUrl: 'views/mapIncidentModal.html'
           controller: 'mapIncidentModalCtrl'
-          backdrop: "static"
+#          backdrop: "static"
           resolve: incident: ->
             incident
         )
@@ -124,15 +132,18 @@ angular.module 'tbcCmsFrontApp'
 
       return
 
-    $scope.open = (size) ->
+    $scope.open = (type, id) ->
       modalInstance = $uibModal.open(
         animation: true
         templateUrl: 'views/incidentModal.html'
         controller: 'incidentModalCtrl'
         size: size
         backdrop: "static"
-        resolve: items: ->
-          $scope.items
+        resolve:
+          id: ->
+            id
+          type: ->
+            type
       )
       modalInstance.result.then ((selectedItem) ->
         $scope.selected = selectedItem

@@ -1,5 +1,5 @@
 angular.module 'tbcCmsFrontApp'
-.controller 'mapIncidentModalCtrl', ($scope, $rootScope, $uibModal, $modalInstance, incident) ->
+.controller 'mapIncidentModalCtrl', ($scope, $rootScope, $uibModal, $uibModalInstance, incident) ->
 
 
   $scope.incident = incident
@@ -7,11 +7,11 @@ angular.module 'tbcCmsFrontApp'
   $scope.selected = item: "sth"
 
   $scope.ok = ->
-    $modalInstance.close $scope.selected.item
+    $uibModalInstance.close $scope.selected.item
     return
 
   $scope.cancel = ->
-    $modalInstance.dismiss 'cancel'
+    $uibModalInstance.dismiss 'cancel'
     return
 
   initMapIncidentModal($scope)

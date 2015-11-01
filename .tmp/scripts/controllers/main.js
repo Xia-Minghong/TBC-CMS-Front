@@ -70,6 +70,13 @@
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;
     }
+    $rootScope.systemLogs = [];
+    $rootScope.$watchCollection('pushes', function() {
+      console.log("syslog change");
+      if ($rootScope.pushes.syslog && $rootScope.systemLogs.length < 1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length >= 1 && $rootScope.pushes.syslog.id !== $rootScope.systemLogs[$rootScope.systemLogs.length - 1].id) {
+        $rootScope.systemLogs.push($rootScope.pushes.syslog);
+      }
+    });
     $rootScope.openMapModal = function(id) {
       var incident;
       incident = Incident.getIncident("", id, function(incident) {
@@ -78,7 +85,6 @@
           animation: true,
           templateUrl: 'views/mapIncidentModal.html',
           controller: 'mapIncidentModalCtrl',
-          backdrop: "static",
           resolve: {
             incident: function() {
               return incident;
@@ -92,7 +98,7 @@
         });
       });
     };
-    $scope.open = function(size) {
+    $scope.open = function(type, id) {
       var modalInstance;
       modalInstance = $uibModal.open({
         animation: true,
@@ -101,8 +107,11 @@
         size: size,
         backdrop: "static",
         resolve: {
-          items: function() {
-            return $scope.items;
+          id: function() {
+            return id;
+          },
+          type: function() {
+            return type;
           }
         }
       });
