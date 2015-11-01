@@ -176,6 +176,26 @@ div.map-detail-modal div.event-detail {
     min-height: 34px;
 }
 
+div.map-detail-modal.modal-teal {
+    color: white;
+}
+
+div.map-detail-modal.modal-teal div.modal-header, div.map-detail-modal.modal-teal div.modal-footer {
+    background: #30bbbb;
+}
+
+div.map-detail-modal.modal-teal div.modal-header {
+    border-bottom-color: rgb(31, 125, 125);
+}
+
+div.map-detail-modal.modal-teal div.modal-footer {
+    border-top-color: rgb(31, 125, 125);
+}
+
+div.map-detail-modal.modal-teal div.modal-body {
+    background: #39cccc;
+}
+
 div.map-detail-modal .non-clickable {
     cursor: default;
 }
