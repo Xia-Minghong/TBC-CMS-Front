@@ -16,7 +16,7 @@
                     <div class="box-body no-padding">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
-                                <div class="pad" ng-app="tbcCmsFrontApp">
+                                <div class="pad" ng-app="tbcCmsFrontApp" ng-controller="CrisisUpdateCtrl">
                                     <!-- form start -->
                                     <form role="form">
                                         <div class="box-body">
@@ -24,18 +24,32 @@
                                                 <label>Event Name</label>
                                                 <div>&lt;Event Name&gt;</div>
                                             </div>
-                                            <!-- time Picker -->
-                                            <div class="bootstrap-timepicker">
-                                                <div class="form-group">
-                                                    <label>Time of Update</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="timePicker" class="form-control timepicker">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                        </div>
-                                                    </div><!-- /.input group -->
-                                                </div><!-- /.form group -->
+
+                                            <div class="form-group">
+                                                <label>Severity</label>
+                                                <div id="severity">
+                                                    <input type="radio" name="sev1" class="flat-red">
+                                                    <input type="radio" name="sev2" class="flat-red">
+                                                    <input type="radio" name="sev3" class="flat-red">
+                                                    <input type="radio" name="sev4" class="flat-red">
+                                                    <input type="radio" name="sev5" class="flat-red">
+                                                </div>
                                             </div>
+
+                                            <input type="text" id="severityHidden" ng-model="update.severity" style="display: none">
+
+                                            <!-- time Picker -->
+                                            <div class="form-group bootstrap-timepicker">
+                                                <label for="timePicker">Time of Update</label>
+                                                <div class="input-group">
+                                                    <input type="text" id="timePicker" class="form-control timepicker">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </div>
+                                                </div><!-- /.input group -->
+                                            </div>
+
+                                            <input type="text" id="timeHidden" ng-model="update.time" style="display: none">
 
                                             <div class="form-group">
                                                 <label>Description</label>
@@ -53,15 +67,15 @@
                                             <button ng-click="submitUpdate()" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
-                                  hj {{update}}
 
+                                    <div>{{update}}</div>
                                 </div>
+
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.box -->
-
         </div><!-- /.col -->
     </div><!-- /.row -->
 

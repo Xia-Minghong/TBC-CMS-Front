@@ -37,12 +37,7 @@ function createCrisisInit($scope) {
     }
 
     var timeConvert = function(d) {
-        return [d.getFullYear(),
-                (d.getMonth()+1).padLeft(),
-                d.getDate().padLeft()].join('-') + 'T' +
-            [d.getHours().padLeft(),
-                d.getMinutes().padLeft(),
-                d.getSeconds().padLeft()].join(':');
+        return moment(d).format("YYYY-MM-DDTHH:mm:ssZ");
     }
 
     var timepicker = $('#timePicker.timepicker');
