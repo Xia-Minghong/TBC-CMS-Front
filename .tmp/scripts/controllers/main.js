@@ -19,6 +19,9 @@
       return viewLocation === $location.path();
     };
     $rootScope.init = function() {
+      Incident.getIncidents("", function(data) {
+        $rootScope.incidents = data;
+      });
       Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });

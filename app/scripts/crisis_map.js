@@ -45,6 +45,21 @@ function initMap($rootScope) {
                     map.panTo(lastValidCenter);
                 });
 
+                // Clear global lists
+                incidents = {
+                    fire: [],
+                    haze: [],
+                    crash: [],
+                    dengue: []
+                };
+
+                incidentMarkers = {
+                    fire: [],
+                    haze: [],
+                    crash: [],
+                    dengue: []
+                };
+
                 var incidentList = $rootScope.incidents;
 
                 for (var i = 0; i < incidentList.length; i++) {
@@ -77,6 +92,10 @@ function initMap($rootScope) {
                     }
 
                     marker.setMap(map);
+
+                    google.maps.event.addListener(marker, "click", function(event) {
+                        alert(this.incident.id);
+                    });
                 }
 
                 var toggleMarkers = function(list, show) {
@@ -101,7 +120,7 @@ function initMap($rootScope) {
                     toggleMarkers(incidentMarkers.dengue, false);
                     $("div.map-label").removeClass("active");
                     $(this).addClass("active");
-                });
+                }).find("div.map-label-number").text(incidents.fire.length);
 
                 $("div#map-label-haze").click(function() {
                     toggleMarkers(incidentMarkers.fire, false);
@@ -110,7 +129,7 @@ function initMap($rootScope) {
                     toggleMarkers(incidentMarkers.dengue, false);
                     $("div.map-label").removeClass("active");
                     $(this).addClass("active");
-                });
+                }).find("div.map-label-number").text(incidents.haze.length);
 
                 $("div#map-label-crash").click(function() {
                     toggleMarkers(incidentMarkers.fire, false);
@@ -119,7 +138,7 @@ function initMap($rootScope) {
                     toggleMarkers(incidentMarkers.dengue, false);
                     $("div.map-label").removeClass("active");
                     $(this).addClass("active");
-                });
+                }).find("div.map-label-number").text(incidents.crash.length);
 
                 $("div#map-label-dengue").click(function() {
                     toggleMarkers(incidentMarkers.fire, false);
@@ -128,7 +147,7 @@ function initMap($rootScope) {
                     toggleMarkers(incidentMarkers.dengue, true);
                     $("div.map-label").removeClass("active");
                     $(this).addClass("active");
-                });
+                }).find("div.map-label-number").text(incidents.dengue.length);
 
             }, 300);
 
