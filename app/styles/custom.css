@@ -200,3 +200,11 @@ div.map-detail-modal.modal-teal div.modal-body {
 div.map-detail-modal .non-clickable {
     cursor: default;
 }
+
+div.map-detail-modal div.event-dispatch span.event-title{
+    float: none;
+}
+
+div.map-detail-modal div.event-update span.event-title{
+    float: none;
+}

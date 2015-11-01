@@ -35,6 +35,30 @@
         <span class="event-title">Description: </span>
         <span class="event-content">{{incident.description}}</span>
       </div>
+      <div class="event-dispatch">
+        <div ng-show="incident['dispatch_set'].length > 0" class="event-detail event-detail-list">
+          <span class="event-title">Dispatches:</span>
+          <ul ng-repeat="dispatch in incident['dispatch_set'] | orderBy:'time'">
+            <li>
+              <span class="event-dispatch-time">{{dispatch.time}}:</span>
+              <span class="event-dispatch-content">{{dispatch.agency.name}} dispatched.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="event-update">
+        <div ng-show="incident['inciupdate_set'].length > 0" class="event-detail event-detail-list">
+          <span class="event-title">Recent Updates:</span>
+          <ul ng-repeat="update in incident['inciupdate_set'] | orderBy:'time'">
+            <li>
+              <span class="event-update-time">{{update.time}}:</span>
+              <span class="event-update-description">{{update.description}}</span>
+              <span class="event-update-agency">(updated by {{update.agency.name}})</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline pull-right" data-dismiss="modal" ng-click="cancel()">Close</button>
