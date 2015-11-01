@@ -53,7 +53,7 @@ angular
         controller: 'CreateCrisisCtrl'
         controllerAs: 'create-crisis'
 
-      .when '/crisis-update',
+      .when '/crisis-update/:incidentId',
         templateUrl: 'views/crisis-update.html'
         controller: 'CrisisUpdateCtrl'
         controllerAs: 'crisis-update'
