@@ -21,6 +21,7 @@ angular.module 'tbcCmsFrontApp'
     User.login $scope.loginData, (data) ->
       if data.hasOwnProperty('access_token')
         $rootScope.userData.token = data.token_type + ' ' + data.access_token
+        $scope.errorMsg = ""
         $scope.successMsg = "Login Success"
 #        User.getProfile $scope.userData.token, "0", "students", (data) ->
 #          token = $scope.userData.token
