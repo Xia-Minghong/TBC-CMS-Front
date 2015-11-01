@@ -11,7 +11,7 @@
   angular.module('tbcCmsFrontApp').controller('KDMCtrl', function($scope, Incident) {
     this.awesomeThings = ['HTML5 Boilerplate', 'AngularJS', 'Karma'];
     $scope.$on('$viewContentLoaded', function() {
-      initMap();
+      initMap($scope);
     });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);

@@ -55,7 +55,7 @@
       return $scope.currentPage = n;
     };
     $scope.$on('$viewContentLoaded', function() {
-      initMap();
+      initMap($rootScope);
     });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);

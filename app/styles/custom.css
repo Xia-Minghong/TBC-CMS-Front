@@ -91,3 +91,44 @@ span.info-box-number.psi span div{
 .login-logo p {
     font-size: 24px;
 }
+
+div#map-container {
+    width: 100%;
+}
+
+div#map-label-container {
+    width: 100%;
+}
+
+div#map-label {
+    border-bottom-left-radius: 3px;
+    min-height: 60px;
+    padding: 0;
+}
+
+div#map-label div.map-label{
+    width: 20%;
+    height: 60px;
+    padding: 10px;
+    float: left;
+    background: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    text-align: center;
+}
+
+div#map-label div.map-label.active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+div#map-label div.map-label img{
+    float: left;
+}
+
+div#map-label div.map-label span{
+    float: left;
+    width: 100%;
+}
+
+div#map-label div.map-label#map-label-fire span, div#map-label div.map-label#map-label-haze span, div#map-label div.map-label#map-label-all span {
+    line-height: 2.8;
+}

@@ -7,15 +7,19 @@
 </div><!-- /.box-header -->
 <div class="box-body no-padding">
   <div class="row">
-    <div class="col-md-9 col-sm-8">
+    <div id="map-container" class="col-md-9 col-sm-8">
       <div class="pad">
         <!-- Map will be created here -->
         <div id="crisis-google-map" style="height: 325px;"></div>
       </div>
     </div><!-- /.col -->
-    <div class="col-md-3 col-sm-4">
-      <div class="pad box-pane-right bg-green" style="min-height: 280px">
-
+    <div id="map-label-container" class="col-md-3 col-sm-4">
+      <div id="map-label" class="pad box-pane-right bg-green" >
+        <div class="map-label active" id="map-label-all"><span>Show All</span></div>
+        <div class="map-label" id="map-label-fire"><span><img src="images/fire-pin-1.png">Fire</span></div>
+        <div class="map-label" id="map-label-haze"><span><img src="images/haze-pin-1.png">Haze</span></div>
+        <div class="map-label" id="map-label-crash"><span><img src="images/crash-pin-1.png">Traffic<br>Accident</span></div>
+        <div class="map-label" id="map-label-dengue"><span><img src="images/dengue-pin-1.png">Dengue<br>Outbreak</span></div>
       </div>
     </div><!-- /.col -->
   </div><!-- /.row -->
