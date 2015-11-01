@@ -13,7 +13,7 @@ angular.module 'tbcCmsFrontApp'
     # connect websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])
-    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
+#    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
 
 
     $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
@@ -34,16 +34,16 @@ angular.module 'tbcCmsFrontApp'
         # what to do after getting data
         $rootScope.incidents = data;
         return
-#
-#      Incident.allIncidentUpdates "", (data)->
-#        # what to do after getting data
-#        $rootScope.allIncidentUpdates = data;
-#        return
-#
-#      Incident.allIncidentDispatches "", (data)->
-#        # what to do after getting data
-#        $rootScope.allIncidentDispatches = data;
-#        return
+
+      Incident.allIncidentUpdates "", (data)->
+        # what to do after getting data
+        $rootScope.allIncidentUpdates = data;
+        return
+
+      Incident.allIncidentDispatches "", (data)->
+        # what to do after getting data
+        $rootScope.allIncidentDispatches = data;
+        return
 
       # load agencies
       Agency.getAgencies "", (data)->
