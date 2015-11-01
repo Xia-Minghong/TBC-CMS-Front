@@ -64,9 +64,9 @@
                                                 <select class="form-control" id="locationAddress"></select>
                                             </div>
 
-                                            <input type="text" id="locationHidden" ng-model="report.address" style="display: none">
-                                            <input type="text" id="locationlngHidden" ng-model="report.location.longitude" style="display: none">
-                                            <input type="text" id="locationlatHidden" ng-model="report.location.latitude" style="display: none">
+                                            <input type="text" id="locationHidden" ng-model="report.location" style="display: none">
+                                            <input type="text" id="locationlngHidden" ng-model="report.longitude" style="display: none">
+                                            <input type="text" id="locationlatHidden" ng-model="report.latitude" style="display: none">
 
                                             <div class="form-group">
                                                 <div id="location-selector-google-map"></div>
@@ -85,6 +85,14 @@
                                         </div><!-- /.box-body -->
 
                                         <div class="box-footer">
+                                          <div class="callout callout-danger" ng-show="errorMsg">
+                                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                            <p>{{errorMsg}}</p>
+                                          </div>
+                                          <div class="callout callout-success" ng-show="successMsg">
+                                            <h4><i class="icon fa fa-check"></i> Congratulations!</h4>
+                                            <p>{{successMsg}}</p>
+                                          </div>
                                             <button class="btn btn-primary" ng-click="submitReport()">Submit</button>
                                         </div>
                                     </form>

@@ -12,16 +12,17 @@ angular.module 'tbcCmsFrontApp'
     window.testScope = $scope
     $scope.submitReport = ->
         r = $scope.report
-        if r and r.type and r.name and r.severity and r.time and r.address and r.location and r.location.longitude and r.location.latitude and r.contact
+        if r and r.type and r.name and r.severity and r.time and r.location and r.location and r.longitude and r.latitude and r.contact
             console.log $scope.report
             Incident.postIncident "", r, (success)->
               if success
-                successMsg = "Submit Success"
+                $scope.errorMsg = ""
+                $scope.successMsg = "Submit Success"
               else
-                errorMsg = "Submit Error"
+                $scope.errorMsg = "Submit Error"
 
         else
-            console.log "Form incomplete!"
+            $scope.errorMsg = "Form incomplete!"
         return
 
     $scope.$on '$viewContentLoaded', ->

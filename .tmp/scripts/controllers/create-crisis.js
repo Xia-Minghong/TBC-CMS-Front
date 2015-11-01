@@ -13,18 +13,18 @@
     $scope.submitReport = function() {
       var r;
       r = $scope.report;
-      if (r && r.type && r.name && r.severity && r.time && r.address && r.location && r.location.longitude && r.location.latitude && r.contact) {
+      if (r && r.type && r.name && r.severity && r.time && r.location && r.location && r.longitude && r.latitude && r.contact) {
         console.log($scope.report);
         Incident.postIncident("", r, function(success) {
-          var errorMsg, successMsg;
           if (success) {
-            return successMsg = "Submit Success";
+            $scope.errorMsg = "";
+            return $scope.successMsg = "Submit Success";
           } else {
-            return errorMsg = "Submit Error";
+            return $scope.errorMsg = "Submit Error";
           }
         });
       } else {
-        console.log("Form incomplete!");
+        $scope.errorMsg = "Form incomplete!";
       }
     };
     $scope.$on('$viewContentLoaded', function() {
