@@ -1,6 +1,6 @@
 <div class="box-header with-border">
   <i class="fa fa-file-text"></i>
-  <h3 class="box-title">System Log    {{$root.systemLogs}}
+  <h3 class="box-title">System Log
   </h3>
 </div><!-- /.box-header -->
 <div class="box-body">
@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody ng-show="$root.systemLogs && $root.systemLogs.length!=0">
-      <tr ng-repeat="log in $root.systemLogs">
+      <tr ng-repeat="log in $root.systemLogs | orderBy:'-time'">
         <td>{{log.time}}</td>
         <td>{{log.name}}</td>
 
