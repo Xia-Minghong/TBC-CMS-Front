@@ -94,7 +94,8 @@ function initMap($rootScope) {
                     marker.setMap(map);
 
                     google.maps.event.addListener(marker, "click", function(event) {
-                        alert(this.incident.id);
+                        //alert(this.incident.id);
+                      $rootScope.openMapModal(this.incident.id);
                     });
                 }
 

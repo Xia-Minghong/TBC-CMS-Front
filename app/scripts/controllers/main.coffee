@@ -14,6 +14,7 @@ angular.module 'tbcCmsFrontApp'
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
+    djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast'])
 
 
     $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
@@ -102,6 +103,27 @@ angular.module 'tbcCmsFrontApp'
       $scope.NEAAPIInitialized = true
 
     # modal
+    $rootScope.openMapModal = (id) ->
+      incident = Incident.getIncident("", id, (incident)->
+        modalInstance = $uibModal.open(
+          animation: true
+          templateUrl: 'views/mapIncidentModal.html'
+          controller: 'mapIncidentModalCtrl'
+          backdrop: "static"
+          resolve: incident: ->
+            incident
+        )
+        modalInstance.result.then ((selectedItem) ->
+          $scope.selected = selectedItem
+          return
+        ), ->
+          console.log 'Modal dismissed at: ' + new Date
+          return
+        return
+      )
+
+      return
+
     $scope.open = (size) ->
       modalInstance = $uibModal.open(
         animation: true

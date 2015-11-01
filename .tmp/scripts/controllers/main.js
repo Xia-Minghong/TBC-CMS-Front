@@ -9,6 +9,7 @@
     * Controller of the tbcCmsFrontApp
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
+    djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast']);
     $rootScope.$watchGroup(['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], function() {
       console.log("change");
       $scope.todoList = $scope.compileTodoList();
@@ -69,6 +70,28 @@
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;
     }
+    $rootScope.openMapModal = function(id) {
+      var incident;
+      incident = Incident.getIncident("", id, function(incident) {
+        var modalInstance;
+        modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/mapIncidentModal.html',
+          controller: 'mapIncidentModalCtrl',
+          backdrop: "static",
+          resolve: {
+            incident: function() {
+              return incident;
+            }
+          }
+        });
+        modalInstance.result.then((function(selectedItem) {
+          $scope.selected = selectedItem;
+        }), function() {
+          console.log('Modal dismissed at: ' + new Date);
+        });
+      });
+    };
     $scope.open = function(size) {
       var modalInstance;
       modalInstance = $uibModal.open({
