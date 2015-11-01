@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('tbcCmsFrontApp').service('Incident', function($http) {
-    var approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentTypes, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident, syncIncidents;
+    var allIncidentDispatches, allIncidentUpdates, approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentTypes, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident;
     getIncidents = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/",
@@ -87,18 +87,18 @@
         callback(false);
       }));
     };
-    syncIncidents = function(token, callback) {
+    allIncidentUpdates = function(token, callback) {
       $http({
-        url: App.host_addr + "/incidents/sync/",
+        url: App.host_addr + "/incidents/allupdates/",
         method: "GET",
         headers: {
           "Authorization": token
         }
       }).success((function(data, status, headers, config) {
-        console.log("syncIncidents success");
+        console.log("allupdates success");
         callback(data);
       })).error((function(data, status, headers, config) {
-        console.log("syncIncidents failed");
+        console.log("allupdates failed");
         callback(false);
       }));
     };
@@ -155,6 +155,21 @@
         callback(false);
       }));
     };
+    allIncidentDispatches = function(token, callback) {
+      $http({
+        url: App.host_addr + "/incidents/alldispatches/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("alldispatches success");
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("alldispatches failed");
+        callback(false);
+      }));
+    };
     getIncidentDispatches = function(token, inci_id, callback) {
       $http({
         url: App.host_addr + "/incidents/" + inci_id + "/dispatches/",
@@ -206,9 +221,11 @@
       postIncident: postIncident,
       approveIncident: approveIncident,
       rejectIncident: rejectIncident,
+      allIncidentUpdates: allIncidentUpdates,
       getIncidentUpdates: getIncidentUpdates,
       getIncidentUpdate: getIncidentUpdate,
       postIncidentUpdate: postIncidentUpdate,
+      allIncidentDispatches: allIncidentDispatches,
       getIncidentDispatches: getIncidentDispatches,
       getIncidentDispatch: getIncidentDispatch,
       getIncidentTypes: getIncidentTypes

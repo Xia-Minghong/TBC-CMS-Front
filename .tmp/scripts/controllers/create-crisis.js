@@ -16,10 +16,11 @@
       if (r && r.type && r.name && r.severity && r.time && r.address && r.location && r.location.longitude && r.location.latitude && r.contact) {
         console.log($scope.report);
         Incident.postIncident("", r, function(success) {
+          var errorMsg, successMsg;
           if (success) {
-            return console.log("post success");
+            return successMsg = "Submit Success";
           } else {
-            return console.log("post fail");
+            return errorMsg = "Submit Error";
           }
         });
       } else {

@@ -16,9 +16,9 @@ angular.module 'tbcCmsFrontApp'
             console.log $scope.report
             Incident.postIncident "", r, (success)->
               if success
-                console.log("post success")
+                successMsg = "Submit Success"
               else
-                console.log("post fail")
+                errorMsg = "Submit Error"
 
         else
             console.log "Form incomplete!"

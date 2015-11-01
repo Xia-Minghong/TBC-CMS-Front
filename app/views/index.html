@@ -39,7 +39,7 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
           <h3 class="box-title">To Do List</h3>
-          <br><br>{{$root.incidents}}<br><br>Updates{{$root.allIncidentUpdates}}<br><br>Dispatches{{$root.allIncidentDispatches}}<br><br>TODO{{todoList}}
+          <!--<br><br>{{$root.incidents}}<br><br>Updates{{$root.allIncidentUpdates}}<br><br>Dispatches{{$root.allIncidentDispatches}}<br><br>TODO{{todoList}}-->
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
               <li><a ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">&laquo;</a></li>
@@ -61,40 +61,7 @@
               <!-- Emphasis label -->
               <small class="label" ng-class="todo.todoType=='dispatch'?'label label-primary':(todo.todoType=='update'?'label label-info':(todo.todoType=='incident'?'label label-danger':'label label-warning'))"><i class="fa fa-clock-o"></i> <span am-time-ago="todo.time"></span></small>
             </li>
-            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-              <span class="text">Approve Event Update</span>
-              <small class="label label-info"><i class="fa fa-clock-o"></i> 3 mins</small>
-            </li>
-            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-              <span class="text">Approve Social Media Update</span>
-              <small class="label label-warning"><i class="fa fa-clock-o"></i> 4 mins</small>
-            </li>
-            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-              <span class="text">New Crisis</span>
-              <small class="label label-danger"><i class="fa fa-clock-o"></i> 4 mins</small>
-            </li>
-            <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-              <span class="text">Dispatch Agencies</span>
-              <small class="label label-primary"><i class="fa fa-clock-o"></i> 5 mins</small>
-            </li>
 
-            </li>
           </ul>
         </div><!-- /.box-body -->
       </div><!-- /.box -->

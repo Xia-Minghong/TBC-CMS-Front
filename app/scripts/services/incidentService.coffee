@@ -120,22 +120,22 @@ angular.module 'tbcCmsFrontApp'
       )
       return
 
-    syncIncidents = (token, callback) ->
+    allIncidentUpdates = (token, callback) ->
       $http(
-        url: App.host_addr + "/incidents/sync/"
+        url: App.host_addr + "/incidents/allupdates/"
         method: "GET"
         headers:
           "Authorization":token
       )
 
       .success ((data, status, headers, config) ->
-        console.log("syncIncidents success")
+        console.log("allupdates success")
         callback(data)
         return
       )
 
       .error ((data, status, headers, config) ->
-        console.log("syncIncidents failed")
+        console.log("allupdates failed")
         callback(false)
         return
       )
@@ -206,6 +206,27 @@ angular.module 'tbcCmsFrontApp'
 
       .error ((data, status, headers, config) ->
         console.log(data)
+        callback(false)
+        return
+      )
+      return
+
+    allIncidentDispatches = (token, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/alldispatches/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("alldispatches success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("alldispatches failed")
         callback(false)
         return
       )
@@ -282,9 +303,12 @@ angular.module 'tbcCmsFrontApp'
       approveIncident:approveIncident
       rejectIncident:rejectIncident
 
+      allIncidentUpdates:allIncidentUpdates
       getIncidentUpdates:getIncidentUpdates
       getIncidentUpdate:getIncidentUpdate
       postIncidentUpdate:postIncidentUpdate
+
+      allIncidentDispatches:allIncidentDispatches
       getIncidentDispatches:getIncidentDispatches
       getIncidentDispatch:getIncidentDispatch
 

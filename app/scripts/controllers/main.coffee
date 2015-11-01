@@ -35,15 +35,15 @@ angular.module 'tbcCmsFrontApp'
         $rootScope.incidents = data;
         return
 
-#      Incident.getAllIncidentUpdates "", (data)->
-#        # what to do after getting data
-#        $rootScope.allIncidentUpdates = data;
-#        return
-#
-#      Incident.getAllIncidentDispatches "", (data)->
-#        # what to do after getting data
-#        $rootScope.allIncidentDispatches = data;
-#        return
+      Incident.allIncidentUpdates "", (data)->
+        # what to do after getting data
+        $rootScope.allIncidentUpdates = data;
+        return
+
+      Incident.allIncidentDispatches "", (data)->
+        # what to do after getting data
+        $rootScope.allIncidentDispatches = data;
+        return
 
       # load agencies
       Agency.getAgencies "", (data)->

@@ -24,6 +24,12 @@
       Incident.getIncidents("", function(data) {
         $rootScope.incidents = data;
       });
+      Incident.allIncidentUpdates("", function(data) {
+        $rootScope.allIncidentUpdates = data;
+      });
+      Incident.allIncidentDispatches("", function(data) {
+        $rootScope.allIncidentDispatches = data;
+      });
       Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });
