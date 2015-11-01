@@ -144,3 +144,15 @@ div#map-label div.map-label span{
 div#map-label div.map-label#map-label-fire span, div#map-label div.map-label#map-label-haze span, div#map-label div.map-label#map-label-all span {
     line-height: 2.8;
 }
+
+table#syslog td:first-child{
+    width: 160px;
+}
+
+table#syslog th.empty {
+    display: none;
+}
+
+table#syslog.empty th.empty {
+    display: block;
+}
