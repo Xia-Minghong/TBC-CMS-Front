@@ -19,6 +19,7 @@
           if (success) {
             $scope.errorMsg = "";
             $scope.successMsg = "Submit Success";
+            Incident.getIncidents();
             return $route.reload();
           } else {
             return $scope.errorMsg = "Submit Error";
