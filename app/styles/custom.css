@@ -156,3 +156,26 @@ table#syslog th.empty {
 table#syslog.empty th.empty {
     display: block;
 }
+
+/* Map details modal */
+div.map-detail-modal span.event-title{
+    font-weight: bold;
+    font-size: 15px;
+    min-width: 130px;
+    display: block;
+    float: left;
+}
+
+div.map-detail-modal span.event-content {
+    font-size: 16px;
+    display: block;
+    float: left;
+}
+
+div.map-detail-modal div.event-detail {
+    min-height: 34px;
+}
+
+div.map-detail-modal .non-clickable {
+    cursor: default;
+}

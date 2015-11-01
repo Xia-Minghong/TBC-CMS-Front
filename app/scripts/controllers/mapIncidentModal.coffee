@@ -3,6 +3,7 @@ angular.module 'tbcCmsFrontApp'
 
 
   $scope.incident = incident
+
   $scope.selected = item: "sth"
 
   $scope.ok = ->
@@ -12,5 +13,7 @@ angular.module 'tbcCmsFrontApp'
   $scope.cancel = ->
     $modalInstance.dismiss 'cancel'
     return
+
+  initMapIncidentModal($scope)
 
   return
