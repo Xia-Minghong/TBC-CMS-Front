@@ -22,9 +22,9 @@ angular.module 'tbcCmsFrontApp'
       console.log $scope.update
       return
 
-#  if !$scope.crisisUpdateInitialized
-#      crisisUpdateInit()
-#  $scope.crisisUpdateInitialized = true
+  if !$scope.crisisUpdateInitialized
+      crisisUpdateInit()
+  $scope.crisisUpdateInitialized = true
 
 
   return

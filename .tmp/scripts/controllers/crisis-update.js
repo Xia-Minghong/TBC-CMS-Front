@@ -20,6 +20,10 @@
     $scope.submitUpdate = function() {
       console.log($scope.update);
     };
+    if (!$scope.crisisUpdateInitialized) {
+      crisisUpdateInit();
+    }
+    $scope.crisisUpdateInitialized = true;
   });
 
 }).call(this);
