@@ -8,7 +8,7 @@
     * # CreateCrisisCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('CreateCrisisCtrl', function($scope, Incident) {
+  angular.module('tbcCmsFrontApp').controller('CreateCrisisCtrl', function($scope, $route, Incident) {
     window.testScope = $scope;
     $scope.submitReport = function() {
       var r;
@@ -18,7 +18,8 @@
         Incident.postIncident("", r, function(success) {
           if (success) {
             $scope.errorMsg = "";
-            return $scope.successMsg = "Submit Success";
+            $scope.successMsg = "Submit Success";
+            return $route.reload();
           } else {
             return $scope.errorMsg = "Submit Error";
           }

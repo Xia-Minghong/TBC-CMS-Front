@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'CreateCrisisCtrl', ($scope, Incident)->
+.controller 'CreateCrisisCtrl', ($scope, $route, Incident)->
     window.testScope = $scope
     $scope.submitReport = ->
         r = $scope.report
@@ -18,9 +18,9 @@ angular.module 'tbcCmsFrontApp'
               if success
                 $scope.errorMsg = ""
                 $scope.successMsg = "Submit Success"
+                $route.reload();
               else
                 $scope.errorMsg = "Submit Error"
-
         else
             $scope.errorMsg = "Form incomplete!"
         return

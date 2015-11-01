@@ -60,6 +60,8 @@ angular.module 'tbcCmsFrontApp'
           "severity":report.severity
           "time":report.time
           "location":report.location
+          "longitude":report.longitude
+          "latitude":report.latitude
           "contact":report.contact
           "description":report.description
       )
