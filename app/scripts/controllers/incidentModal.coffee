@@ -1,7 +1,5 @@
 angular.module 'tbcCmsFrontApp'
-.controller 'incidentModalCtrl', ($scope, $uibModalInstance, items) ->
-  $scope.items = items
-  $scope.selected = item: "sth"
+.controller 'incidentModalCtrl', ($scope, $uibModalInstance) ->
 
   $scope.ok = ->
     $uibModalInstance.close $scope.selected.item
