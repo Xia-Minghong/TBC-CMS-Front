@@ -1,3 +1,15 @@
+span.info-box-icon img {
+    height: 90%;
+    width: auto;
+    margin: auto;
+}
+
+span.info-box-icon {
+    padding: 0;
+    line-height: 80px;
+    vertical-align: middle;
+}
+
 span.logo-lg {
     font-size: 15px;
     font-weight: bold;
