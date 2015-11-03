@@ -16,10 +16,9 @@ angular.module 'tbcCmsFrontApp'
 #    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast'])
 
-    $rootScope.$watchGroup ['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], ->
+    $rootScope.$watchGroup ['pushes'], ->
       console.log("change")
       $scope.todoList = $scope.compileTodoList()
-      console.log($rootScope.allIncidentDispatches)
       return
 
 
@@ -32,20 +31,20 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.init = ()->
       # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
-      Incident.getIncidents "", (data)->
-        # what to do after getting data
-        $rootScope.incidents = data;
-        return
-
-      Incident.allIncidentUpdates "", (data)->
-        # what to do after getting data
-        $rootScope.allIncidentUpdates = data;
-        return
-
-      Incident.allIncidentDispatches "", (data)->
-        # what to do after getting data
-        $rootScope.allIncidentDispatches = data;
-        return
+#      Incident.getIncidents "", (data)->
+#        # what to do after getting data
+#        $rootScope.pushes.incidents = data;
+#        return
+#
+#      Incident.allIncidentUpdates "", (data)->
+#        # what to do after getting data
+#        $rootScope.pushes.inciupdates = data;
+#        return
+#
+#      Incident.allIncidentDispatches "", (data)->
+#        # what to do after getting data
+#        $rootScope.pushes.dispatches = data;
+#        return
 
       # load agencies
       Agency.getAgencies "", (data)->
@@ -60,22 +59,26 @@ angular.module 'tbcCmsFrontApp'
       todo = []
 
       # add incidents
-      for incident in $rootScope.incidents
+      console.log("todo init")
+      console.log($rootScope.pushes)
+      for incident in $rootScope.pushes.incidents
         todoIncident = angular.copy(incident)
         todoIncident.todoType = "incident"
         todo.push(todoIncident)
+        console.log("todo")
+        console.log(todoIncident)
 
       # convert and add updates
-      allIncidentUpdates = Object.keys($rootScope.allIncidentUpdates).map((k) ->
-        update = angular.copy($rootScope.allIncidentUpdates[k])
+      allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map((k) ->
+        update = angular.copy($rootScope.pushes.inciupdates[k])
         update.todoType = "update"
         return update
       )
       todo = todo.concat(allIncidentUpdates)
 
       # convert and add dispatches
-      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map((k) ->
-        dispatch = angular.copy($rootScope.allIncidentDispatches[k])
+      allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map((k) ->
+        dispatch = angular.copy($rootScope.pushes.dispatches[k])
         dispatch.todoType = "dispatch"
         return dispatch
       )

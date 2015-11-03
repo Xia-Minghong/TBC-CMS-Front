@@ -1,5 +1,5 @@
 (function() {
-  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $uibModalInstance) {
+  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $uibModalInstance, id, type) {
     $scope.ok = function() {
       $uibModalInstance.close($scope.selected.item);
     };

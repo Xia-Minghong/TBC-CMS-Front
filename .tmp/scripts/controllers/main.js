@@ -10,24 +10,14 @@
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast']);
-    $rootScope.$watchGroup(['incidents', 'allIncidentUpdates', 'allIncidentDispatches'], function() {
+    $rootScope.$watchGroup(['pushes'], function() {
       console.log("change");
       $scope.todoList = $scope.compileTodoList();
-      console.log($rootScope.allIncidentDispatches);
     });
     $scope.isActive = function(viewLocation) {
       return viewLocation === $location.path();
     };
     $rootScope.init = function() {
-      Incident.getIncidents("", function(data) {
-        $rootScope.incidents = data;
-      });
-      Incident.allIncidentUpdates("", function(data) {
-        $rootScope.allIncidentUpdates = data;
-      });
-      Incident.allIncidentDispatches("", function(data) {
-        $rootScope.allIncidentDispatches = data;
-      });
       Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });
@@ -35,23 +25,27 @@
     $scope.compileTodoList = function() {
       var allIncidentDispatches, allIncidentUpdates, incident, todo, todoIncident, _i, _len, _ref;
       todo = [];
-      _ref = $rootScope.incidents;
+      console.log("todo init");
+      console.log($rootScope.pushes);
+      _ref = $rootScope.pushes.incidents;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         incident = _ref[_i];
         todoIncident = angular.copy(incident);
         todoIncident.todoType = "incident";
         todo.push(todoIncident);
+        console.log("todo");
+        console.log(todoIncident);
       }
-      allIncidentUpdates = Object.keys($rootScope.allIncidentUpdates).map(function(k) {
+      allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map(function(k) {
         var update;
-        update = angular.copy($rootScope.allIncidentUpdates[k]);
+        update = angular.copy($rootScope.pushes.inciupdates[k]);
         update.todoType = "update";
         return update;
       });
       todo = todo.concat(allIncidentUpdates);
-      allIncidentDispatches = Object.keys($rootScope.allIncidentDispatches).map(function(k) {
+      allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map(function(k) {
         var dispatch;
-        dispatch = angular.copy($rootScope.allIncidentDispatches[k]);
+        dispatch = angular.copy($rootScope.pushes.dispatches[k]);
         dispatch.todoType = "dispatch";
         return dispatch;
       });

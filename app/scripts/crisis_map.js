@@ -98,7 +98,7 @@ function resetMarkers($rootScope) {
         dengue: []
     };
 
-    var incidentList = $rootScope.incidents;
+    var incidentList = $rootScope.pushes.incidents;
 
     for (var i = 0; i < incidentList.length; i++) {
         var incident = incidentList[i];
