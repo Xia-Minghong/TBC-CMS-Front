@@ -18,7 +18,7 @@ angular.module 'tbcCmsFrontApp'
               if success
                 $scope.errorMsg = ""
                 $scope.successMsg = "Submit Success"
-                Incident.getIncidents()
+#                Incident.getIncidents()
                 $route.reload();
               else
                 $scope.errorMsg = "Submit Error"

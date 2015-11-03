@@ -18,7 +18,22 @@
       });
     };
     $scope.submitUpdate = function() {
-      console.log($scope.update);
+      var r;
+      r = $scope.update;
+      if (r && r.severity && r.time && r.description) {
+        console.log($routeParams);
+        Incident.postIncidentUpdate("", $routeParams.incidentId, r, function(success) {
+          if (success) {
+            $scope.errorMsg = "";
+            $scope.successMsg = "Submit Success";
+            return $route.reload();
+          } else {
+            return $scope.errorMsg = "Submit Error";
+          }
+        });
+      } else {
+        $scope.errorMsg = "Form incomplete!";
+      }
     };
     if (!$scope.crisisUpdateInitialized) {
       crisisUpdateInit();

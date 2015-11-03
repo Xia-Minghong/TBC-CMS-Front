@@ -188,13 +188,13 @@ angular.module 'tbcCmsFrontApp'
     postIncidentUpdate = (token, id, report, callback) ->
       $http(
         url: App.host_addr + "/incidents/"+id+"/updates/"
-        method: "PUT"
+        method: "POST"
         headers:
           "Content-Type":"application/json"
           "Authorization":token
         data:
           "agency":report.agency
-          "is_approved":report.is_approved
+#          "is_approved":report.is_approved
           "updated_severity":report.severity
           "time":report.time
           "description":report.description

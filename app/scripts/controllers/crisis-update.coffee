@@ -19,8 +19,20 @@ angular.module 'tbcCmsFrontApp'
       return
 
   $scope.submitUpdate = ->
-      console.log $scope.update
-      return
+    r = $scope.update
+    if r and r.severity and r.time and r.description
+      console.log $routeParams
+      Incident.postIncidentUpdate "", $routeParams.incidentId, r, (success)->
+        if success
+          $scope.errorMsg = ""
+          $scope.successMsg = "Submit Success"
+#          Incident.getIncidents()
+          $route.reload();
+        else
+          $scope.errorMsg = "Submit Error"
+    else
+      $scope.errorMsg = "Form incomplete!"
+    return
 
   if !$scope.crisisUpdateInitialized
       crisisUpdateInit()
