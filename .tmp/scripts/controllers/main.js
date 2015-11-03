@@ -9,47 +9,61 @@
     * Controller of the tbcCmsFrontApp
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
-    djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast', 'publish-broadcast']);
-    $rootScope.$watchGroup(['pushes'], function() {
-      console.log("change");
-      $scope.todoList = $scope.compileTodoList();
-    });
+    djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
     $scope.isActive = function(viewLocation) {
-      return viewLocation === $location.path();
+      return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
     $rootScope.init = function() {
+      Incident.getIncidents("", function(data) {
+        $rootScope.pushes.incidents = data;
+      });
+      Incident.allIncidentUpdates("", function(data) {
+        $rootScope.pushes.inciupdates = data;
+      });
+      Incident.allIncidentDispatches("", function(data) {
+        $rootScope.pushes.dispatches = data;
+      });
       Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });
     };
+    $rootScope.$watchGroup(['pushes'], function() {
+      console.log("change");
+      $scope.todoList = $scope.compileTodoList();
+    });
     $scope.compileTodoList = function() {
       var allIncidentDispatches, allIncidentUpdates, incident, todo, todoIncident, _i, _len, _ref;
       todo = [];
       console.log("todo init");
-      console.log($rootScope.pushes);
-      _ref = $rootScope.pushes.incidents;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        incident = _ref[_i];
-        todoIncident = angular.copy(incident);
-        todoIncident.todoType = "incident";
-        todo.push(todoIncident);
-        console.log("todo");
-        console.log(todoIncident);
+      if ($rootScope.pushes.incidents) {
+        _ref = $rootScope.pushes.incidents;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          incident = _ref[_i];
+          todoIncident = angular.copy(incident);
+          todoIncident.todoType = "incident";
+          todo.push(todoIncident);
+          console.log("todo");
+        }
+        console.log("0");
       }
-      allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map(function(k) {
-        var update;
-        update = angular.copy($rootScope.pushes.inciupdates[k]);
-        update.todoType = "update";
-        return update;
-      });
-      todo = todo.concat(allIncidentUpdates);
-      allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map(function(k) {
-        var dispatch;
-        dispatch = angular.copy($rootScope.pushes.dispatches[k]);
-        dispatch.todoType = "dispatch";
-        return dispatch;
-      });
-      todo = todo.concat(allIncidentDispatches);
+      if ($rootScope.pushes.updates) {
+        allIncidentUpdates = Object.keys($rootScope.pushes.updates).map(function(k) {
+          var update;
+          update = angular.copy($rootScope.pushes.updates[k]);
+          update.todoType = "update";
+          return update;
+        });
+        todo = todo.concat(allIncidentUpdates);
+      }
+      if ($rootScope.pushes.dispatches) {
+        allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map(function(k) {
+          var dispatch;
+          dispatch = angular.copy($rootScope.pushes.dispatches[k]);
+          dispatch.todoType = "dispatch";
+          return dispatch;
+        });
+        todo = todo.concat(allIncidentDispatches);
+      }
       return todo;
     };
     $scope.currentPage = 0;
@@ -57,9 +71,6 @@
     $scope.goPage = function(n) {
       return $scope.currentPage = n;
     };
-    $scope.$on('$viewContentLoaded', function() {
-      initMap($rootScope);
-    });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;
