@@ -71,6 +71,9 @@
     $scope.goPage = function(n) {
       return $scope.currentPage = n;
     };
+    $scope.$on('$viewContentLoaded', function() {
+      initMap($rootScope);
+    });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;
