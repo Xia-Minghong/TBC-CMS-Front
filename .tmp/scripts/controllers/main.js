@@ -78,6 +78,7 @@
     $rootScope.systemLogs = [];
     $rootScope.$watchCollection('pushes', function() {
       console.log("syslog change");
+      $scope.todoList = $scope.compileTodoList();
       if ($rootScope.pushes.syslog && $rootScope.systemLogs.length < 1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length >= 1 && $rootScope.pushes.syslog.id !== $rootScope.systemLogs[$rootScope.systemLogs.length - 1].id) {
         $rootScope.systemLogs.push($rootScope.pushes.syslog);
         $rootScope.systemLogs[$rootScope.systemLogs.length - 1].time = moment($rootScope.systemLogs[$rootScope.systemLogs.length - 1].time, "YYYY-MM-DDThh:mm:ssZ").format("DD/MM/YYYY HH:mm:ss");
@@ -105,18 +106,21 @@
         });
       });
     };
-    $scope.open = function(type, id) {
+    $scope.open = function(type, inci_id, id) {
       var modalInstance;
       modalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/incidentModal.html',
         controller: 'incidentModalCtrl',
         resolve: {
-          id: function() {
-            return id;
+          inci_id: function() {
+            return inci_id;
           },
           type: function() {
             return type;
+          },
+          id: function() {
+            return id;
           }
         }
       });
