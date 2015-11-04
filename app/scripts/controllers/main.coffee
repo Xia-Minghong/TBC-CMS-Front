@@ -111,6 +111,7 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.systemLogs = []
     $rootScope.$watchCollection 'pushes', ->
       console.log("syslog change")
+      $scope.todoList = $scope.compileTodoList()
       if($rootScope.pushes.syslog && $rootScope.systemLogs.length<1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length>=1 && $rootScope.pushes.syslog.id!=$rootScope.systemLogs[$rootScope.systemLogs.length-1].id)
         $rootScope.systemLogs.push($rootScope.pushes.syslog)
         $rootScope.systemLogs[$rootScope.systemLogs.length-1].time = moment($rootScope.systemLogs[$rootScope.systemLogs.length-1].time, "YYYY-MM-DDThh:mm:ssZ").format("DD/MM/YYYY HH:mm:ss")
@@ -140,7 +141,7 @@ angular.module 'tbcCmsFrontApp'
 
       return
 
-    $scope.open = (type, id) ->
+    $scope.open = (type, inci_id, id) ->
       modalInstance = $uibModal.open(
         animation: true
         templateUrl: 'views/incidentModal.html'
@@ -148,10 +149,12 @@ angular.module 'tbcCmsFrontApp'
 #        size: size
 #        backdrop: "static"
         resolve:
-          id: ->
-            id
+          inci_id: ->
+            inci_id
           type: ->
             type
+          id: ->
+            id
       )
       modalInstance.result.then ((selectedItem) ->
         $scope.selected = selectedItem

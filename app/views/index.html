@@ -61,7 +61,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
               <!-- todo text -->
-              <span class="text" ng-click="open(todo.todoType, todo.id)" style="cursor: pointer">{{todo.todoType=='incident'?todo.name:(todo.todoType=='update'?("Update: "+todo.incident.name):('Dispatch: '+todo.agency.name))}}</span>
+              <span class="text" ng-click="todo.todoType=='incident'?open(todo.todoType, todo.id, ''):open(todo.todoType, todo.incident.id, todo.id)" style="cursor: pointer">{{todo.todoType=='incident'?todo.name:(todo.todoType=='update'?("Update: "+todo.incident.name):('Dispatch: '+todo.agency.name))}}</span>
               <!-- Emphasis label -->
               <small class="label" ng-class="todo.todoType=='dispatch'?'label label-primary':(todo.todoType=='update'?'label label-info':(todo.todoType=='incident'?'label label-danger':'label label-warning'))"><i class="fa fa-clock-o"></i> <span am-time-ago="todo.time"></span></small>
             </li>

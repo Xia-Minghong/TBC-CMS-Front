@@ -71,6 +71,14 @@
       }
       return input;
     };
+  }).filter('capitalize', function() {
+    return function(input) {
+      if (!!input) {
+        return input.charAt(0).toUpperCase() + input.substr(1).toLowerCase();
+      } else {
+        return '';
+      }
+    };
   });
 
 }).call(this);
