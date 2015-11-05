@@ -39,11 +39,11 @@
           <i class="ion ion-clipboard"></i>
           <h3 class="box-title">To Do List</h3>
           <!--<br><br>{{$root.incidents}}-->
-          <br><br>Pushes{{$root.pushes}}
-          <br><br>TODO{{todoList}}
+          <!--<br><br>Pushes{{$root.pushes}}-->
+          <!--<br><br>TODO{{todoList}}-->
           <!--Incidents {{$root.pushes.incidents}}-->
+          <!--<br><br>Updates{{$root.pushes.updates}}-->
           <!--<br><br>Dispatches{{$root.pushes.dispatches}}-->
-          <!--Todo{{todoList}}-->
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
               <li><a ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">&laquo;</a></li>
@@ -61,9 +61,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
               <!-- todo text -->
-              <span class="text" ng-click="todo.todoType=='incident'?open(todo.todoType, todo.id, ''):open(todo.todoType, todo.incident.id, todo.id)" style="cursor: pointer">{{todo.todoType=='incident'?todo.name:(todo.todoType=='update'?("Update: "+todo.incident.name):('Dispatch: '+todo.agency.name))}}</span>
-              <!-- Emphasis label -->
-              <small class="label" ng-class="todo.todoType=='dispatch'?'label label-primary':(todo.todoType=='update'?'label label-info':(todo.todoType=='incident'?'label label-danger':'label label-warning'))"><i class="fa fa-clock-o"></i> <span am-time-ago="todo.time"></span></small>
+              <span ng-include="'views/to-do-list-item/' + todo.todoType + '.html'"></span>
             </li>
 
           </ul>
@@ -75,3 +73,5 @@
   </div><!-- /.row (main row) -->
 
 </section><!-- /.content -->
+
+<script src="scripts/controllers/js/incident-modal.js"></script>

@@ -16,6 +16,7 @@
     $rootScope.init = function() {
       Incident.getIncidents("", function(data) {
         $rootScope.pushes.incidents = data;
+        initMap($rootScope, resetMarkers);
       });
       Incident.allIncidentUpdates("", function(data) {
         $rootScope.pushes.inciupdates = data;
@@ -44,12 +45,11 @@
           todo.push(todoIncident);
           console.log("todo");
         }
-        console.log("0");
       }
-      if ($rootScope.pushes.updates) {
-        allIncidentUpdates = Object.keys($rootScope.pushes.updates).map(function(k) {
+      if ($rootScope.pushes.inciupdates) {
+        allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map(function(k) {
           var update;
-          update = angular.copy($rootScope.pushes.updates[k]);
+          update = angular.copy($rootScope.pushes.inciupdates[k]);
           update.todoType = "update";
           return update;
         });
@@ -72,7 +72,10 @@
       return $scope.currentPage = n;
     };
     $scope.$on('$viewContentLoaded', function() {
-      initMap($rootScope);
+      if (!$scope.mapInitialized) {
+        initMap($rootScope, resetMarkers);
+        $scope.mapInitialized = true;
+      }
     });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);
@@ -109,13 +112,16 @@
         });
       });
     };
-    $scope.open = function(type, inci_id, id) {
+    $scope.open = function(type, inci_id, id, todo) {
       var modalInstance;
       modalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/incidentModal.html',
         controller: 'incidentModalCtrl',
         resolve: {
+          todo: function() {
+            return todo;
+          },
           inci_id: function() {
             return inci_id;
           },

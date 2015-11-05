@@ -16,7 +16,7 @@ var incidentMarkers = {
 };
 
 
-function initMap($rootScope) {
+function initMap($rootScope, callback) {
     setTimeout(function () {
         var container = document.getElementById('crisis-google-map');
 
@@ -45,9 +45,12 @@ function initMap($rootScope) {
                     map.panTo(lastValidCenter);
                 });
 
-                resetMarkers($rootScope);
 
             }, 300);
+
+            if (callback) {
+                callback($rootScope);
+            }
 
         }
 
@@ -107,7 +110,7 @@ function resetMarkers($rootScope) {
             title: incident.name,
             icon: 'images/' + incident.type + '-pin-' + Math.min(5, incident.severity) + '.png'
         });
-        incident["marker"] = marker;
+
         marker.incident = incident;
 
         switch (incident.type) {

@@ -1,5 +1,5 @@
 (function() {
-  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $rootScope, $uibModalInstance, Incident, inci_id, type, id) {
+  angular.module('tbcCmsFrontApp').controller('incidentModalCtrl', function($scope, $rootScope, $uibModalInstance, Incident, todo, inci_id, type, id) {
     $scope.object = {};
     $scope.type = type;
     $scope.init = function() {
@@ -7,17 +7,21 @@
       switch (type) {
         case "incident":
           Incident.getIncident("", inci_id, function(incident) {
-            return $scope.object = incident;
+            $scope.object = incident;
+            $scope.incident = incident;
+            return initIncidentModalIncident($scope);
           });
           break;
         case "updates":
           Incident.getIncidentUpdate("", inci_id, id, function(update) {
-            return $scope.object = update;
+            $scope.object = update;
+            return initIncidentModalUpdate($scope);
           });
           break;
         case "dispatch":
           Incident.getIncidentDispatch("", inci_id, id, function(dispatch) {
-            return $scope.object = dispatch;
+            $scope.object = dispatch;
+            return initIncidentModalDispatch($scope);
           });
           break;
         default:

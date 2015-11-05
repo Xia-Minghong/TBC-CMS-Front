@@ -221,6 +221,55 @@ div.map-detail-modal div.event-update span.event-title{
     float: none;
 }
 
+/* To do list modal */
+div.to-do-list-incident span.event-title{
+    font-weight: bold;
+    font-size: 15px;
+    min-width: 130px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-incident span.event-content {
+    font-size: 16px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-incident div.event-detail {
+    min-height: 34px;
+}
+
+div.to-do-list-incident .non-clickable {
+    cursor: default;
+}
+
+div.to-do-list-incident #archive-incident-confirm {
+    display: none;
+}
+
+div.to-do-list-incident #archive-incident-cancel {
+    display: none;
+}
+
+div.to-do-list-incident #approve-incident-confirm {
+    display: none;
+}
+
+div.to-do-list-incident #approve-incident-cancel {
+    display: none;
+}
+
+div.to-do-list-incident #reject-incident-confirm {
+    display: none;
+}
+
+div.to-do-list-incident #reject-incident-cancel {
+    display: none;
+}
+
+
+
 /* Timeline items */
 div.timeline-item h3.timeline-header {
     font-weight: bold;

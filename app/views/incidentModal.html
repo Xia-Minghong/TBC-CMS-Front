@@ -1,17 +1,3 @@
 <!--<div class="modal">-->
-<div class="modal-dialog {{type=='dispatch'?'modal-primary':(type=='update'?'modal-info':(type=='incident'?'modal-danger':'label modal-warning'))}}" ng-init="init()">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">{{type | capitalize}}</h4>
-    </div>
-    <div class="modal-body">
-      <p>One fine body&hellip;{{id}}{{type}}{{inci_id}}<br>obj:{{object}}</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
-      <button type="button" class="btn btn-outline" ng-click="ok()">Save changes</button>
-    </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+<div ng-include="'views/modal/' + type + '.html'"></div>
 <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->

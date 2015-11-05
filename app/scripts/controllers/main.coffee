@@ -29,6 +29,7 @@ angular.module 'tbcCmsFrontApp'
       Incident.getIncidents "", (data)->
         # what to do after getting data
         $rootScope.pushes.incidents = data;
+        initMap($rootScope, resetMarkers)
         return
 
       Incident.allIncidentUpdates "", (data)->
@@ -67,12 +68,11 @@ angular.module 'tbcCmsFrontApp'
           todoIncident.todoType = "incident"
           todo.push(todoIncident)
           console.log("todo")
-        console.log "0"
 
       # convert and add updates
-      if $rootScope.pushes.updates
-        allIncidentUpdates = Object.keys($rootScope.pushes.updates).map((k) ->
-          update = angular.copy($rootScope.pushes.updates[k])
+      if $rootScope.pushes.inciupdates
+        allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map((k) ->
+          update = angular.copy($rootScope.pushes.inciupdates[k])
           update.todoType = "update"
           return update
         )
@@ -98,7 +98,9 @@ angular.module 'tbcCmsFrontApp'
 
     # map
     $scope.$on '$viewContentLoaded', ->
-      initMap($rootScope)
+      if !$scope.mapInitialized
+        initMap($rootScope, resetMarkers)
+        $scope.mapInitialized = true
       return
 
     # NEA API
@@ -141,7 +143,7 @@ angular.module 'tbcCmsFrontApp'
 
       return
 
-    $scope.open = (type, inci_id, id) ->
+    $scope.open = (type, inci_id, id, todo) ->
       modalInstance = $uibModal.open(
         animation: true
         templateUrl: 'views/incidentModal.html'
@@ -149,6 +151,8 @@ angular.module 'tbcCmsFrontApp'
 #        size: size
 #        backdrop: "static"
         resolve:
+          todo: ->
+            todo
           inci_id: ->
             inci_id
           type: ->
