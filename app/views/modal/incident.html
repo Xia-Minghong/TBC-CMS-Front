@@ -38,7 +38,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
             <div ng-show="incident.status == 'approved' || incident.status == 'dispatched'">
-                <button type="button" id="archive-incident-confirm" class="btn btn-outline" ng-click="archive()">Confirm</button>
+                <button type="button" id="archive-incident-confirm" class="btn btn-outline" ng-click="incidentArchive()">Confirm</button>
                 <button type="button" id="archive-incident-cancel" class="btn btn-outline">Cancel</button>
                 <button type="button" id="archive-incident" class="btn btn-outline"><span>Archive</span></button>
             </div>
