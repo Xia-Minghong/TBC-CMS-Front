@@ -28,7 +28,8 @@ angular.module 'tbcCmsFrontApp'
 
 
   $scope.ok = ->
-    $uibModalInstance.close $scope.selected.item
+#    $uibModalInstance.close $scope.selected.item
+    alert("ok")
     return
 
   $scope.cancel = ->

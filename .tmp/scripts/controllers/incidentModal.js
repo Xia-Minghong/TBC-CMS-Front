@@ -25,7 +25,7 @@
       }
     };
     $scope.ok = function() {
-      $uibModalInstance.close($scope.selected.item);
+      alert("ok");
     };
     $scope.cancel = function() {
       $uibModalInstance.dismiss('cancel');
