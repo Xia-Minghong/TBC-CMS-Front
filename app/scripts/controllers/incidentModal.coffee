@@ -10,15 +10,15 @@ angular.module 'tbcCmsFrontApp'
     console.log type
     switch type
       when "incident"
-        Incident.getIncident $rootScope.userData.token, inci_id, (incident)->
+        Incident.getIncident "", inci_id, (incident)->
           $scope.object = incident
 
       when "updates"
-        Incident.getIncidentUpdate $rootScope.userData.token, inci_id, id, (update)->
+        Incident.getIncidentUpdate "", inci_id, id, (update)->
           $scope.object = update
 
       when "dispatch"
-        Incident.getIncidentDispatch $rootScope.userData.token, inci_id, id, (dispatch)->
+        Incident.getIncidentDispatch "", inci_id, id, (dispatch)->
           $scope.object = dispatch
 
       else
@@ -28,7 +28,8 @@ angular.module 'tbcCmsFrontApp'
 
 
   $scope.ok = ->
-    $uibModalInstance.close $scope.selected.item
+#    $uibModalInstance.close $scope.selected.item
+    alert("ok")
     return
 
   $scope.cancel = ->
