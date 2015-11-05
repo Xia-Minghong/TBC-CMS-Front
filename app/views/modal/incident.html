@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">{{"&lt;" + object.name + "&gt;: New Crisis Event" }}</h4>
+            <h4 class="modal-title">{{"&lt;" + incident.name + "&gt;: New Crisis Event" }}</h4>
         </div>
         <div class="modal-body">
             <div class="event-detail event-type">
@@ -19,16 +19,16 @@
             </div>
             <div class="event-detail event-severity">
                 <span class="event-title">Severity:</span>
-        <span class="event-content">
-          <div class="severity-value" style="display: none;">{{incident.severity}}</div>
-          <div id="event-severity-check">
-              <input type="radio" name="sev1" class="flat-yellow" ng-checked="incident.severity >= 1" disabled>
-              <input type="radio" name="sev2" class="flat-yellow" ng-checked="incident.severity >= 2" disabled>
-              <input type="radio" name="sev3" class="flat-yellow" ng-checked="incident.severity >= 3" disabled>
-              <input type="radio" name="sev4" class="flat-yellow" ng-checked="incident.severity >= 4" disabled>
-              <input type="radio" name="sev5" class="flat-yellow" ng-checked="incident.severity >= 5" disabled>
-          </div>
-        </span>
+                <span class="event-content">
+                  <div class="severity-value" style="display: none;">{{incident.severity}}</div>
+                  <div id="event-severity-check">
+                      <input type="radio" name="sev1" class="flat-yellow" ng-checked="incident.severity >= 1" disabled>
+                      <input type="radio" name="sev2" class="flat-yellow" ng-checked="incident.severity >= 2" disabled>
+                      <input type="radio" name="sev3" class="flat-yellow" ng-checked="incident.severity >= 3" disabled>
+                      <input type="radio" name="sev4" class="flat-yellow" ng-checked="incident.severity >= 4" disabled>
+                      <input type="radio" name="sev5" class="flat-yellow" ng-checked="incident.severity >= 5" disabled>
+                  </div>
+                </span>
             </div>
             <div class="event-detail event-description" ng-hide="!incident.description">
                 <span class="event-title">Description: </span>

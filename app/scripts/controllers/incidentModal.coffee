@@ -15,14 +15,18 @@ angular.module 'tbcCmsFrontApp'
           $scope.incident = incident
           initIncidentModalIncident($scope)
 
-      when "updates"
+      when "update"
         Incident.getIncidentUpdate "", inci_id, id, (update)->
           $scope.object = update
+          $scope.update = update
+          $scope.incident = update.incident
           initIncidentModalUpdate($scope)
 
       when "dispatch"
         Incident.getIncidentDispatch "", inci_id, id, (dispatch)->
           $scope.object = dispatch
+          $scope.dispatch = dispatch
+          $scope.incident = dispatch.incident
           initIncidentModalDispatch($scope)
 
       else
@@ -38,6 +42,35 @@ angular.module 'tbcCmsFrontApp'
 
   $scope.cancel = ->
     $uibModalInstance.dismiss 'cancel'
+    return
+
+  # Modal submit functions
+  $scope.incidentApprove = ->
+    alert("Approve incident")
+    return
+
+  $scope.incidentReject = ->
+    alert("Reject incident")
+    return
+
+  $scope.incidentArchive = ->
+    alert("Archive incident")
+    return
+
+  $scope.dispatchApprove = ->
+    alert("Approve dispatch")
+    return
+
+  $scope.dispatchReject = ->
+    alert("Reject dispatch")
+    return
+
+  $scope.updateApprove = ->
+    alert("Approve update")
+    return
+
+  $scope.updateReject = ->
+    alert("Reject update")
     return
 
   return

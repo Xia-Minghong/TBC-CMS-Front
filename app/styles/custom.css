@@ -222,6 +222,7 @@ div.map-detail-modal div.event-update span.event-title{
 }
 
 /* To do list modal */
+/* To do list item - incident */
 div.to-do-list-incident span.event-title{
     font-weight: bold;
     font-size: 15px;
@@ -269,6 +270,70 @@ div.to-do-list-incident #reject-incident-cancel {
 }
 
 
+/* To do list item - dispatch */
+div.to-do-list-dispatch span.event-title{
+    font-weight: bold;
+    font-size: 15px;
+    min-width: 130px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-dispatch span.event-content {
+    font-size: 16px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-dispatch div.event-detail {
+    min-height: 34px;
+}
+
+div.to-do-list-dispatch .non-clickable {
+    cursor: default;
+}
+
+div.to-do-list-dispatch h3{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+div.to-do-list-dispatch hr {
+    margin-top: 5px;
+}
+
+
+/* To do list item - update */
+div.to-do-list-update span.event-title{
+    font-weight: bold;
+    font-size: 15px;
+    min-width: 130px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-update span.event-content {
+    font-size: 16px;
+    display: block;
+    float: left;
+}
+
+div.to-do-list-update div.event-detail {
+    min-height: 34px;
+}
+
+div.to-do-list-update .non-clickable {
+    cursor: default;
+}
+
+div.to-do-list-update h3{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+div.to-do-list-update hr {
+    margin-top: 5px;
+}
 
 /* Timeline items */
 div.timeline-item h3.timeline-header {

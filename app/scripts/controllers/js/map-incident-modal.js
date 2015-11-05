@@ -4,20 +4,34 @@ function initMapIncidentModal($scope) {
     $scope.incident.time = mmt.format("DD/MM/YYYY hh:mm");
 
     var dispatches = $scope.incident['dispatch_set'];
+    var dispatchList = [];
 
     for (var i = 0; i < dispatches.length; i++) {
-        timeStr = dispatches[i].time;
+        if (!dispatches[i]["is_approved"]) {
+            continue;
+        }
+        var dispatch = dispatches[i];
+        timeStr = dispatch.time;
         mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-        dispatches[i].time = mmt.format("hh:mm");
+        dispatch.time = mmt.format("hh:mm");
+        dispatchList.push(dispatch);
     }
+    $scope.incident['dispatch_set'] = dispatchList;
 
     var updates = $scope.incident['inciupdate_set'];
+    var updateList = [];
 
     for (var i = 0; i < updates.length; i++) {
-        timeStr = updates[i].time;
+        if (!updates[i]['is_approved']) {
+            continue;
+        }
+        var update = update[i];
+        timeStr = update.time;
         mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-        updates[i].time = mmt.format("hh:mm");
+        update.time = mmt.format("hh:mm");
+        updateList.push(update);
     }
+    $scope.incident['inciupdate_set'] = updateList;
 
     setTimeout(function() {
         var ichecks = $('div#event-severity-check input[type="checkbox"].flat-red, input[type="radio"].flat-red');

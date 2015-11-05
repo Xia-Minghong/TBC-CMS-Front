@@ -12,15 +12,19 @@
             return initIncidentModalIncident($scope);
           });
           break;
-        case "updates":
+        case "update":
           Incident.getIncidentUpdate("", inci_id, id, function(update) {
             $scope.object = update;
+            $scope.update = update;
+            $scope.incident = update.incident;
             return initIncidentModalUpdate($scope);
           });
           break;
         case "dispatch":
           Incident.getIncidentDispatch("", inci_id, id, function(dispatch) {
             $scope.object = dispatch;
+            $scope.dispatch = dispatch;
+            $scope.incident = dispatch.incident;
             return initIncidentModalDispatch($scope);
           });
           break;
@@ -33,6 +37,27 @@
     };
     $scope.cancel = function() {
       $uibModalInstance.dismiss('cancel');
+    };
+    $scope.incidentApprove = function() {
+      alert("Approve incident");
+    };
+    $scope.incidentReject = function() {
+      alert("Reject incident");
+    };
+    $scope.incidentArchive = function() {
+      alert("Archive incident");
+    };
+    $scope.dispatchApprove = function() {
+      alert("Approve dispatch");
+    };
+    $scope.dispatchReject = function() {
+      alert("Reject dispatch");
+    };
+    $scope.updateApprove = function() {
+      alert("Approve update");
+    };
+    $scope.updateReject = function() {
+      alert("Reject update");
     };
   });
 
