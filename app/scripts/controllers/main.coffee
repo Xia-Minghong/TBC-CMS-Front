@@ -104,9 +104,7 @@ angular.module 'tbcCmsFrontApp'
       return
 
     # NEA API
-    if !$scope.NEAAPIInitialized
-      initNEAAPI($scope)
-      $scope.NEAAPIInitialized = true
+    initNEAAPI($scope)
 
 
     # System Logs

@@ -77,10 +77,7 @@
         $scope.mapInitialized = true;
       }
     });
-    if (!$scope.NEAAPIInitialized) {
-      initNEAAPI($scope);
-      $scope.NEAAPIInitialized = true;
-    }
+    initNEAAPI($scope);
     $rootScope.systemLogs = [];
     $rootScope.$watchCollection('pushes', function() {
       console.log("syslog change");
