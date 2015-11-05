@@ -6,17 +6,17 @@
       console.log(type);
       switch (type) {
         case "incident":
-          Incident.getIncident($rootScope.userData.token, inci_id, function(incident) {
+          Incident.getIncident("", inci_id, function(incident) {
             return $scope.object = incident;
           });
           break;
         case "updates":
-          Incident.getIncidentUpdate($rootScope.userData.token, inci_id, id, function(update) {
+          Incident.getIncidentUpdate("", inci_id, id, function(update) {
             return $scope.object = update;
           });
           break;
         case "dispatch":
-          Incident.getIncidentDispatch($rootScope.userData.token, inci_id, id, function(dispatch) {
+          Incident.getIncidentDispatch("", inci_id, id, function(dispatch) {
             return $scope.object = dispatch;
           });
           break;
