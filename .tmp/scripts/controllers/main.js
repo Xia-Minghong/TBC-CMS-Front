@@ -14,6 +14,7 @@
       return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
     $rootScope.init = function() {
+      $rootScope.initialized = false;
       Incident.getIncidents("", function(data) {
         $rootScope.pushes.incidents = data;
         initMap($rootScope, resetMarkers);
@@ -42,7 +43,6 @@
             todo.push(incident);
           }
         }
-        console.log("todo");
       }
       if ($rootScope.pushes.inciupdates) {
         _ref1 = $rootScope.pushes.inciupdates;
@@ -53,7 +53,6 @@
             todo.push(update);
           }
         }
-        console.log("todo");
       }
       if ($rootScope.pushes.dispatches) {
         _ref2 = $rootScope.pushes.dispatches;

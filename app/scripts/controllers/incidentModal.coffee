@@ -50,8 +50,8 @@ angular.module 'tbcCmsFrontApp'
   $scope.incidentApprove = ()->
     Incident.approveIncident "", $scope.object.id, (data)->
       # if success
-      if(data.id)
-        $uibModalInstance.close ""
+      $uibModalInstance.close ""
+      $rootScope.init()
       return
 
   $scope.incidentReject = ()->

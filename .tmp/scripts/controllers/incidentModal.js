@@ -40,9 +40,8 @@
     };
     $scope.incidentApprove = function() {
       return Incident.approveIncident("", $scope.object.id, function(data) {
-        if (data.id) {
-          $uibModalInstance.close("");
-        }
+        $uibModalInstance.close("");
+        $rootScope.init();
       });
     };
     $scope.incidentReject = function() {

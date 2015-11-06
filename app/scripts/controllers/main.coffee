@@ -24,6 +24,7 @@ angular.module 'tbcCmsFrontApp'
 
     # global initialization
     $rootScope.init = ()->
+      $rootScope.initialized = false
       # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents "", (data)->
@@ -64,7 +65,7 @@ angular.module 'tbcCmsFrontApp'
           incident.todoType = "incident"
           if incident.status!="closed" and incident.status!="rejected"
             todo.push(incident)
-        console.log("todo")
+#        console.log("todo")
 
       # convert and add updates
       if $rootScope.pushes.inciupdates
@@ -72,7 +73,7 @@ angular.module 'tbcCmsFrontApp'
           update.todoType = "update"
           if !update.is_approved
             todo.push(update)
-        console.log("todo")
+#        console.log("todo")
 #        $rootScope.initialized = false
 #        for index of $rootScope.pushes.inciupdates
 #          $rootScope.pushes.inciupdates[index].todoType = "update"
