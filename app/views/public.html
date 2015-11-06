@@ -13,15 +13,6 @@
   <div class="row" ng-include="'views/header_status.html'" ng-controller="MainCtrl">
 
   </div><!-- /.row -->
-  Incidents<br>
-  {{$root.incidents}}
-<br>
-<br>
-  Agencies<br>
-  {{$root.agencies}}
-
-  <br>
-  <br>
 
   <div class="row">
     <div class="col-md-12">
@@ -33,22 +24,32 @@
       <!-- The time line -->
       <ul class="timeline">
         <!-- timeline time label -->
-        <li class="time-label">
+        <!--ng-repeat="(date, value) in timeline | groupBy: 'date'"-->
+        <li class="time-label" ng-repeat-start="(date, items) in timeline | groupBy: 'date'">
                   <span class="bg-red">
-                    10 Feb. 2015
+                    {{date}}
                   </span>
         </li>
         <!-- /.timeline-label -->
         <!-- timeline item -->
-        <li>
-          <i class="fa fa-warning bg-red"></i>
+        <li ng-repeat="item in items" ng-repeat-end>
+          <i ng-show="item.timelineType=='incident'" class="fa fa-warning bg-red"></i>
+          <i ng-show="item.timelineType=='dispatch'" class="fa fa-ambulance bg-blue"></i>
+          <i ng-show="item.timelineType=='update'" class="fa fa-heartbeat bg-aqua"></i>
+
           <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-            <h3 class="timeline-header">New crisis event</h3>
+            <span class="time"><i class="fa fa-clock-o"></i> {{item.displayTime}}</span>
+            <h3 class="timeline-header" ng-show="item.timelineType=='incident'">New crisis event</h3>
+            <h3 class="timeline-header" ng-show="item.timelineType=='dispatch'">Emergency agency dispatched</h3>
+            <h3 class="timeline-header" ng-show="item.timelineType=='update'">New crisis update</h3>
             <div class="timeline-body">
-              <p>A new crisis event: &lt;IncidentName&gt; was reported at &lt;IncidentAddress&gt;.</p>
+              <p ng-show="item.timelineType=='incident'">A new crisis event: <b>{{item.name}}</b> was reported at <b>{{item.location}}</b>.</p>
+              <p ng-show="item.timelineType=='dispatch'"><b>{{item.agency.name}}</b> has been dispatched for <b>{{item.incident.name}}</b> was at <b>{{item.incident.location}}</b>.</p>
+              <p ng-show="item.timelineType=='update'">An update for <b>{{item.incident.name}}</b> at <b>{{item.incident.location}}</b> was reported by <b>{{item.agency.name}}</b>.</p>
+
+
               <p class="timeline-item-detail">Details:</p>
-              <p>&lt;IncidentDescription&gt;</p>
+              <p>{{item.description}}</p>
             </div>
             <div class="timeline-footer"></div>
           </div>

@@ -142,7 +142,7 @@ angular.module 'tbcCmsFrontApp'
         resetMarkers($rootScope)
         console.log("change")
 
-      #      $scope.todoList = $scope.compileTodoList()
+      # system log
       if($rootScope.pushes.syslog && $rootScope.systemLogs.length<1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length>=1 && $rootScope.pushes.syslog.id!=$rootScope.systemLogs[$rootScope.systemLogs.length-1].id)
         $rootScope.systemLogs.push($rootScope.pushes.syslog)
         $rootScope.systemLogs[$rootScope.systemLogs.length-1].time = moment($rootScope.systemLogs[$rootScope.systemLogs.length-1].time, "YYYY-MM-DDThh:mm:ssZ").format("DD/MM/YYYY HH:mm:ss")

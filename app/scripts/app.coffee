@@ -26,7 +26,8 @@ angular
     'ng.django.websocket',
     'ui.bootstrap',
     'ngFileUpload',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angular.filter'
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
