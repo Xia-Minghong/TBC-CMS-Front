@@ -27,24 +27,24 @@ angular.module 'tbcCmsFrontApp'
       $rootScope.initialized = false
       # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
-      Incident.getIncidents "", (data)->
+      Incident.getIncidents $rootScope.userData.token, (data)->
         # what to do after getting data
         $rootScope.pushes.incidents = data;
         initMap($rootScope, resetMarkers)
         return
 
-      Incident.allIncidentUpdates "", (data)->
+      Incident.allIncidentUpdates $rootScope.userData.token, (data)->
         # what to do after getting data
         $rootScope.pushes.inciupdates = data;
         return
 
-      Incident.allIncidentDispatches "", (data)->
+      Incident.allIncidentDispatches $rootScope.userData.token, (data)->
         # what to do after getting data
         $rootScope.pushes.dispatches = data;
         return
 
       # load agencies
-      Agency.getAgencies "", (data)->
+      Agency.getAgencies $rootScope.userData.token, (data)->
         # what to do after getting data
         $rootScope.agencies = data;
         return
@@ -150,7 +150,7 @@ angular.module 'tbcCmsFrontApp'
 
     # modals
     $rootScope.openMapModal = (id) ->
-      incident = Incident.getIncident("", id, (incident)->
+      incident = Incident.getIncident($rootScope.userData.token, id, (incident)->
         modalInstance = $uibModal.open(
           animation: true
           templateUrl: 'views/mapIncidentModal.html'

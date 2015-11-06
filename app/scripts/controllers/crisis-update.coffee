@@ -12,7 +12,7 @@ angular.module 'tbcCmsFrontApp'
 
   $scope.init = ()->
     console.log("init")
-    Incident.getIncidentFromKey "", $routeParams.key, (incident)->
+    Incident.getIncidentFromKey $rootScope.userData.token, $routeParams.key, (incident)->
       if incident
         $scope.incident = incident
       else
@@ -24,9 +24,9 @@ angular.module 'tbcCmsFrontApp'
     r = $scope.update
     if r and r.severity and r.time and r.description
       console.log $routeParams
-      Incident.postIncidentUpdate "", $routeParams.key, r, (success)->
+      Incident.postIncidentUpdate $rootScope.userData.token, $routeParams.key, r, (success)->
         if success
-          $scope.errorMsg = ""
+          $scope.errorMsg = $rootScope.userData.token
           $scope.successMsg = "Submit Success"
 #          Incident.getIncidents()
           $route.reload();

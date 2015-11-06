@@ -8,16 +8,16 @@
     * # CreateCrisisCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('CreateCrisisCtrl', function($scope, $route, Incident) {
+  angular.module('tbcCmsFrontApp').controller('CreateCrisisCtrl', function($scope, $rootScope, $route, Incident) {
     window.testScope = $scope;
     $scope.submitReport = function() {
       var r;
       r = $scope.report;
       if (r && r.type && r.name && r.severity && r.time && r.location && r.location && r.longitude && r.latitude && r.contact) {
         console.log($scope.report);
-        Incident.postIncident("", r, function(success) {
+        Incident.postIncident($rootScope.userData.token, r, function(success) {
           if (success) {
-            $scope.errorMsg = "";
+            $scope.errorMsg = $rootScope.userData.token;
             $scope.successMsg = "Submit Success";
             return $route.reload();
           } else {
@@ -32,7 +32,7 @@
       return initMap();
     });
     if (!$scope.crisisReportInitialized) {
-      Incident.getIncidentTypes("", function(data) {
+      Incident.getIncidentTypes($rootScope.userData.token, function(data) {
         $scope.incidentTypes = data;
       });
       createCrisisInit($scope);

@@ -11,7 +11,7 @@
   angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope, $route, $routeParams, $timeout, Upload, Incident) {
     $scope.init = function() {
       console.log("init");
-      Incident.getIncidentFromKey("", $routeParams.key, function(incident) {
+      Incident.getIncidentFromKey($rootScope.userData.token, $routeParams.key, function(incident) {
         if (incident) {
           return $scope.incident = incident;
         } else {
@@ -24,9 +24,9 @@
       r = $scope.update;
       if (r && r.severity && r.time && r.description) {
         console.log($routeParams);
-        Incident.postIncidentUpdate("", $routeParams.key, r, function(success) {
+        Incident.postIncidentUpdate($rootScope.userData.token, $routeParams.key, r, function(success) {
           if (success) {
-            $scope.errorMsg = "";
+            $scope.errorMsg = $rootScope.userData.token;
             $scope.successMsg = "Submit Success";
             return $route.reload();
           } else {
