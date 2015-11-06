@@ -94,6 +94,20 @@ function resetMarkers($rootScope) {
         dengue: []
     };
 
+    for (var i = 0; i < incidentMarkers.fire.length; i++) {
+      incidentMarkers.fire[i].setMap(null);
+    }
+    for (var i = 0; i < incidentMarkers.haze.length; i++) {
+      incidentMarkers.haze[i].setMap(null);
+    }
+    for (var i = 0; i < incidentMarkers.crash.length; i++) {
+      incidentMarkers.crash[i].setMap(null);
+    }
+    for (var i = 0; i < incidentMarkers.dengue.length; i++) {
+      incidentMarkers.dengue[i].setMap(null);
+    }
+
+
     incidentMarkers = {
         fire: [],
         haze: [],
