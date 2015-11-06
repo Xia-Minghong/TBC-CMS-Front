@@ -8,7 +8,7 @@
     * # CrisisUpdateCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope, $route, $routeParams, $timeout, Upload, Incident) {
+  angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope, $rootScope, $route, $routeParams, $timeout, Upload, Incident) {
     $scope.init = function() {
       console.log("init");
       Incident.getIncidentFromKey($rootScope.userData.token, $routeParams.key, function(incident) {

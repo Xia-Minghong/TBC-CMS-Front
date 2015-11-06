@@ -25,7 +25,8 @@ angular
     'angularMoment',
     'ng.django.websocket',
     'ui.bootstrap',
-    'ngFileUpload'
+    'ngFileUpload',
+    'LocalStorageModule'
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 

@@ -8,10 +8,9 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'UserLoginCtrl', ($scope, $rootScope, User)->
+.controller 'UserLoginCtrl', ($scope, $rootScope, User, localStorageService)->
 
   $scope.loginData = {}
-  $rootScope.userData = {}
 
   $scope.doLogin = ()->
     if !($scope.loginData.username and $scope.loginData.password)
@@ -20,7 +19,10 @@ angular.module 'tbcCmsFrontApp'
 
     User.login $scope.loginData, (data) ->
       if data.hasOwnProperty('access_token')
-        $rootScope.userData.token = data.token_type + ' ' + data.access_token
+#        $rootScope.userData.token = data.token_type + ' ' + data.access_token
+        # use local storage instead
+        localStorageService.set("token", data.token_type + ' ' + data.access_token)
+
         $scope.errorMsg = ""
         $scope.successMsg = "Login Success"
 #        User.getProfile $scope.userData.token, "0", "students", (data) ->

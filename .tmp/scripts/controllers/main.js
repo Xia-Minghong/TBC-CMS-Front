@@ -8,24 +8,26 @@
     * # MainCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency) {
+  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, localStorageService) {
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
+    $rootScope.userData = {};
+    $rootScope.userData.token = localStorageService.get("token");
     $scope.isActive = function(viewLocation) {
       return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
     $rootScope.init = function() {
       $rootScope.initialized = false;
-      Incident.getIncidents("", function(data) {
+      Incident.getIncidents($rootScope.userData.token, function(data) {
         $rootScope.pushes.incidents = data;
         initMap($rootScope, resetMarkers);
       });
-      Incident.allIncidentUpdates("", function(data) {
+      Incident.allIncidentUpdates($rootScope.userData.token, function(data) {
         $rootScope.pushes.inciupdates = data;
       });
-      Incident.allIncidentDispatches("", function(data) {
+      Incident.allIncidentDispatches($rootScope.userData.token, function(data) {
         $rootScope.pushes.dispatches = data;
       });
-      Agency.getAgencies("", function(data) {
+      Agency.getAgencies($rootScope.userData.token, function(data) {
         $rootScope.agencies = data;
       });
       $rootScope.initialized = true;
@@ -94,7 +96,7 @@
     });
     $rootScope.openMapModal = function(id) {
       var incident;
-      incident = Incident.getIncident("", id, function(incident) {
+      incident = Incident.getIncident($rootScope.userData.token, id, function(incident) {
         var modalInstance;
         modalInstance = $uibModal.open({
           animation: true,

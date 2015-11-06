@@ -35,6 +35,7 @@ module.exports = (config) ->
       'bower_components/angular-websocket/angular-websocket.min.js'
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
       'bower_components/ng-file-upload/ng-file-upload.js'
+      'bower_components/angular-local-storage/dist/angular-local-storage.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower
       # bower:coffee

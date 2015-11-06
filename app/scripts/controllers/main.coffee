@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency)->
+  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, localStorageService)->
 
     # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
@@ -16,6 +16,8 @@ angular.module 'tbcCmsFrontApp'
 #    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast'])
 
+    $rootScope.userData = {}
+    $rootScope.userData.token = localStorageService.get "token"
 
     # check if the tab is active
     $scope.isActive = (viewLocation) ->

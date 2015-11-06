@@ -15,7 +15,7 @@
 
   App.ws_addr = "ws://128.199.130.155:8000/ws/";
 
-  angular.module('tbcCmsFrontApp', ['ngAnimate', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'angularMoment', 'ng.django.websocket', 'ui.bootstrap', 'ngFileUpload']).config([
+  angular.module('tbcCmsFrontApp', ['ngAnimate', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'angularMoment', 'ng.django.websocket', 'ui.bootstrap', 'ngFileUpload', 'LocalStorageModule']).config([
     'djangoWebsocketProvider', '$routeProvider', function(djangoWebsocketProvider, $routeProvider) {
       djangoWebsocketProvider.setURI(App.ws_addr);
       djangoWebsocketProvider.setLogLevel('debug');

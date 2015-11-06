@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'CrisisUpdateCtrl', ($scope, $route, $routeParams, $timeout, Upload, Incident)->
+.controller 'CrisisUpdateCtrl', ($scope, $rootScope, $route, $routeParams, $timeout, Upload, Incident)->
 
   $scope.init = ()->
     console.log("init")
