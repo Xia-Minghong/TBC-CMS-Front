@@ -8,13 +8,15 @@
     * # CrisisUpdateCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope, $route, $routeParams, Incident) {
+  angular.module('tbcCmsFrontApp').controller('CrisisUpdateCtrl', function($scope, $route, $routeParams, $timeout, Upload, Incident) {
     $scope.init = function() {
       console.log("init");
-      return Incident.getIncident("", $routeParams.incidentId, function(incident) {
-        console.log("get");
-        console.log(incident);
-        $scope.incident = incident;
+      Incident.getIncidentFromKey("", $routeParams.key, function(incident) {
+        if (incident) {
+          return $scope.incident = incident;
+        } else {
+
+        }
       });
     };
     $scope.submitUpdate = function() {
@@ -22,7 +24,7 @@
       r = $scope.update;
       if (r && r.severity && r.time && r.description) {
         console.log($routeParams);
-        Incident.postIncidentUpdate("", $routeParams.incidentId, r, function(success) {
+        Incident.postIncidentUpdate("", $routeParams.key, r, function(success) {
           if (success) {
             $scope.errorMsg = "";
             $scope.successMsg = "Submit Success";
@@ -33,6 +35,44 @@
         });
       } else {
         $scope.errorMsg = "Form incomplete!";
+      }
+    };
+    $scope.$watch('files', function() {
+      $scope.upload($scope.files);
+    });
+    $scope.$watch('file', function() {
+      if ($scope.file !== null) {
+        $scope.files = [$scope.file];
+      }
+    });
+    $scope.log = '';
+    $scope.upload = function(files) {
+      var file, i;
+      if (files && files.length) {
+        i = 0;
+        while (i < files.length) {
+          file = files[i];
+          if (!file.$error) {
+            Upload.upload({
+              url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+              data: {
+                username: $scope.username,
+                file: file
+              }
+            }).progress(function(evt) {
+              var progressPercentage;
+              progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config.data.file.name + '\n' + $scope.log;
+            }).success(function(data, status, headers, config) {
+              console.log(data);
+              return $timeout(function() {
+                $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+              });
+            });
+            return;
+          }
+          i++;
+        }
       }
     };
     if (!$scope.crisisUpdateInitialized) {

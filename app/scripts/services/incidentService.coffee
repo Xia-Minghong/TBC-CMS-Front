@@ -47,6 +47,28 @@ angular.module 'tbcCmsFrontApp'
       )
       return
 
+    getIncidentFromKey = (token, key, callback) ->
+      $http(
+        url: App.host_addr + "/update/" + key + "/keys/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("getIncidentFromKey success")
+        console.log(data)
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("getIncidentFromKey failed")
+        callback(false)
+        return
+      )
+      return
+
     postIncident = (token, report, callback) ->
       $http(
         url: App.host_addr + "/incidents/"
@@ -122,6 +144,27 @@ angular.module 'tbcCmsFrontApp'
       )
       return
 
+    archiveIncident = (token, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + id + "/archive/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("archiveIncident success")
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("archiveIncident failed")
+        callback(false)
+        return
+      )
+      return
+
     allIncidentUpdates = (token, callback) ->
       $http(
         url: App.host_addr + "/incidents/allupdates/"
@@ -185,15 +228,15 @@ angular.module 'tbcCmsFrontApp'
       );
       return
 
-    postIncidentUpdate = (token, id, report, callback) ->
+    postIncidentUpdate = (token, key, report, callback) ->
       $http(
-        url: App.host_addr + "/incidents/"+id+"/updates/"
+        url: App.host_addr + "/update/"+key+"/keys/"
         method: "POST"
         headers:
           "Content-Type":"application/json"
           "Authorization":token
         data:
-          "agency":report.agency
+#          "agency":report.agency
 #          "is_approved":report.is_approved
           "updated_severity":report.severity
           "time":report.time
@@ -208,6 +251,50 @@ angular.module 'tbcCmsFrontApp'
 
       .error ((data, status, headers, config) ->
         console.log(data)
+        callback(false)
+        return
+      )
+      return
+
+    approveIncidentUpdate = (token, inci_id, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + inci_id + "/updates/" + id + "/approve/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("approveIncidentUpdate success")
+        console.log(data)
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("approveIncidentUpdate failed")
+        callback(false)
+        return
+      )
+      return
+
+    rejectIncidentUpdate = (token, inci_id, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + inci_id + "/updates/" + id + "/reject/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("rejectIncidentDispatch success")
+        console.log(data)
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("rejectIncidentDispatch failed")
         callback(false)
         return
       )
@@ -276,6 +363,50 @@ angular.module 'tbcCmsFrontApp'
       );
       return
 
+    approveIncidentDispatch = (token, inci_id, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + inci_id + "/dispatches/" + id + "/approve/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("approveIncidentDispatch success")
+        console.log(data)
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("approveIncidentDispatch failed")
+        callback(false)
+        return
+      )
+      return
+
+    rejectIncidentDispatch = (token, inci_id, id, callback) ->
+      $http(
+        url: App.host_addr + "/incidents/" + inci_id + "/dispatches/" + id + "/reject/"
+        method: "GET"
+        headers:
+          "Authorization":token
+      )
+
+      .success ((data, status, headers, config) ->
+        console.log("rejectIncidentDispatch success")
+        console.log(data)
+        callback(data)
+        return
+      )
+
+      .error ((data, status, headers, config) ->
+        console.log("rejectIncidentDispatch failed")
+        callback(false)
+        return
+      )
+      return
+
     getIncidentTypes = (token, callback) ->
       $http(
         url: App.host_addr + "/incidents/types/"
@@ -301,18 +432,24 @@ angular.module 'tbcCmsFrontApp'
     {
       getIncidents:getIncidents
       getIncident:getIncident
+      getIncidentFromKey:getIncidentFromKey
       postIncident:postIncident
       approveIncident:approveIncident
       rejectIncident:rejectIncident
+      archiveIncident:archiveIncident
 
       allIncidentUpdates:allIncidentUpdates
       getIncidentUpdates:getIncidentUpdates
       getIncidentUpdate:getIncidentUpdate
       postIncidentUpdate:postIncidentUpdate
+      approveIncidentUpdate:approveIncidentUpdate
+      rejectIncidentUpdate:rejectIncidentUpdate
 
       allIncidentDispatches:allIncidentDispatches
       getIncidentDispatches:getIncidentDispatches
       getIncidentDispatch:getIncidentDispatch
+      approveIncidentDispatch:approveIncidentDispatch
+      rejectIncidentDispatch:rejectIncidentDispatch
 
       getIncidentTypes:getIncidentTypes
     }

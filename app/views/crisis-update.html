@@ -2,7 +2,7 @@
 <section class="content-header" ng-init="init()">
     <h1>
         Crisis Update
-        <small>&lt;Agency Name&gt;</small>
+        <small>{{incident.name}}</small>
     </h1>
     <!--</ol>-->
 </section>
@@ -16,7 +16,7 @@
                     <div class="box-body no-padding">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
-                                <div class="pad" ng-app="tbcCmsFrontApp" ng-controller="CrisisUpdateCtrl">
+                                <div class="pad" ng-app="tbcCmsFrontApp" >
                                     <!-- form start -->
                                     <form role="form">
                                         <div class="box-body">
@@ -59,8 +59,14 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputFile">Photo (optional)</label>
-                                                <input type="file" id="exampleInputFile" ng-model="update.file">
-                                                <!--<p class="help-block">Only one photo is allowed.</p>-->
+                                                <!--<input type="file" id="exampleInputFile" ng-model="update.file">-->
+                                              <div ngf-drop ngf-select ng-model="files" class="callout callout-info" id="exampleInputFile"
+                                                   ngf-drag-over-class="'callout-warning'" ngf-multiple="true"
+                                                   accept="image/*"
+                                                   ngf-pattern="'image/*'">Drop images <b>here</b> or click to upload</div>
+                                              <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                                                <!--<p class="help-block">Only one photo is allowed.</p>-->{{files}}
+                                              <img ngf-src="!files[0].$error && files[0]"/>
                                             </div>
                                         </div><!-- /.box-body -->
 

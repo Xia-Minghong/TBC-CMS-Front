@@ -27,47 +27,49 @@
       Agency.getAgencies("", function(data) {
         $rootScope.agencies = data;
       });
+      $rootScope.initialized = true;
     };
-    $rootScope.$watchGroup(['pushes'], function() {
-      console.log("change");
-      $scope.todoList = $scope.compileTodoList();
-    });
     $scope.compileTodoList = function() {
-      var allIncidentDispatches, allIncidentUpdates, incident, todo, todoIncident, _i, _len, _ref;
+      var dispatch, incident, todo, update, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
       todo = [];
       console.log("todo init");
       if ($rootScope.pushes.incidents) {
         _ref = $rootScope.pushes.incidents;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           incident = _ref[_i];
-          todoIncident = angular.copy(incident);
-          todoIncident.todoType = "incident";
-          todo.push(todoIncident);
-          console.log("todo");
+          incident.todoType = "incident";
+          if (incident.status !== "closed" && incident.status !== "rejected") {
+            todo.push(incident);
+          }
         }
+        console.log("todo");
       }
       if ($rootScope.pushes.inciupdates) {
-        allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map(function(k) {
-          var update;
-          update = angular.copy($rootScope.pushes.inciupdates[k]);
+        _ref1 = $rootScope.pushes.inciupdates;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          update = _ref1[_j];
           update.todoType = "update";
-          return update;
-        });
-        todo = todo.concat(allIncidentUpdates);
+          if (!update.is_approved) {
+            todo.push(update);
+          }
+        }
+        console.log("todo");
       }
       if ($rootScope.pushes.dispatches) {
-        allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map(function(k) {
-          var dispatch;
-          dispatch = angular.copy($rootScope.pushes.dispatches[k]);
+        _ref2 = $rootScope.pushes.dispatches;
+        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+          dispatch = _ref2[_k];
           dispatch.todoType = "dispatch";
-          return dispatch;
-        });
-        todo = todo.concat(allIncidentDispatches);
+          if (!dispatch.is_approved) {
+            todo.push(dispatch);
+          }
+        }
+        console.log("todo");
       }
       return todo;
     };
     $scope.currentPage = 0;
-    $scope.pageSize = 10;
+    $scope.pageSize = 20;
     $scope.goPage = function(n) {
       return $scope.currentPage = n;
     };
@@ -80,8 +82,11 @@
     initNEAAPI($scope);
     $rootScope.systemLogs = [];
     $rootScope.$watchCollection('pushes', function() {
-      console.log("syslog change");
-      $scope.todoList = $scope.compileTodoList();
+      if ($rootScope.initialized) {
+        $scope.todoList = $scope.compileTodoList();
+        resetMarkers($rootScope);
+        console.log("change");
+      }
       if ($rootScope.pushes.syslog && $rootScope.systemLogs.length < 1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length >= 1 && $rootScope.pushes.syslog.id !== $rootScope.systemLogs[$rootScope.systemLogs.length - 1].id) {
         $rootScope.systemLogs.push($rootScope.pushes.syslog);
         $rootScope.systemLogs[$rootScope.systemLogs.length - 1].time = moment($rootScope.systemLogs[$rootScope.systemLogs.length - 1].time, "YYYY-MM-DDThh:mm:ssZ").format("DD/MM/YYYY HH:mm:ss");

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('tbcCmsFrontApp').service('Incident', function($http) {
-    var allIncidentDispatches, allIncidentUpdates, approveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentTypes, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident;
+    var allIncidentDispatches, allIncidentUpdates, approveIncident, approveIncidentDispatch, approveIncidentUpdate, archiveIncident, getIncident, getIncidentDispatch, getIncidentDispatches, getIncidentFromKey, getIncidentTypes, getIncidentUpdate, getIncidentUpdates, getIncidents, postIncident, postIncidentUpdate, rejectIncident, rejectIncidentDispatch, rejectIncidentUpdate;
     getIncidents = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/",
@@ -29,6 +29,22 @@
         callback(data);
       })).error((function(data, status, headers, config) {
         console.log("Process failed");
+        callback(false);
+      }));
+    };
+    getIncidentFromKey = function(token, key, callback) {
+      $http({
+        url: App.host_addr + "/update/" + key + "/keys/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("getIncidentFromKey success");
+        console.log(data);
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("getIncidentFromKey failed");
         callback(false);
       }));
     };
@@ -89,6 +105,21 @@
         callback(false);
       }));
     };
+    archiveIncident = function(token, id, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + id + "/archive/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("archiveIncident success");
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("archiveIncident failed");
+        callback(false);
+      }));
+    };
     allIncidentUpdates = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/allupdates/",
@@ -134,16 +165,15 @@
         callback(false);
       }));
     };
-    postIncidentUpdate = function(token, id, report, callback) {
+    postIncidentUpdate = function(token, key, report, callback) {
       $http({
-        url: App.host_addr + "/incidents/" + id + "/updates/",
+        url: App.host_addr + "/update/" + key + "/keys/",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": token
         },
         data: {
-          "agency": report.agency,
           "updated_severity": report.severity,
           "time": report.time,
           "description": report.description
@@ -153,6 +183,38 @@
         callback(data);
       })).error((function(data, status, headers, config) {
         console.log(data);
+        callback(false);
+      }));
+    };
+    approveIncidentUpdate = function(token, inci_id, id, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + inci_id + "/updates/" + id + "/approve/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("approveIncidentUpdate success");
+        console.log(data);
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("approveIncidentUpdate failed");
+        callback(false);
+      }));
+    };
+    rejectIncidentUpdate = function(token, inci_id, id, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + inci_id + "/updates/" + id + "/reject/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("rejectIncidentDispatch success");
+        console.log(data);
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("rejectIncidentDispatch failed");
         callback(false);
       }));
     };
@@ -201,6 +263,38 @@
         callback(false);
       }));
     };
+    approveIncidentDispatch = function(token, inci_id, id, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + inci_id + "/dispatches/" + id + "/approve/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("approveIncidentDispatch success");
+        console.log(data);
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("approveIncidentDispatch failed");
+        callback(false);
+      }));
+    };
+    rejectIncidentDispatch = function(token, inci_id, id, callback) {
+      $http({
+        url: App.host_addr + "/incidents/" + inci_id + "/dispatches/" + id + "/reject/",
+        method: "GET",
+        headers: {
+          "Authorization": token
+        }
+      }).success((function(data, status, headers, config) {
+        console.log("rejectIncidentDispatch success");
+        console.log(data);
+        callback(data);
+      })).error((function(data, status, headers, config) {
+        console.log("rejectIncidentDispatch failed");
+        callback(false);
+      }));
+    };
     getIncidentTypes = function(token, callback) {
       $http({
         url: App.host_addr + "/incidents/types/",
@@ -219,16 +313,22 @@
     return {
       getIncidents: getIncidents,
       getIncident: getIncident,
+      getIncidentFromKey: getIncidentFromKey,
       postIncident: postIncident,
       approveIncident: approveIncident,
       rejectIncident: rejectIncident,
+      archiveIncident: archiveIncident,
       allIncidentUpdates: allIncidentUpdates,
       getIncidentUpdates: getIncidentUpdates,
       getIncidentUpdate: getIncidentUpdate,
       postIncidentUpdate: postIncidentUpdate,
+      approveIncidentUpdate: approveIncidentUpdate,
+      rejectIncidentUpdate: rejectIncidentUpdate,
       allIncidentDispatches: allIncidentDispatches,
       getIncidentDispatches: getIncidentDispatches,
       getIncidentDispatch: getIncidentDispatch,
+      approveIncidentDispatch: approveIncidentDispatch,
+      rejectIncidentDispatch: rejectIncidentDispatch,
       getIncidentTypes: getIncidentTypes
     };
   });

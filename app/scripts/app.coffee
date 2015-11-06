@@ -25,6 +25,7 @@ angular
     'angularMoment',
     'ng.django.websocket',
     'ui.bootstrap',
+    'ngFileUpload'
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
@@ -53,7 +54,7 @@ angular
         controller: 'CreateCrisisCtrl'
         controllerAs: 'create-crisis'
 
-      .when '/crisis-update/:incidentId',
+      .when '/crisis-update/:key',
         templateUrl: 'views/crisis-update.html'
         controller: 'CrisisUpdateCtrl'
         controllerAs: 'crisis-update'

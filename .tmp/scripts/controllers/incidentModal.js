@@ -39,25 +39,45 @@
       $uibModalInstance.dismiss('cancel');
     };
     $scope.incidentApprove = function() {
-      alert("Approve incident");
+      return Incident.approveIncident("", $scope.object.id, function(data) {
+        if (data.id) {
+          $uibModalInstance.close("");
+        }
+      });
     };
     $scope.incidentReject = function() {
-      alert("Reject incident");
+      return Incident.rejectIncident("", $scope.object.id, function(data) {
+        if (data.id) {
+          $uibModalInstance.close("");
+        }
+      });
     };
     $scope.incidentArchive = function() {
-      alert("Archive incident");
+      return Incident.archiveIncident("", $scope.object.id, function(data) {
+        if (data.id) {
+          $uibModalInstance.close("");
+        }
+      });
     };
     $scope.dispatchApprove = function() {
-      alert("Approve dispatch");
+      Incident.approveIncidentDispatch("", $scope.object.incident.id, $scope.object.id, function(data) {
+        $uibModalInstance.close("");
+      });
     };
     $scope.dispatchReject = function() {
-      alert("Reject dispatch");
+      Incident.rejectIncidentDispatch("", $scope.object.incident.id, $scope.object.id, function(data) {
+        $uibModalInstance.close("");
+      });
     };
     $scope.updateApprove = function() {
-      alert("Approve update");
+      Incident.approveIncidentUpdate("", $scope.object.incident.id, $scope.object.id, function(data) {
+        $uibModalInstance.close("");
+      });
     };
     $scope.updateReject = function() {
-      alert("Reject update");
+      Incident.rejectIncidentUpdate("", $scope.object.incident.id, $scope.object.id, function(data) {
+        $uibModalInstance.close("");
+      });
     };
   });
 

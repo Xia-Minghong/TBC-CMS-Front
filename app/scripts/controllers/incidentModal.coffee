@@ -35,6 +35,8 @@ angular.module 'tbcCmsFrontApp'
 
 
 
+
+
   $scope.ok = ->
 #    $uibModalInstance.close $scope.selected.item
     alert("ok")
@@ -45,32 +47,50 @@ angular.module 'tbcCmsFrontApp'
     return
 
   # Modal submit functions
-  $scope.incidentApprove = ->
-    alert("Approve incident")
-    return
+  $scope.incidentApprove = ()->
+    Incident.approveIncident "", $scope.object.id, (data)->
+      # if success
+      if(data.id)
+        $uibModalInstance.close ""
+      return
 
-  $scope.incidentReject = ->
-    alert("Reject incident")
-    return
+  $scope.incidentReject = ()->
+    Incident.rejectIncident "", $scope.object.id, (data)->
+      # if success
+      if(data.id)
+        $uibModalInstance.close ""
+      return
 
-  $scope.incidentArchive = ->
-    alert("Archive incident")
-    return
+  $scope.incidentArchive = ()->
+    Incident.archiveIncident "", $scope.object.id, (data)->
+      # if success
+      if(data.id)
+        $uibModalInstance.close ""
+      return
 
-  $scope.dispatchApprove = ->
-    alert("Approve dispatch")
+  $scope.dispatchApprove = ()->
+    Incident.approveIncidentDispatch "", $scope.object.incident.id, $scope.object.id, (data)->
+      $uibModalInstance.close ""
+      return
+
     return
 
   $scope.dispatchReject = ->
-    alert("Reject dispatch")
+    Incident.rejectIncidentDispatch "", $scope.object.incident.id, $scope.object.id, (data)->
+      $uibModalInstance.close ""
+      return
     return
 
   $scope.updateApprove = ->
-    alert("Approve update")
+    Incident.approveIncidentUpdate "", $scope.object.incident.id, $scope.object.id, (data)->
+      $uibModalInstance.close ""
+      return
     return
 
   $scope.updateReject = ->
-    alert("Reject update")
+    Incident.rejectIncidentUpdate "", $scope.object.incident.id, $scope.object.id, (data)->
+      $uibModalInstance.close ""
+      return
     return
 
   return

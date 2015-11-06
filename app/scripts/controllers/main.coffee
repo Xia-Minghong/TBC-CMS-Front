@@ -47,13 +47,10 @@ angular.module 'tbcCmsFrontApp'
         # what to do after getting data
         $rootScope.agencies = data;
         return
+
+      $rootScope.initialized = true
       return
 
-
-    $rootScope.$watchGroup ['pushes'], ->
-      console.log("change")
-      $scope.todoList = $scope.compileTodoList()
-      return
 
     # Function for generating/updating todo list
     $scope.compileTodoList = ()->
@@ -64,34 +61,60 @@ angular.module 'tbcCmsFrontApp'
 #      console.log($rootScope.pushes.incidents)
       if $rootScope.pushes.incidents
         for incident in $rootScope.pushes.incidents
-          todoIncident = angular.copy(incident)
-          todoIncident.todoType = "incident"
-          todo.push(todoIncident)
-          console.log("todo")
+          incident.todoType = "incident"
+          if incident.status!="closed" and incident.status!="rejected"
+            todo.push(incident)
+        console.log("todo")
 
       # convert and add updates
       if $rootScope.pushes.inciupdates
-        allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map((k) ->
-          update = angular.copy($rootScope.pushes.inciupdates[k])
+        for update in $rootScope.pushes.inciupdates
           update.todoType = "update"
-          return update
-        )
-        todo = todo.concat(allIncidentUpdates)
+          if !update.is_approved
+            todo.push(update)
+        console.log("todo")
+#        $rootScope.initialized = false
+#        for index of $rootScope.pushes.inciupdates
+#          $rootScope.pushes.inciupdates[index].todoType = "update"
+#          if $rootScope.pushes.inciupdates[index].is_approved
+#            $rootScope.pushes.inciupdates.splice(index, 1)
+#        allIncidentUpdates = Object.keys($rootScope.pushes.inciupdates).map((k) ->
+#          update = angular.copy($rootScope.pushes.inciupdates[k])
+#          update.todoType = "update"
+#          return update
+#        )
+#        allIncidentUpdates = $rootScope.pushes.inciupdates
+#        todo = todo.concat($rootScope.pushes.inciupdates)
+#        $rootScope.initialized = true
 
       # convert and add dispatches
       if $rootScope.pushes.dispatches
-        allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map((k) ->
-          dispatch = angular.copy($rootScope.pushes.dispatches[k])
+        for dispatch in $rootScope.pushes.dispatches
           dispatch.todoType = "dispatch"
-          return dispatch
-        )
-        todo = todo.concat(allIncidentDispatches)
+          if !dispatch.is_approved
+            todo.push(dispatch)
+        console.log("todo")
+#        $rootScope.initialized = false
+#        for index of $rootScope.pushes.dispatches
+#          $rootScope.pushes.dispatches[index].todoType = "dispatch"
+#          if $rootScope.pushes.dispatches[index].is_approved
+#            $rootScope.pushes.dispatches.splice(index, 1)
+#        for index of $rootScope.pushes.dispatches
+#          if $rootScope.pushes.dispatches[index].is_approved
+#            $rootScope.pushes.dispatches.splice(index, 1)
+#        allIncidentDispatches = Object.keys($rootScope.pushes.dispatches).map((k) ->
+#          dispatch = angular.copy($rootScope.pushes.dispatches[k])
+#          dispatch.todoType = "dispatch"
+#          return dispatch
+#        )
+#        todo = todo.concat($rootScope.pushes.dispatches)
+#        $rootScope.initialized = true
       return todo
 
 
     # pagination
     $scope.currentPage = 0;
-    $scope.pageSize = 10;
+    $scope.pageSize = 20;
     $scope.goPage = (n)->
       $scope.currentPage = n
 
@@ -107,11 +130,16 @@ angular.module 'tbcCmsFrontApp'
     initNEAAPI($scope)
 
 
-    # System Logs
+    # Watcher
     $rootScope.systemLogs = []
+
     $rootScope.$watchCollection 'pushes', ->
-      console.log("syslog change")
-      $scope.todoList = $scope.compileTodoList()
+      if $rootScope.initialized
+        $scope.todoList = $scope.compileTodoList()
+        resetMarkers($rootScope)
+        console.log("change")
+
+      #      $scope.todoList = $scope.compileTodoList()
       if($rootScope.pushes.syslog && $rootScope.systemLogs.length<1 || $rootScope.pushes.syslog && $rootScope.systemLogs.length>=1 && $rootScope.pushes.syslog.id!=$rootScope.systemLogs[$rootScope.systemLogs.length-1].id)
         $rootScope.systemLogs.push($rootScope.pushes.syslog)
         $rootScope.systemLogs[$rootScope.systemLogs.length-1].time = moment($rootScope.systemLogs[$rootScope.systemLogs.length-1].time, "YYYY-MM-DDThh:mm:ssZ").format("DD/MM/YYYY HH:mm:ss")
