@@ -199,6 +199,7 @@
         callback(data);
       })).error((function(data, status, headers, config) {
         console.log("approveIncidentUpdate failed");
+        console.log(data);
         callback(false);
       }));
     };

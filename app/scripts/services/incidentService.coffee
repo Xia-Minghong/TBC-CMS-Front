@@ -273,6 +273,7 @@ angular.module 'tbcCmsFrontApp'
 
       .error ((data, status, headers, config) ->
         console.log("approveIncidentUpdate failed")
+        console.log data
         callback(false)
         return
       )

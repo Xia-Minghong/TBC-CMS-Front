@@ -8,21 +8,32 @@
     * # MainCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, localStorageService) {
+  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User, localStorageService) {
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
-    $rootScope.userData = {};
-    $rootScope.userData.token = localStorageService.get("token");
     $rootScope.doLogout = function() {
-      localStorageService.remove("token");
-      $rootScope.userData = {};
-      $location.path("/login");
-      console.log("logout success");
+      User.logout($rootScope.userData.token, function() {
+        localStorageService.remove("token");
+        $rootScope.userData = {};
+        $location.path("/login");
+        console.log("logout success");
+      });
     };
     $scope.isActive = function(viewLocation) {
       return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
     $rootScope.init = function() {
+      var token;
       $rootScope.initialized = false;
+      if ($rootScope.userData === void 0) {
+        $rootScope.userData = {};
+      }
+      token = localStorageService.get("token");
+      if (token) {
+        User.getProfile(token, function(data) {
+          $rootScope.userData = data;
+          return $rootScope.userData.token = token;
+        });
+      }
       Incident.getIncidents($rootScope.userData.token, function(data) {
         $rootScope.pushes.incidents = data;
         initMap($rootScope, resetMarkers);

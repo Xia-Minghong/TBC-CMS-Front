@@ -58,11 +58,10 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="exampleInputFile">Photo (optional)</label>
+                                                <label>Photo (optional)</label>
                                                 <!--<input type="file" id="exampleInputFile" ng-model="update.file">-->
-                                              <div ngf-drop ngf-select ng-model="files" class="callout callout-info" id="exampleInputFile"
-                                                   ngf-drag-over-class="'callout-warning'" ngf-multiple="true"
-                                                   accept="image/*"
+                                              <div ngf-drop ngf-select ng-model="files" class="callout callout-info callout-danger"
+                                                   ngf-drag-over-class="'callout-info'" ngf-multiple="true"
                                                    ngf-pattern="'image/*'">Drop images <b>here</b> or click to upload</div>
                                               <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
                                                 <!--<p class="help-block">Only one photo is allowed.</p>-->{{files}}

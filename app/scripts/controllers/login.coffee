@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'UserLoginCtrl', ($scope, $rootScope, User, localStorageService)->
+.controller 'UserLoginCtrl', ($scope, $rootScope, $location, User, localStorageService)->
 
   $scope.loginData = {}
 
@@ -21,15 +21,15 @@ angular.module 'tbcCmsFrontApp'
       if data.hasOwnProperty('access_token')
 #        $rootScope.userData.token = data.token_type + ' ' + data.access_token
         # use local storage instead
-        localStorageService.set("token", data.token_type + ' ' + data.access_token)
-
+        token = data.token_type + ' ' + data.access_token
+        localStorageService.set("token", token)
         $scope.errorMsg = ""
         $scope.successMsg = "Login Success"
-#        User.getProfile $scope.userData.token, "0", "students", (data) ->
-#          token = $scope.userData.token
-#          $scope.userData = data
-#          $scope.userData.token = token
-#          $state.go('app.events')
+
+        User.getProfile token, (data) ->
+          $rootScope.userData = data
+          $rootScope.userData.token = token
+          $location.path('/')
         return
       else
         $scope.errorMsg = "Invalid Credentials"

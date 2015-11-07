@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, localStorageService)->
+  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
 
     # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
@@ -16,14 +16,13 @@ angular.module 'tbcCmsFrontApp'
 #    djangoWebsocket.connect($rootScope, 'incidents', 'incidents', ['subscribe-broadcast', 'publish-broadcast'])
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast'])
 
-    $rootScope.userData = {}
-    $rootScope.userData.token = localStorageService.get "token"
-
     $rootScope.doLogout = ->
-      localStorageService.remove("token")
-      $rootScope.userData = {}
-      $location.path("/login");
-      console.log("logout success")
+      User.logout $rootScope.userData.token, ->
+        localStorageService.remove("token")
+        $rootScope.userData = {}
+        $location.path("/login");
+        console.log("logout success")
+        return
       return
 
     # check if the tab is active
@@ -34,6 +33,16 @@ angular.module 'tbcCmsFrontApp'
     # global initialization
     $rootScope.init = ()->
       $rootScope.initialized = false
+
+      if($rootScope.userData==undefined)
+        $rootScope.userData = {}
+      token = localStorageService.get "token"
+      if(token)
+        User.getProfile token, (data)->
+          $rootScope.userData = data
+          $rootScope.userData.token = token
+
+
       # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents $rootScope.userData.token, (data)->
