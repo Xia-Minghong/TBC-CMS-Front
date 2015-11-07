@@ -19,6 +19,13 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.userData = {}
     $rootScope.userData.token = localStorageService.get "token"
 
+    $rootScope.doLogout = ->
+      localStorageService.remove("token")
+      $rootScope.userData = {}
+      $location.path("/login");
+      console.log("logout success")
+      return
+
     # check if the tab is active
     $scope.isActive = (viewLocation) ->
       return (viewLocation == $location.path()) || (viewLocation.length>1 && $location.path().indexOf(viewLocation)>=0);

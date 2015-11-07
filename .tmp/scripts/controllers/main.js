@@ -12,6 +12,12 @@
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
     $rootScope.userData = {};
     $rootScope.userData.token = localStorageService.get("token");
+    $rootScope.doLogout = function() {
+      localStorageService.remove("token");
+      $rootScope.userData = {};
+      $location.path("/login");
+      console.log("logout success");
+    };
     $scope.isActive = function(viewLocation) {
       return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
