@@ -26,7 +26,7 @@ angular.module 'tbcCmsFrontApp'
       console.log $routeParams
       Incident.postIncidentUpdate $rootScope.userData.token, $routeParams.key, r, (success)->
         if success
-          $scope.errorMsg = $rootScope.userData.token
+          $scope.errorMsg = ""
           $scope.successMsg = "Submit Success"
 #          Incident.getIncidents()
           $route.reload();
