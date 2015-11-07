@@ -25,7 +25,7 @@
       <ul class="timeline">
         <!-- timeline time label -->
         <!--ng-repeat="(date, value) in timeline | groupBy: 'date'"-->
-        <li class="time-label" ng-repeat-start="(date, items) in timeline | groupBy: 'date'">
+        <li class="time-label" ng-repeat-start="(date, items) in timeline | orderBy: '-time' | groupBy: 'date'">
                   <span class="bg-red">
                     {{date}}
                   </span>
@@ -50,84 +50,6 @@
 
               <p class="timeline-item-detail">Details:</p>
               <p>{{item.description}}</p>
-            </div>
-            <div class="timeline-footer"></div>
-          </div>
-        </li>
-        <!-- END timeline item -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-ambulance bg-blue"></i>
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 11:54</span>
-            <h3 class="timeline-header">Emergency agency dispatched</h3>
-            <div class="timeline-body">
-              <p>&lt;IncidentDispatchAgencyName&gt; has been dispatched for &lt;IncidentName&gt; was at &lt;IncidentAddress&gt;.</p>
-            </div>
-            <div class="timeline-footer"></div>
-          </div>
-        </li>
-        <!-- END timeline item -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-heartbeat bg-aqua"></i>
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 10:23</span>
-            <h3 class="timeline-header">New crisis update</h3>
-            <div class="timeline-body">
-              <p>An update for &lt;IncidentName&gt; at &lt;IncidentAddress&gt; was reported by &lt;IncidentDispatchAgencyName&gt;.</p>
-              <p class="timeline-item-detail">Details:</p>
-              <p>&lt;IncidentUpdateDescription&gt;</p>
-            </div>
-            <div class="timeline-footer"></div>
-          </div>
-        </li>
-        <!-- END timeline item -->
-        <!-- timeline time label -->
-        <li class="time-label">
-                  <span class="bg-green">
-                    9 Feb. 2015
-                  </span>
-        </li>
-        <!-- /.timeline-label -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-ambulance bg-blue"></i>
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 11:54</span>
-            <h3 class="timeline-header">Emergency agency dispatched</h3>
-            <div class="timeline-body">
-              <p>&lt;IncidentDispatchAgencyName&gt; has been dispatched for &lt;IncidentName&gt; was at &lt;IncidentAddress&gt;.</p>
-            </div>
-            <div class="timeline-footer"></div>
-          </div>
-        </li>
-        <!-- END timeline item -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-heartbeat bg-aqua"></i>
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 10:23</span>
-            <h3 class="timeline-header">New crisis update</h3>
-            <div class="timeline-body">
-              <p>An update for &lt;IncidentName&gt; at &lt;IncidentAddress&gt; was reported by &lt;IncidentDispatchAgencyName&gt;.</p>
-              <p class="timeline-item-detail">Details:</p>
-              <p>&lt;IncidentUpdateDescription&gt;</p>
-            </div>
-            <div class="timeline-footer"></div>
-          </div>
-        </li>
-        <!-- END timeline item -->
-        <!-- timeline item -->
-        <li>
-          <i class="fa fa-warning bg-red"></i>
-          <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-            <h3 class="timeline-header">New crisis event</h3>
-            <div class="timeline-body">
-              <p>A new crisis event: &lt;IncidentName&gt; was reported at &lt;IncidentAddress&gt;.</p>
-              <p class="timeline-item-detail">Details:</p>
-              <p>&lt;IncidentDescription&gt;</p>
             </div>
             <div class="timeline-footer"></div>
           </div>

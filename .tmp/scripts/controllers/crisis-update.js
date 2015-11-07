@@ -26,7 +26,7 @@
         console.log($routeParams);
         Incident.postIncidentUpdate($rootScope.userData.token, $routeParams.key, r, function(success) {
           if (success) {
-            $scope.errorMsg = $rootScope.userData.token;
+            $scope.errorMsg = "";
             $scope.successMsg = "Submit Success";
             return $route.reload();
           } else {
