@@ -8,8 +8,10 @@
     * # AboutCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('KDMCtrl', function($scope, Incident) {
-    this.awesomeThings = ['HTML5 Boilerplate', 'AngularJS', 'Karma'];
+  angular.module('tbcCmsFrontApp').controller('KDMCtrl', function($scope, $rootScope, $location, Incident) {
+    if ($rootScope.userData === void 0 || $rootScope.userData.concreteuser === void 0) {
+      $location.path("/public");
+    }
     $scope.$on('$viewContentLoaded', function() {
       initMap($scope, resetMarkers);
     });

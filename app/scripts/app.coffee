@@ -27,7 +27,7 @@ angular
     'ui.bootstrap',
     'ngFileUpload',
     'LocalStorageModule',
-    'angular.filter'
+  'angular.filter'
   ]
   .config ['djangoWebsocketProvider', '$routeProvider', (djangoWebsocketProvider, $routeProvider) ->
 
@@ -72,7 +72,7 @@ angular
         controllerAs: 'about'
 
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/login'
   ]
 
   .filter 'startFrom', ->

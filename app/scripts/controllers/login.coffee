@@ -29,7 +29,18 @@ angular.module 'tbcCmsFrontApp'
         User.getProfile token, (data) ->
           $rootScope.userData = data
           $rootScope.userData.token = token
-          $location.path('/')
+          if($rootScope.userData)
+            switch $rootScope.userData.concreteuser.type
+              when "crisis_manager"
+                $location.path("/")
+              when "kdm"
+                $location.path("/kdm")
+              when "operator"
+                $location.path("/create-crisis")
+              else
+                $location.path("/public")
+          else
+            $location.path("/login")
         return
       else
         $scope.errorMsg = "Invalid Credentials"

@@ -8,12 +8,10 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-.controller 'KDMCtrl', ($scope, Incident)->
-  @awesomeThings = [
-    'HTML5 Boilerplate'
-    'AngularJS'
-    'Karma'
-  ]
+.controller 'KDMCtrl', ($scope, $rootScope, $location, Incident)->
+  if $rootScope.userData==undefined || $rootScope.userData.concreteuser==undefined
+    $location.path("/public")
+
   $scope.$on '$viewContentLoaded', ->
     initMap($scope, resetMarkers)
     return

@@ -10,6 +10,10 @@
 angular.module 'tbcCmsFrontApp'
   .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
 
+    # Access Control
+    if $rootScope.userData==undefined || $rootScope.userData.concreteuser==undefined
+      $location.path("/public")
+
     # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])

@@ -126,14 +126,14 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </div>
           <ul class="treeview-menu">
-            <li ng-class="{ active: isActive('/') }" ng-show="$root.userData.concreteuser.type=='crisis_manager'"><a href="#/"><i class="fa fa-circle-o text-red"></i> Manager Interface</a></li>
-            <li ng-class="{ active: isActive('/kdm') }" ng-show="$root.userData.concreteuser.type=='kdm'"><a href="#/kdm"><i class="fa fa-circle-o text-yellow"></i> KDM Interface</a></li>
-            <li ng-class="{ active: isActive('/public') }"><a href="#/public"><i class="fa fa-circle-o text-aqua"></i> Public Interface</a></li>
+            <li ng-class="{ active: isActive('/') }" ng-show="$root.userData.concreteuser.type=='crisis_manager'"><a href="#/"><i class="fa fa-circle-o text-red"></i> Manager Dashboard</a></li>
+            <li ng-class="{ active: isActive('/kdm') }" ng-show="$root.userData.concreteuser.type=='kdm'"><a href="#/kdm"><i class="fa fa-circle-o text-yellow"></i> KDM Dashboard</a></li>
+            <li ng-class="{ active: isActive('/public') }"><a href="#/public"><i class="fa fa-circle-o text-aqua"></i> Public Dashboard</a></li>
           </ul>
         </li>
         <li class="active treeview">
           <div>
-            <i class="fa fa-dashboard"></i> <span>Access</span>
+            <i class="fa fa-lock"></i> <span>Access</span>
           </div>
           <ul class="treeview-menu">
             <li ng-class="{ active: isActive('/login') }" ng-hide="$root.userData.token"><a href="#/login"><i class="fa fa-circle-o text-green"></i> User Login</a></li>
@@ -142,7 +142,7 @@
         </li>
         <li class="active treeview" ng-hide="!$root.userData.concreteuser">
           <div>
-            <i class="fa fa-dashboard"></i> <span>Forms</span>
+            <i class="fa fa-edit"></i> <span>Forms</span>
           </div>
           <ul class="treeview-menu">
             <li ng-class="{ active: isActive('/create-crisis') }"><a href="#/create-crisis"><i class="fa fa-circle-o text-yellow"></i> Create Crisis</a></li>

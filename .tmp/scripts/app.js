@@ -49,7 +49,7 @@
         controller: 'AboutCtrl',
         controllerAs: 'about'
       }).otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
     }
   ]).filter('startFrom', function() {
