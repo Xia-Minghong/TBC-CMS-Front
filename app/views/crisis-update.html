@@ -64,7 +64,7 @@
                                                    ngf-drag-over-class="'callout-info'" ngf-multiple="true"
                                                    ngf-pattern="'image/*'">Drop images <b>here</b> or click to upload</div>
                                               <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-                                                <!--<p class="help-block">Only one photo is allowed.</p>-->{{files}}
+                                                <!--<p class="help-block">Only one photo is allowed.</p>-->{{files}}<br><br>{{log}}
                                               <img ngf-src="!files[0].$error && files[0]"/>
                                             </div>
                                         </div><!-- /.box-body -->

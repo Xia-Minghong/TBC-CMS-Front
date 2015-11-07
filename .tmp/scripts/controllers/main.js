@@ -9,9 +9,6 @@
     * Controller of the tbcCmsFrontApp
    */
   angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User, localStorageService) {
-    if ($rootScope.userData === void 0 || $rootScope.userData.concreteuser === void 0) {
-      $location.path("/public");
-    }
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
     $rootScope.doLogout = function() {
       User.logout($rootScope.userData.token, function() {
@@ -36,6 +33,9 @@
           $rootScope.userData = data;
           return $rootScope.userData.token = token;
         });
+      }
+      if (localStorageService.get("token") === null) {
+        $location.path("/public");
       }
       Incident.getIncidents($rootScope.userData.token, function(data) {
         $rootScope.pushes.incidents = data;

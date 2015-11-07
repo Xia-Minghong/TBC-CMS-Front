@@ -39,6 +39,7 @@ angular.module 'tbcCmsFrontApp'
   $scope.$watch 'files', ->
     $scope.upload $scope.files
     return
+
   $scope.$watch 'file', ->
     if $scope.file != null
       $scope.files = [ $scope.file ]
@@ -51,19 +52,31 @@ angular.module 'tbcCmsFrontApp'
       while i < files.length
         file = files[i]
         if !file.$error
+          console.log("start upload")
+          console.log(file)
           Upload.upload(
-            url: 'https://angular-file-upload-cors-srv.appspot.com/upload'
+#            url: 'https://angular-file-upload-cors-srv.appspot.com/upload'
+            url: 'http://cms.h5.io:8000/inci_update_photos/'
             data:
-              username: $scope.username
-              file: file).progress((evt) ->
-                progressPercentage = parseInt(100.0 * evt.loaded / evt.total)
-                $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config.data.file.name + '\n' + $scope.log
-                return
-              ).success (data, status, headers, config) ->
-                console.log data
-                $timeout ->
-                  $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log
-                  return
+#              username: "121"
+              "photo": file
+          )
+          .progress((evt) ->
+            progressPercentage = parseInt(100.0 * evt.loaded / evt.total)
+            $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config.data.file.name + '\n' + $scope.log
+            return
+          )
+
+          .success (data, status, headers, config) ->
+            console.log("success upload")
+            console.log data
+            $timeout ->
+              $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log
+              return
+
+          .error (data, status, headers, config) ->
+            console.log("fail upload")
+            console.log data
           return
         i++
     return

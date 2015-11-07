@@ -10,9 +10,7 @@
 angular.module 'tbcCmsFrontApp'
   .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
 
-    # Access Control
-    if $rootScope.userData==undefined || $rootScope.userData.concreteuser==undefined
-      $location.path("/public")
+
 
     # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
@@ -46,8 +44,12 @@ angular.module 'tbcCmsFrontApp'
           $rootScope.userData = data
           $rootScope.userData.token = token
 
+      # Access Control
+      if localStorageService.get("token")==null
+        $location.path("/public")
 
-      # Get incidents, updates and dispatches
+
+    # Get incidents, updates and dispatches
       #send an empty token and a callback to the Incident Service
       Incident.getIncidents $rootScope.userData.token, (data)->
         # what to do after getting data
