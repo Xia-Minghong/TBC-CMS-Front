@@ -40,42 +40,44 @@
     };
     $scope.incidentApprove = function() {
       return Incident.approveIncident($rootScope.userData.token, $scope.object.id, function(data) {
-        $uibModalInstance.close($rootScope.userData.token);
+        $uibModalInstance.close("");
         $rootScope.init();
       });
     };
     $scope.incidentReject = function() {
       return Incident.rejectIncident($rootScope.userData.token, $scope.object.id, function(data) {
         if (data.id) {
-          $uibModalInstance.close($rootScope.userData.token);
+          $uibModalInstance.close("");
         }
       });
     };
     $scope.incidentArchive = function() {
       return Incident.archiveIncident($rootScope.userData.token, $scope.object.id, function(data) {
         if (data.id) {
-          $uibModalInstance.close($rootScope.userData.token);
+          $uibModalInstance.close("");
         }
       });
     };
     $scope.dispatchApprove = function() {
       Incident.approveIncidentDispatch($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close($rootScope.userData.token);
+        $uibModalInstance.close("");
       });
     };
     $scope.dispatchReject = function() {
       Incident.rejectIncidentDispatch($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close($rootScope.userData.token);
+        $uibModalInstance.close("");
       });
     };
     $scope.updateApprove = function() {
       Incident.approveIncidentUpdate($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close($rootScope.userData.token);
+        $uibModalInstance.close("");
+        $rootScope.init();
       });
     };
     $scope.updateReject = function() {
       Incident.rejectIncidentUpdate($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close($rootScope.userData.token);
+        $uibModalInstance.close("");
+        $rootScope.init();
       });
     };
   });

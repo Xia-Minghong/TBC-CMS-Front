@@ -50,7 +50,7 @@ angular.module 'tbcCmsFrontApp'
   $scope.incidentApprove = ()->
     Incident.approveIncident $rootScope.userData.token, $scope.object.id, (data)->
       # if success
-      $uibModalInstance.close $rootScope.userData.token
+      $uibModalInstance.close ""
       $rootScope.init()
       return
 
@@ -58,38 +58,40 @@ angular.module 'tbcCmsFrontApp'
     Incident.rejectIncident $rootScope.userData.token, $scope.object.id, (data)->
       # if success
       if(data.id)
-        $uibModalInstance.close $rootScope.userData.token
+        $uibModalInstance.close ""
       return
 
   $scope.incidentArchive = ()->
     Incident.archiveIncident $rootScope.userData.token, $scope.object.id, (data)->
       # if success
       if(data.id)
-        $uibModalInstance.close $rootScope.userData.token
+        $uibModalInstance.close ""
       return
 
   $scope.dispatchApprove = ()->
     Incident.approveIncidentDispatch $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close $rootScope.userData.token
+      $uibModalInstance.close ""
       return
 
     return
 
   $scope.dispatchReject = ->
     Incident.rejectIncidentDispatch $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close $rootScope.userData.token
+      $uibModalInstance.close ""
       return
     return
 
   $scope.updateApprove = ->
     Incident.approveIncidentUpdate $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close $rootScope.userData.token
+      $uibModalInstance.close ""
+      $rootScope.init()
       return
     return
 
   $scope.updateReject = ->
     Incident.rejectIncidentUpdate $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close $rootScope.userData.token
+      $uibModalInstance.close ""
+      $rootScope.init()
       return
     return
 
