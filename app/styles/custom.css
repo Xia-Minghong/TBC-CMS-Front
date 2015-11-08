@@ -348,6 +348,7 @@ div.timeline-item h3.timeline-header {
 }
 
 div.timeline-item p.timeline-item-detail{
+    clear: both;
     font-weight: bold;
 }
 
@@ -385,14 +386,19 @@ div.timeline-item p.timeline-item-type-title {
     float: left;
 }
 
-div.timeline-item div.timeline-item-type {
+div.timeline-item p.timeline-item-type {
     float: left;
+    margin-left: 15px;
 }
 
 div.timeline-item p.timeline-item-location-title {
     float: left;
 }
 
-div.timeline-item div.timeline-item-location {
+div.timeline-item p.timeline-item-location {
     float: left;
+    margin-left: 15px;
+}
+.non-clickable {
+    cursor: default;
 }
