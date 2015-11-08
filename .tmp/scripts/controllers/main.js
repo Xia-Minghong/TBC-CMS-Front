@@ -31,7 +31,8 @@
       if (token) {
         User.getProfile(token, function(data) {
           $rootScope.userData = data;
-          return $rootScope.userData.token = token;
+          $rootScope.userData.token = token;
+          return console.log($rootScope.userData.token);
         });
       }
       if (localStorageService.get("token") === null && !$scope.isActive('/crisis-update')) {
@@ -70,7 +71,7 @@
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           incident = _ref[_i];
           incident.todoType = "incident";
-          if (incident.status !== "closed" && incident.status !== "rejected") {
+          if (incident.status !== "closed") {
             todo.push(incident);
           }
         }
