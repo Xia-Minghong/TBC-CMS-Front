@@ -39,46 +39,46 @@
       $uibModalInstance.dismiss('cancel');
     };
     $scope.incidentApprove = function() {
-      return Incident.approveIncident($rootScope.userData.token, $scope.object.id, function(data) {
-        $uibModalInstance.close("");
+      Incident.approveIncident($rootScope.userData.token, $scope.object.id, function(data) {
         $rootScope.init();
       });
+      $uibModalInstance.close("");
     };
     $scope.incidentReject = function() {
-      return Incident.rejectIncident($rootScope.userData.token, $scope.object.id, function(data) {
-        if (data.id) {
-          $uibModalInstance.close("");
-        }
+      Incident.rejectIncident($rootScope.userData.token, $scope.object.id, function(data) {
+        resetMarkers($rootScope);
       });
+      $uibModalInstance.close("");
     };
     $scope.incidentArchive = function() {
-      return Incident.archiveIncident($rootScope.userData.token, $scope.object.id, function(data) {
-        if (data.id) {
-          $uibModalInstance.close("");
-        }
+      Incident.archiveIncident($rootScope.userData.token, $scope.object.id, function(data) {
+        resetMarkers($rootScope);
       });
+      $uibModalInstance.close("");
     };
     $scope.dispatchApprove = function() {
       Incident.approveIncidentDispatch($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close("");
+        resetMarkers($rootScope);
       });
+      $uibModalInstance.close("");
     };
     $scope.dispatchReject = function() {
       Incident.rejectIncidentDispatch($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close("");
+        resetMarkers($rootScope);
       });
+      $uibModalInstance.close("");
     };
     $scope.updateApprove = function() {
       Incident.approveIncidentUpdate($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close("");
         $rootScope.init();
       });
+      $uibModalInstance.close("");
     };
     $scope.updateReject = function() {
       Incident.rejectIncidentUpdate($rootScope.userData.token, $scope.object.incident.id, $scope.object.id, function(data) {
-        $uibModalInstance.close("");
         $rootScope.init();
       });
+      $uibModalInstance.close("");
     };
   });
 

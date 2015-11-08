@@ -49,50 +49,53 @@ angular.module 'tbcCmsFrontApp'
   # Modal submit functions
   $scope.incidentApprove = ()->
     Incident.approveIncident $rootScope.userData.token, $scope.object.id, (data)->
-      # if success
-      $uibModalInstance.close ""
       $rootScope.init()
       return
+    $uibModalInstance.close ""
+    return
 
   $scope.incidentReject = ()->
     Incident.rejectIncident $rootScope.userData.token, $scope.object.id, (data)->
-      # if success
-      if(data.id)
-        $uibModalInstance.close ""
+      resetMarkers($rootScope)
       return
+    $uibModalInstance.close ""
+    return
 
   $scope.incidentArchive = ()->
     Incident.archiveIncident $rootScope.userData.token, $scope.object.id, (data)->
-      # if success
-      if(data.id)
-        $uibModalInstance.close ""
+      resetMarkers($rootScope)
       return
+    $uibModalInstance.close ""
+    return
 
   $scope.dispatchApprove = ()->
     Incident.approveIncidentDispatch $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close ""
+      resetMarkers($rootScope)
       return
-
+    $uibModalInstance.close ""
     return
+
 
   $scope.dispatchReject = ->
     Incident.rejectIncidentDispatch $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close ""
+      resetMarkers($rootScope)
       return
+    $uibModalInstance.close ""
     return
 
   $scope.updateApprove = ->
     Incident.approveIncidentUpdate $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close ""
       $rootScope.init()
       return
+    $uibModalInstance.close ""
     return
 
   $scope.updateReject = ->
     Incident.rejectIncidentUpdate $rootScope.userData.token, $scope.object.incident.id, $scope.object.id, (data)->
-      $uibModalInstance.close ""
       $rootScope.init()
       return
+    $uibModalInstance.close ""
     return
+
 
   return
