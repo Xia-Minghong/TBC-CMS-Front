@@ -35,7 +35,6 @@ angular.module 'tbcCmsFrontApp'
     # global initialization
     $rootScope.init = ()->
       $rootScope.initialized = false
-
       if($rootScope.userData==undefined)
         $rootScope.userData = {}
       token = localStorageService.get "token"
@@ -43,6 +42,7 @@ angular.module 'tbcCmsFrontApp'
         User.getProfile token, (data)->
           $rootScope.userData = data
           $rootScope.userData.token = token
+          console.log $rootScope.userData.token
 
       # Access Control
       if localStorageService.get("token")==null and !$scope.isActive('/crisis-update')
@@ -97,7 +97,7 @@ angular.module 'tbcCmsFrontApp'
       if $rootScope.pushes.incidents
         for incident in $rootScope.pushes.incidents
           incident.todoType = "incident"
-          if incident.status!="closed" and incident.status!="rejected"
+          if incident.status!="closed"
             todo.push(incident)
 #        console.log("todo")
 
