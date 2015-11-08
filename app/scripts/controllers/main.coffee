@@ -8,7 +8,7 @@
  # Controller of the tbcCmsFrontApp
 ###
 angular.module 'tbcCmsFrontApp'
-  .controller 'MainCtrl', ($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
+  .controller 'MainCtrl', ($scope, $rootScope, $location, $routeParams, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
 
 
 
@@ -45,7 +45,7 @@ angular.module 'tbcCmsFrontApp'
           $rootScope.userData.token = token
 
       # Access Control
-      if localStorageService.get("token")==null
+      if localStorageService.get("token")==null and !$scope.isActive('/crisis-update')
         $location.path("/public")
 
 

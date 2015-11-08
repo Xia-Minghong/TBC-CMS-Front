@@ -8,7 +8,7 @@
     * # MainCtrl
     * Controller of the tbcCmsFrontApp
    */
-  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $uibModal, djangoWebsocket, Incident, Agency, User, localStorageService) {
+  angular.module('tbcCmsFrontApp').controller('MainCtrl', function($scope, $rootScope, $location, $routeParams, $uibModal, djangoWebsocket, Incident, Agency, User, localStorageService) {
     djangoWebsocket.connect($rootScope, 'pushes', 'pushes', ['subscribe-broadcast']);
     $rootScope.doLogout = function() {
       User.logout($rootScope.userData.token, function() {
@@ -34,7 +34,7 @@
           return $rootScope.userData.token = token;
         });
       }
-      if (localStorageService.get("token") === null) {
+      if (localStorageService.get("token") === null && !$scope.isActive('/crisis-update')) {
         $location.path("/public");
       }
       Incident.getIncidents($rootScope.userData.token, function(data) {
