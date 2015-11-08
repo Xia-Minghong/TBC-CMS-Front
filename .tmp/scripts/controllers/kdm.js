@@ -14,6 +14,7 @@
     }
     $scope.$on('$viewContentLoaded', function() {
       initMap($scope, resetMarkers);
+      $rootScope.isPublic = false;
     });
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);

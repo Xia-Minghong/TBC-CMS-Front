@@ -32,6 +32,7 @@ angular.module 'tbcCmsFrontApp'
           incident.timelineType = "incident"
           incident.date = moment(incident.time).format("DD MMM. YYYY")
           incident.displayTime = moment(incident.time).format("HH:mm")
+          incident.displayType = $rootScope.incidentTypeDict[incident.type]
           if incident.status=="approved"
             timeline.push(incident)
 
@@ -53,6 +54,10 @@ angular.module 'tbcCmsFrontApp'
 
 
       return timeline
+
+
+    # init timeline
+    initTimeline($scope)
 
     # NEA API
     if !$scope.NEAAPIInitialized

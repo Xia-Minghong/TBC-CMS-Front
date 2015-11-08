@@ -14,6 +14,7 @@ angular.module 'tbcCmsFrontApp'
 
   $scope.$on '$viewContentLoaded', ->
     initMap($scope, resetMarkers)
+    $rootScope.isPublic = false
     return
   # NEA API
   if !$scope.NEAAPIInitialized

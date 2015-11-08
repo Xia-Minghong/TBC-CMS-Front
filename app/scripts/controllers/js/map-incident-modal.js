@@ -26,7 +26,7 @@ function initMapIncidentModal($scope) {
         if (!updates[i]['is_approved']) {
             continue;
         }
-        var update = update[i];
+        var update = updates[i];
         timeStr = update.time;
         mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
         update.formattedTime = mmt.format("hh:mm");

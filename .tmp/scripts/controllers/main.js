@@ -105,10 +105,8 @@
       return $scope.currentPage = n;
     };
     $scope.$on('$viewContentLoaded', function() {
-      if (!$scope.mapInitialized) {
-        initMap($rootScope, resetMarkers);
-        $scope.mapInitialized = true;
-      }
+      initMap($rootScope, resetMarkers);
+      $rootScope.isPublic = false;
     });
     initNEAAPI($scope);
     $rootScope.systemLogs = [];
