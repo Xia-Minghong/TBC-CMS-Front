@@ -12,7 +12,7 @@ angular.module 'tbcCmsFrontApp'
     window.testScope = $scope
     $scope.submitReport = ->
         r = $scope.report
-        if r and r.type and r.name and r.severity and r.time and r.location and r.location and r.longitude and r.latitude and r.contact
+        if r and r.type and r.name and r.severity and r.time and r.location and r.location and r.longitude and r.latitude and r.contact and r['contact_name']
             console.log $scope.report
             Incident.postIncident $rootScope.userData.token, r, (success)->
               if success
