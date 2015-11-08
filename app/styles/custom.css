@@ -335,6 +335,11 @@ div.to-do-list-update hr {
     margin-top: 5px;
 }
 
+div.to-do-list-update div.event-photo img {
+    max-width: 400px;
+    height: auto;
+}
+
 /* Timeline items */
 div.timeline-item h3.timeline-header {
     font-weight: bold;
@@ -342,4 +347,14 @@ div.timeline-item h3.timeline-header {
 
 div.timeline-item p.timeline-item-detail{
     font-weight: bold;
+}
+
+div.timeline-item div.timeline-item-photo{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+div.timeline-item div.timeline-item-photo img {
+    max-width: 500px;
+    height: auto;
 }
