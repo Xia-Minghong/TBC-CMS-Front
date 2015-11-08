@@ -3,20 +3,28 @@
  */
 var map;
 var incidents = {
+    accident: [],
     fire: [],
-    haze: [],
-    crash: [],
-    dengue: []
+    gas: [],
+    riot: []
 };
 var incidentMarkers = {
+    accident: [],
     fire: [],
-    haze: [],
-    crash: [],
-    dengue: []
+    gas: [],
+    riot: []
 };
 
 
 function initMap($rootScope, callback) {
+    /**
+     * 0 for all
+     * 1 for accident
+     * 2 for fire
+     * 3 for gas
+     * 4 for riot
+     */
+    $rootScope.mapFilter = 0;
     setTimeout(function () {
         var container = document.getElementById('crisis-google-map');
 
@@ -86,121 +94,151 @@ function initMap($rootScope, callback) {
 }
 
 function resetMarkers($rootScope) {
-    // Clear global lists
-    incidents = {
-        fire: [],
-        haze: [],
-        crash: [],
-        dengue: []
-    };
+    var container = document.getElementById('crisis-google-map');
 
-    for (var i = 0; i < incidentMarkers.fire.length; i++) {
-      incidentMarkers.fire[i].setMap(null);
-    }
-    for (var i = 0; i < incidentMarkers.haze.length; i++) {
-      incidentMarkers.haze[i].setMap(null);
-    }
-    for (var i = 0; i < incidentMarkers.crash.length; i++) {
-      incidentMarkers.crash[i].setMap(null);
-    }
-    for (var i = 0; i < incidentMarkers.dengue.length; i++) {
-      incidentMarkers.dengue[i].setMap(null);
-    }
+    if (container != null) {
+        // Clear global lists
+        incidents = {
+            accident: [],
+            fire: [],
+            gas: [],
+            riot: []
+        };
 
-
-    incidentMarkers = {
-        fire: [],
-        haze: [],
-        crash: [],
-        dengue: []
-    };
-
-    var incidentList = $rootScope.pushes.incidents;
-
-    for (var i = 0; i < incidentList.length; i++) {
-        var incident = incidentList[i];
-        var marker = new google.maps.Marker({
-            position: {lat: parseFloat(incident.latitude), lng: parseFloat(incident.longitude)},
-            title: incident.name,
-            icon: 'images/' + incident.type + '-pin-' + Math.min(5, incident.severity) + '.png'
-        });
-
-        marker.incident = incident;
-
-        switch (incident.type) {
-            case "fire":
-                incidents.fire.push(incident);
-                incidentMarkers.fire.push(marker);
-                break;
-            case "haze":
-                incidents.haze.push(incident);
-                incidentMarkers.haze.push(marker);
-                break;
-            case "crash":
-                incidents.crash.push(incident);
-                incidentMarkers.crash.push(marker);
-                break;
-            case "dengue":
-                incidents.dengue.push(incident);
-                incidentMarkers.dengue.push(marker);
-                break;
+        for (var i = 0; i < incidentMarkers.accident.length; i++) {
+            incidentMarkers.accident[i].setMap(null);
+        }
+        for (var i = 0; i < incidentMarkers.fire.length; i++) {
+            incidentMarkers.fire[i].setMap(null);
+        }
+        for (var i = 0; i < incidentMarkers.gas.length; i++) {
+            incidentMarkers.gas[i].setMap(null);
+        }
+        for (var i = 0; i < incidentMarkers.riot.length; i++) {
+            incidentMarkers.riot[i].setMap(null);
         }
 
-        marker.setMap(map);
 
-        google.maps.event.addListener(marker, "click", function(event) {
-            $rootScope.openMapModal(this.incident.id);
-        });
-    }
+        incidentMarkers = {
+            accident: [],
+            fire: [],
+            gas: [],
+            riot: []
+        };
 
-    var toggleMarkers = function(list, show) {
-        for (var i = 0; i < list.length; i++) {
-            list[i].setMap(show ? map : null);
+        var incidentList = $rootScope.pushes.incidents;
+
+        for (var i = 0; i < incidentList.length; i++) {
+            var incident = incidentList[i];
+            if ($rootScope.isPublic && incident.status == 'initiated') {
+                continue;
+            }
+            var marker = new google.maps.Marker({
+                position: {lat: parseFloat(incident.latitude), lng: parseFloat(incident.longitude)},
+                title: incident.name,
+                icon: 'images/' + incident.type + '-pin-' + Math.min(5, incident.severity) + '.png'
+            });
+
+            marker.incident = incident;
+
+            switch (incident.type) {
+                case "accident":
+                    incidents.accident.push(incident);
+                    incidentMarkers.accident.push(marker);
+                    break;
+                case "fire":
+                    incidents.fire.push(incident);
+                    incidentMarkers.fire.push(marker);
+                    break;
+                case "gas_leak":
+                    incidents.gas.push(incident);
+                    incidentMarkers.gas.push(marker);
+                    break;
+                case "riot":
+                    incidents.riot.push(incident);
+                    incidentMarkers.riot.push(marker);
+                    break;
+            }
+
+            marker.setMap(map);
+
+            google.maps.event.addListener(marker, "click", function (event) {
+                $rootScope.openMapModal(this.incident.id);
+            });
         }
-    };
 
-    $("div#map-label-all").click(function() {
-        toggleMarkers(incidentMarkers.fire, true);
-        toggleMarkers(incidentMarkers.haze, true);
-        toggleMarkers(incidentMarkers.crash, true);
-        toggleMarkers(incidentMarkers.dengue, true);
-        $("div.map-label").removeClass("active");
-        $(this).addClass("active");
-    });
+        var toggleMarkers = function (list, show) {
+            for (var i = 0; i < list.length; i++) {
+                list[i].setMap(show ? map : null);
+            }
+        };
 
-    $("div#map-label-fire").click(function() {
-        toggleMarkers(incidentMarkers.fire, true);
-        toggleMarkers(incidentMarkers.haze, false);
-        toggleMarkers(incidentMarkers.crash, false);
-        toggleMarkers(incidentMarkers.dengue, false);
-        $("div.map-label").removeClass("active");
-        $(this).addClass("active");
-    }).find("div.map-label-number").text(incidents.fire.length);
+        $("div#map-label-all").click(function () {
+            $rootScope.mapFilter = 0;
+            toggleMarkers(incidentMarkers.accident, true);
+            toggleMarkers(incidentMarkers.fire, true);
+            toggleMarkers(incidentMarkers.gas, true);
+            toggleMarkers(incidentMarkers.riot, true);
+            $("div.map-label").removeClass("active");
+            $(this).addClass("active");
+        });
 
-    $("div#map-label-haze").click(function() {
-        toggleMarkers(incidentMarkers.fire, false);
-        toggleMarkers(incidentMarkers.haze, true);
-        toggleMarkers(incidentMarkers.crash, false);
-        toggleMarkers(incidentMarkers.dengue, false);
-        $("div.map-label").removeClass("active");
-        $(this).addClass("active");
-    }).find("div.map-label-number").text(incidents.haze.length);
+        $("div#map-label-accident").click(function () {
+            $rootScope.mapFilter = 1;
+            toggleMarkers(incidentMarkers.accident, true);
+            toggleMarkers(incidentMarkers.fire, false);
+            toggleMarkers(incidentMarkers.gas, false);
+            toggleMarkers(incidentMarkers.riot, false);
+            $("div.map-label").removeClass("active");
+            $(this).addClass("active");
+        }).find("div.map-label-number").text(incidents.accident.length);
 
-    $("div#map-label-crash").click(function() {
-        toggleMarkers(incidentMarkers.fire, false);
-        toggleMarkers(incidentMarkers.haze, false);
-        toggleMarkers(incidentMarkers.crash, true);
-        toggleMarkers(incidentMarkers.dengue, false);
-        $("div.map-label").removeClass("active");
-        $(this).addClass("active");
-    }).find("div.map-label-number").text(incidents.crash.length);
+        $("div#map-label-fire").click(function () {
+            $rootScope.mapFilter = 2;
+            toggleMarkers(incidentMarkers.accident, false);
+            toggleMarkers(incidentMarkers.fire, true);
+            toggleMarkers(incidentMarkers.gas, false);
+            toggleMarkers(incidentMarkers.riot, false);
+            $("div.map-label").removeClass("active");
+            $(this).addClass("active");
+        }).find("div.map-label-number").text(incidents.fire.length);
 
-    $("div#map-label-dengue").click(function() {
-        toggleMarkers(incidentMarkers.fire, false);
-        toggleMarkers(incidentMarkers.haze, false);
-        toggleMarkers(incidentMarkers.crash, false);
-        toggleMarkers(incidentMarkers.dengue, true);
-        $("div.map-label").removeClass("active");
-        $(this).addClass("active");
-    }).find("div.map-label-number").text(incidents.dengue.length);
+        $("div#map-label-gas").click(function () {
+            $rootScope.mapFilter = 3;
+            toggleMarkers(incidentMarkers.accident, false);
+            toggleMarkers(incidentMarkers.fire, false);
+            toggleMarkers(incidentMarkers.gas, true);
+            toggleMarkers(incidentMarkers.riot, false);
+            $("div.map-label").removeClass("active");
+            $(this).addClass("active");
+        }).find("div.map-label-number").text(incidents.gas.length);
+
+        $("div#map-label-riot").click(function () {
+            $rootScope.mapFilter = 4;
+            toggleMarkers(incidentMarkers.accident, false);
+            toggleMarkers(incidentMarkers.fire, false);
+            toggleMarkers(incidentMarkers.gas, false);
+            toggleMarkers(incidentMarkers.riot, true);
+            $("div.map-label").removeClass("active");
+            $(this).addClass("active");
+        }).find("div.map-label-number").text(incidents.riot.length);
+
+        switch ($rootScope.mapFilter) {
+            case 0: // all
+                $("div#map-label-all").click();
+                break;
+            case 1: // fire
+                $("div#map-label-accident").click();
+                break;
+            case 2:
+                $("div#map-label-fire").click();
+                break;
+            case 3:
+                $("div#map-label-gas").click();
+                break;
+            case 4:
+                $("div#map-label-riot").click();
+
+        }
+    }
 }

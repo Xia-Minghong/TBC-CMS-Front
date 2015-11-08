@@ -21,6 +21,7 @@ angular.module 'tbcCmsFrontApp'
 
     $scope.$on '$viewContentLoaded', ->
       initMap($scope, resetMarkers)
+      $rootScope.isPublic = true
       return
 
     $scope.compileTimeline = ->
@@ -58,3 +59,5 @@ angular.module 'tbcCmsFrontApp'
       initNEAAPI($scope)
       $scope.NEAAPIInitialized = true
     return
+
+

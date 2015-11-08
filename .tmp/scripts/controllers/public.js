@@ -18,6 +18,7 @@
     });
     $scope.$on('$viewContentLoaded', function() {
       initMap($scope, resetMarkers);
+      $rootScope.isPublic = true;
     });
     $scope.compileTimeline = function() {
       var dispatch, incident, timeline, update, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
