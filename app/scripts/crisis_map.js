@@ -61,35 +61,6 @@ function initMap($rootScope, callback) {
             }
 
         }
-
-        container = document.getElementById('location-selector-google-map');
-
-        if (container != null) {
-            map = new google.maps.Map(container,
-                {
-                    center: {lat: 1.359907, lng: 103.816726},
-                    zoom: 11,
-                    disableDefaultUI: true,
-                    minZoom: 11
-                });
-
-            setTimeout(function() {
-                // bounds of the desired area
-                var allowedBounds = map.getBounds();
-                var lastValidCenter = map.getCenter();
-
-                google.maps.event.addListener(map, 'center_changed', function() {
-                    if (allowedBounds.contains(map.getCenter())) {
-                        // still within valid bounds, so save the last valid position
-                        lastValidCenter = map.getCenter();
-                        return;
-                    }
-
-                    // not valid anymore => return to last valid position
-                    map.panTo(lastValidCenter);
-                });
-            }, 300);
-        }
     }, 600);
 }
 
@@ -241,4 +212,37 @@ function resetMarkers($rootScope) {
 
         }
     }
+}
+
+function initMapSelector() {
+    setTimeout(function() {
+        container = document.getElementById('location-selector-google-map');
+
+        if (container != null) {
+            map = new google.maps.Map(container,
+                {
+                    center: {lat: 1.359907, lng: 103.816726},
+                    zoom: 11,
+                    disableDefaultUI: true,
+                    minZoom: 11
+                });
+
+            setTimeout(function() {
+                // bounds of the desired area
+                var allowedBounds = map.getBounds();
+                var lastValidCenter = map.getCenter();
+
+                google.maps.event.addListener(map, 'center_changed', function() {
+                    if (allowedBounds.contains(map.getCenter())) {
+                        // still within valid bounds, so save the last valid position
+                        lastValidCenter = map.getCenter();
+                        return;
+                    }
+
+                    // not valid anymore => return to last valid position
+                    map.panTo(lastValidCenter);
+                });
+            }, 300);
+        }
+    }, 600);
 }

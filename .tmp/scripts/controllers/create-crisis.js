@@ -29,7 +29,7 @@
       }
     };
     $scope.$on('$viewContentLoaded', function() {
-      return initMap();
+      return initMapSelector();
     });
     if (!$scope.crisisReportInitialized) {
       Incident.getIncidentTypes($rootScope.userData.token, function(data) {

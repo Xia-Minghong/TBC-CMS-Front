@@ -27,7 +27,7 @@ angular.module 'tbcCmsFrontApp'
         return
 
     $scope.$on '$viewContentLoaded', ->
-        initMap()
+        initMapSelector()
 
 
     if !$scope.crisisReportInitialized
