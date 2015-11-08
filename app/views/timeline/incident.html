@@ -6,12 +6,12 @@
     <p>A new crisis event: <b>{{item.name}}</b> was reported at <b>{{item.location}}</b>.
     </p>
 
-    <p class="timeline-item-detail">Type:</p>
-    <p class="timeline-item-detail-content">{{item.displayType}}</p>
-    <p class="timeline-item-detail">Location:</p>
-    <p class="timeline-item-detail-content">{{item.location}}</p>
-    <p class="timeline-item-detail">Severity:
-        <div id="event-severity-check">
+    <p class="timeline-item-detail timeline-item-type-title">Type:</p>
+    <p class="timeline-item-detail-content timeline-item-type">{{item.displayType}}</p>
+    <p class="timeline-item-detail timeline-item-location-title">Location:</p>
+    <p class="timeline-item-detail-content timeline-item-location">{{item.location}}</p>
+    <p class="timeline-item-detail timeline-item-severity-title">Severity:
+        <div class="timeline-item-detail timeline-item-severity">
             <input type="radio" name="{{'incident' + item.id + 'sev1'}}" class="flat-red" ng-checked="item.severity >= 1" disabled>
             <input type="radio" name="{{'incident' + item.id + 'sev2'}}" class="flat-red" ng-checked="item.severity >= 2" disabled>
             <input type="radio" name="{{'incident' + item.id + 'sev3'}}" class="flat-red" ng-checked="item.severity >= 3" disabled>
@@ -19,10 +19,10 @@
             <input type="radio" name="{{'incident' + item.id + 'sev5'}}" class="flat-red" ng-checked="item.severity >= 5" disabled>
         </div>
     </p>
-
+    <div style="clear: both;"></div>
     <p ng-show="item.description" class="timeline-item-detail">Details:</p>
 
     <p ng-show="item.description" class="timeline-item-detail-content">{{item.description}}</p>
-
+    <div style="clear: both;"></div>
 </div>
 <div class="timeline-footer"></div>

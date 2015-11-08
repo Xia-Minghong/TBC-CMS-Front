@@ -360,3 +360,39 @@ div.timeline-item div.timeline-item-photo img {
     max-width: 500px;
     height: auto;
 }
+
+div.timeline-item p.timeline-item-updated-severity-title {
+    float: left;
+    line-height: 1.8;
+}
+
+div.timeline-item div.timeline-item-updated-severity {
+    float: left;
+    margin-left: 15px;
+}
+
+div.timeline-item p.timeline-item-severity-title {
+    float: left;
+    line-height: 1.8;
+}
+
+div.timeline-item div.timeline-item-severity {
+    float: left;
+    margin-left: 15px;
+}
+
+div.timeline-item p.timeline-item-type-title {
+    float: left;
+}
+
+div.timeline-item div.timeline-item-type {
+    float: left;
+}
+
+div.timeline-item p.timeline-item-location-title {
+    float: left;
+}
+
+div.timeline-item div.timeline-item-location {
+    float: left;
+}
