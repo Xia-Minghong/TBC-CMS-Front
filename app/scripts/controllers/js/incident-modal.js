@@ -4,7 +4,7 @@
 function initIncidentModalIncident($scope) {
     var timeStr = $scope.incident.time;
     var mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.incident.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.incident.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     setTimeout(function() {
         var ichecks = $('div#event-severity-check input[type="checkbox"].flat-yellow, input[type="radio"].flat-yellow');
@@ -100,11 +100,11 @@ function initIncidentModalIncident($scope) {
 function initIncidentModalUpdate($scope) {
     var timeStr = $scope.incident.time;
     var mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.incident.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.incident.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     timeStr = $scope.update.time;
     mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.update.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.update.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     setTimeout(function() {
         var ichecks = $('div#event-severity-check input[type="checkbox"].flat-yellow, div#event-severity-check input[type="radio"].flat-yellow');
@@ -184,11 +184,11 @@ function initIncidentModalUpdate($scope) {
 function initIncidentModalDispatch($scope) {
     var timeStr = $scope.incident.time;
     var mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.incident.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.incident.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     timeStr = $scope.dispatch.time;
     mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.dispatch.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.dispatch.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     setTimeout(function() {
         var ichecks = $('div#event-severity-check input[type="checkbox"].flat-yellow, input[type="radio"].flat-yellow');
