@@ -1,7 +1,8 @@
 function initMapIncidentModal($scope) {
+    console.log($scope.incident);
     var timeStr = $scope.incident.time;
     var mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-    $scope.incident.time = mmt.format("DD/MM/YYYY hh:mm");
+    $scope.incident.formattedTime = mmt.format("DD/MM/YYYY hh:mm");
 
     var dispatches = $scope.incident['dispatch_set'];
     var dispatchList = [];
@@ -13,7 +14,7 @@ function initMapIncidentModal($scope) {
         var dispatch = dispatches[i];
         timeStr = dispatch.time;
         mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-        dispatch.time = mmt.format("hh:mm");
+        dispatch.formattedTime = mmt.format("hh:mm");
         dispatchList.push(dispatch);
     }
     $scope.incident['dispatch_set'] = dispatchList;
@@ -28,7 +29,7 @@ function initMapIncidentModal($scope) {
         var update = update[i];
         timeStr = update.time;
         mmt = moment(timeStr, "YYYY-MM-DDThh:mm:ssZ");
-        update.time = mmt.format("hh:mm");
+        update.formattedTime = mmt.format("hh:mm");
         updateList.push(update);
     }
     $scope.incident['inciupdate_set'] = updateList;

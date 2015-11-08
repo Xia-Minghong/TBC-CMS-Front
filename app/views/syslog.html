@@ -13,9 +13,9 @@
       </thead>
       <tbody ng-show="$root.systemLogs && $root.systemLogs.length!=0">
       <tr ng-repeat="log in $root.systemLogs | orderBy:'-time'">
-        <td>{{log.time}}</td>
+        <td>{{log.formattedTime}}</td>
         <td>{{log.name}}</td>
-
+        <!--<td>{{log}}</td>-->
       </tr>
       </tbody>
     </table>
