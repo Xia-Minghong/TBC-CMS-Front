@@ -176,7 +176,8 @@
         data: {
           "updated_severity": report.severity,
           "time": report.time,
-          "description": report.description
+          "description": report.description,
+          "photo_url": report.photo_url
         }
       }).success((function(data, status, headers, config) {
         console.log("postIncidentUpdate success");

@@ -56,7 +56,7 @@ angular.module 'tbcCmsFrontApp'
           console.log(file)
           Upload.upload(
 #            url: 'https://angular-file-upload-cors-srv.appspot.com/upload'
-            url: 'http://cms.h5.io:8000/inci_update_photos/'
+            url: App.host_addr + '/inci_update_photos/'
             data:
 #              username: "121"
               "photo": file
@@ -70,6 +70,7 @@ angular.module 'tbcCmsFrontApp'
           .success (data, status, headers, config) ->
             console.log("success upload")
             console.log data
+            $scope.update.photo_url = data.photo
             $timeout ->
               $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log
               return

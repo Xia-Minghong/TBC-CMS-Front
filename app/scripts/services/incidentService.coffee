@@ -241,6 +241,7 @@ angular.module 'tbcCmsFrontApp'
           "updated_severity":report.severity
           "time":report.time
           "description":report.description
+          "photo_url":report.photo_url
       )
 
       .success ((data, status, headers, config) ->

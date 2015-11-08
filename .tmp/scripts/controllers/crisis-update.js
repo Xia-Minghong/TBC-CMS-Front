@@ -56,7 +56,7 @@
             console.log("start upload");
             console.log(file);
             Upload.upload({
-              url: 'http://cms.h5.io:8000/inci_update_photos/',
+              url: App.host_addr + '/inci_update_photos/',
               data: {
                 "photo": file
               }
@@ -67,6 +67,7 @@
             }).success(function(data, status, headers, config) {
               console.log("success upload");
               console.log(data);
+              $scope.update.photo_url = data.photo;
               return $timeout(function() {
                 $scope.log = 'file: ' + config.data.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
               });
