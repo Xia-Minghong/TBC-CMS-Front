@@ -73,6 +73,16 @@ angular.module 'tbcCmsFrontApp'
         $rootScope.agencies = data;
         return
 
+      # load incident types
+      Incident.getIncidentTypes $rootScope.userData.token, (data)->
+        $rootScope.incidentTypeDict = {}
+        i = 0
+        while i < data.length
+          $rootScope.incidentTypeDict[data[i].value] = data[i].title
+          i++
+        return
+
+
       $rootScope.initialized = true
       return
 

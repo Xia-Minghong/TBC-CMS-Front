@@ -1,8 +1,9 @@
 angular.module 'tbcCmsFrontApp'
 .controller 'mapIncidentModalCtrl', ($scope, $rootScope, $uibModal, $uibModalInstance, incident) ->
 
-
+  incident.displayType = $rootScope.incidentTypeDict[incident.type]
   $scope.incident = incident
+
 
   $scope.selected = item: "sth"
 

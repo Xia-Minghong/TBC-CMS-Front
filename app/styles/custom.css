@@ -154,7 +154,9 @@ div#map-label div.map-label span{
     width: 100%;
 }
 
-div#map-label div.map-label#map-label-fire span, div#map-label div.map-label#map-label-haze span, div#map-label div.map-label#map-label-all span {
+div#map-label div.map-label#map-label-fire span, div#map-label div.map-label#map-label-accident span,
+div#map-label div.map-label#map-label-riot span, div#map-label div.map-label#map-label-gas span,
+div#map-label div.map-label#map-label-all span {
     line-height: 2.8;
 }
 

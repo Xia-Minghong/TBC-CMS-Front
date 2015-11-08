@@ -50,6 +50,15 @@
       Agency.getAgencies($rootScope.userData.token, function(data) {
         $rootScope.agencies = data;
       });
+      Incident.getIncidentTypes($rootScope.userData.token, function(data) {
+        var i;
+        $rootScope.incidentTypeDict = {};
+        i = 0;
+        while (i < data.length) {
+          $rootScope.incidentTypeDict[data[i].value] = data[i].title;
+          i++;
+        }
+      });
       $rootScope.initialized = true;
     };
     $scope.compileTodoList = function() {
