@@ -10,6 +10,7 @@
    */
   angular.module('tbcCmsFrontApp').controller('PublicCtrl', function($scope, $rootScope, Incident) {
     $scope.timeline = [];
+    $scope.approvedIncidents = 0;
     $rootScope.$watchCollection('pushes', function() {
       if ($rootScope.initialized) {
         $scope.timeline = $scope.compileTimeline();
@@ -23,6 +24,7 @@
     $scope.compileTimeline = function() {
       var dispatch, incident, timeline, update, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
       timeline = [];
+      $scope.approvedIncidents = 0;
       if ($rootScope.pushes.incidents) {
         _ref = $rootScope.pushes.incidents;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -33,6 +35,7 @@
           incident.displayType = $rootScope.incidentTypeDict[incident.type];
           if (incident.status === "approved") {
             timeline.push(incident);
+            $scope.approvedIncidents += 1;
           }
         }
       }

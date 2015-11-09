@@ -12,6 +12,7 @@ angular.module 'tbcCmsFrontApp'
 
   # Watcher
     $scope.timeline = []
+    $scope.approvedIncidents = 0
 
     $rootScope.$watchCollection 'pushes', ->
       if $rootScope.initialized
@@ -26,6 +27,7 @@ angular.module 'tbcCmsFrontApp'
 
     $scope.compileTimeline = ->
       timeline = []
+      $scope.approvedIncidents = 0
 
       if $rootScope.pushes.incidents
         for incident in $rootScope.pushes.incidents
@@ -35,6 +37,7 @@ angular.module 'tbcCmsFrontApp'
           incident.displayType = $rootScope.incidentTypeDict[incident.type]
           if incident.status=="approved"
             timeline.push(incident)
+            $scope.approvedIncidents += 1
 
       if $rootScope.pushes.inciupdates
         for update in $rootScope.pushes.inciupdates
