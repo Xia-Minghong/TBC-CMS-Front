@@ -79,6 +79,12 @@
         return '';
       }
     };
+  }).run(function($rootScope, localStorageService, $location) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+      if (localStorageService.get("token") === null && !$rootScope.isActive('/crisis-update') && !$rootScope.isActive('/login')) {
+        $location.path("/public");
+      }
+    });
   });
 
 }).call(this);

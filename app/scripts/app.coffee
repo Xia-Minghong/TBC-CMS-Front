@@ -96,6 +96,13 @@ angular
     (input) ->
       if ! !input then input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() else ''
 
+  .run ($rootScope, localStorageService, $location) ->
+    $rootScope.$on '$routeChangeSuccess', ->
+      # Access Control
+      if localStorageService.get("token")==null and !$rootScope.isActive('/crisis-update') and !$rootScope.isActive('/login')
+        $location.path("/public")
+      return
+    return
 
 
 

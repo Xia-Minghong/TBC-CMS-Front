@@ -21,6 +21,7 @@
     $scope.isActive = function(viewLocation) {
       return (viewLocation === $location.path()) || (viewLocation.length > 1 && $location.path().indexOf(viewLocation) >= 0);
     };
+    $rootScope.isActive = $scope.isActive;
     $rootScope.init = function() {
       var token;
       $rootScope.initialized = false;
@@ -34,9 +35,6 @@
           $rootScope.userData.token = token;
           return console.log($rootScope.userData.token);
         });
-      }
-      if (localStorageService.get("token") === null && !$scope.isActive('/crisis-update')) {
-        $location.path("/public");
       }
       Incident.getIncidents($rootScope.userData.token, function(data) {
         $rootScope.pushes.incidents = data;

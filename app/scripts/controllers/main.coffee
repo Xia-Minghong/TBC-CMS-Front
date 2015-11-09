@@ -11,7 +11,6 @@ angular.module 'tbcCmsFrontApp'
   .controller 'MainCtrl', ($scope, $rootScope, $location, $routeParams, $uibModal, djangoWebsocket, Incident, Agency, User,localStorageService)->
 
 
-
     # websocket
 #    djangoWebsocket.connect($rootScope, 'allIncidentDispatches', 'dispatches', ['subscribe-broadcast', 'publish-broadcast'])
 #    djangoWebsocket.connect($rootScope, 'allIncidentUpdates', 'inciupdates', ['subscribe-broadcast', 'publish-broadcast'])
@@ -31,6 +30,7 @@ angular.module 'tbcCmsFrontApp'
     $scope.isActive = (viewLocation) ->
       return (viewLocation == $location.path()) || (viewLocation.length>1 && $location.path().indexOf(viewLocation)>=0);
 
+    $rootScope.isActive = $scope.isActive
 
     # global initialization
     $rootScope.init = ()->
@@ -43,10 +43,6 @@ angular.module 'tbcCmsFrontApp'
           $rootScope.userData = data
           $rootScope.userData.token = token
           console.log $rootScope.userData.token
-
-      # Access Control
-      if localStorageService.get("token")==null and !$scope.isActive('/crisis-update')
-        $location.path("/public")
 
 
     # Get incidents, updates and dispatches
