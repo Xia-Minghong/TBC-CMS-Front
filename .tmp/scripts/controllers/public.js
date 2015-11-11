@@ -14,6 +14,7 @@
     $rootScope.$watchCollection('pushes', function() {
       if ($rootScope.initialized) {
         $scope.timeline = $scope.compileTimeline();
+        initTimeline($scope);
         console.log("compileTimeline");
       }
     });
@@ -65,7 +66,6 @@
       }
       return timeline;
     };
-    initTimeline($scope);
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;

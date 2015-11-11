@@ -17,6 +17,7 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.$watchCollection 'pushes', ->
       if $rootScope.initialized
         $scope.timeline = $scope.compileTimeline()
+        initTimeline($scope);
         console.log("compileTimeline")
       return
 
@@ -58,9 +59,6 @@ angular.module 'tbcCmsFrontApp'
 
       return timeline
 
-
-    # init timeline
-    initTimeline($scope)
 
     # NEA API
     if !$scope.NEAAPIInitialized
