@@ -17,7 +17,6 @@ angular.module 'tbcCmsFrontApp'
     $rootScope.$watchCollection 'pushes', ->
       if $rootScope.initialized
         $scope.timeline = $scope.compileTimeline()
-        initTimeline($scope);
         console.log("compileTimeline")
       return
 
@@ -56,7 +55,7 @@ angular.module 'tbcCmsFrontApp'
           if dispatch.is_approved
             timeline.push(dispatch)
 
-
+      initTimeline($scope);
       return timeline
 
 

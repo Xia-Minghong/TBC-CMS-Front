@@ -16,7 +16,7 @@
     </p>
     <div style="clear: both;"></div>
     <p class="timeline-item-detail">Details:</p>
-    <div class="timeline-item-photo" ng-show="{{item['photo_url'] && item['photo_url'].length > 0}}">
+    <div class="timeline-item-photo" ng-show="item['photo_url'] && item['photo_url'].length > 0">
         <img src="{{item['photo_url']}}" >
     </div>
     <p class="timeline-item-detail-content">{{item.description}}</p>
