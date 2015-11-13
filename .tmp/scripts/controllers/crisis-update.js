@@ -28,7 +28,7 @@
           if (success) {
             $scope.errorMsg = "";
             $scope.successMsg = "Submit Success";
-            return $route.reload();
+            return location.reload();
           } else {
             return $scope.errorMsg = "Submit Error";
           }
@@ -57,6 +57,9 @@
             console.log(file);
             Upload.upload({
               url: App.host_addr + '/inci_update_photos/',
+              headers: {
+                "Authorization": $rootScope.userData.token
+              },
               data: {
                 "photo": file
               }

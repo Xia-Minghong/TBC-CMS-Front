@@ -98,7 +98,7 @@ angular.module 'tbcCmsFrontApp'
 #        console.log("todo")
 
       # convert and add updates
-      console.log($rootScope.pushes.inciupdates)
+      #console.log($rootScope.pushes.inciupdates)
       if $rootScope.pushes.inciupdates
         for update in $rootScope.pushes.inciupdates
           update.todoType = "update"

@@ -19,7 +19,7 @@
           if (success) {
             $scope.errorMsg = "";
             $scope.successMsg = "Submit Success";
-            return $route.reload();
+            return location.reload();
           } else {
             return $scope.errorMsg = "Submit Error";
           }

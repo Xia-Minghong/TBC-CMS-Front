@@ -74,7 +74,6 @@
           }
         }
       }
-      console.log($rootScope.pushes.inciupdates);
       if ($rootScope.pushes.inciupdates) {
         _ref1 = $rootScope.pushes.inciupdates;
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
