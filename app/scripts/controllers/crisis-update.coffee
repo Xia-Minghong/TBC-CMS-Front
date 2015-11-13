@@ -58,6 +58,8 @@ angular.module 'tbcCmsFrontApp'
           Upload.upload(
 #            url: 'https://angular-file-upload-cors-srv.appspot.com/upload'
             url: App.host_addr + '/inci_update_photos/'
+            headers:
+              "Authorization": $rootScope.userData.token
             data:
 #              username: "121"
               "photo": file
