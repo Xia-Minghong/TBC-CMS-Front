@@ -60,7 +60,7 @@
                 <span class="event-title">Description: </span>
                 <span class="event-content">{{update.description}}</span>
             </div>
-            <div class="event-detail event-photo" ng-show="{{item['photo_url'] && item['photo_url'].length > 0}}">
+            <div class="event-detail event-photo" ng-show="update['photo_url'] && update['photo_url'].length > 0">
                 <span class="event-title">Photo: </span>
                 <img src="{{update['photo_url']}}">
             </div>
