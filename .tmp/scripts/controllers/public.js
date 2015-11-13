@@ -63,9 +63,9 @@
           }
         }
       }
-      initTimeline($scope);
       return timeline;
     };
+    initTimeline($scope);
     if (!$scope.NEAAPIInitialized) {
       initNEAAPI($scope);
       $scope.NEAAPIInitialized = true;

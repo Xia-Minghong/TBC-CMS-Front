@@ -55,9 +55,9 @@ angular.module 'tbcCmsFrontApp'
           if dispatch.is_approved
             timeline.push(dispatch)
 
-      initTimeline($scope);
       return timeline
 
+    initTimeline($scope)
 
     # NEA API
     if !$scope.NEAAPIInitialized
